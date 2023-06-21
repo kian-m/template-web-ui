@@ -1,3 +1,23 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    // Enforce a space before and after binary operators (+, -, *, /, etc.)
+    "space-infix-ops": "error",
+
+    // Enforce a space before and after the arrow (=>) in arrow functions
+    "arrow-spacing": "error",
+
+    // Enforce a space before function parentheses
+    "space-before-function-paren": ["error", "always"],
+
+    // Enforce consistent spacing inside array brackets
+    "array-bracket-spacing": ["error", "always", {
+      "singleValue": false,
+      "objectsInArrays": false,
+      "arraysInArrays": false
+    }],
+
+    // Enforce consistent spacing inside object literals
+    "object-curly-spacing": ["error", "always"]
+  }
 }
