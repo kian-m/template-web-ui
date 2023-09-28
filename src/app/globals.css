@@ -25,3 +25,8 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.times-italic {
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+}

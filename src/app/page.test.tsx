@@ -1,12 +1,20 @@
-import { render, screen } from '@testing-library/react'
-import Page from '../app/page'
+import { fireEvent, render, screen } from '@testing-library/react';
+import Page from '../app/page';
 
 describe('Home', () => {
-    it('renders a heading', () => {
-        render(<Page />)
+  it('renders a heading', () => {
+    render(<Page />);
 
-        const image = screen.getByAltText(/next\.js logo/i)
+    expect(screen.getByText('"SLOW MOVING" OUT NOW')).toBeInTheDocument();
+  });
 
-        expect(image).toBeInTheDocument()
-    })
-})
+  it('should render menu when plus is clicked', function () {
+    render(<Page />);
+
+    fireEvent.click(screen.getByRole('menu-button'));
+    expect(screen.getByText('Contact')).toBeInTheDocument();
+    expect(screen.getByText('Shows')).toBeInTheDocument();
+    expect(screen.getByText('Gallery')).toBeInTheDocument();
+    expect(screen.getByText('About Me')).toBeInTheDocument();
+  });
+});
