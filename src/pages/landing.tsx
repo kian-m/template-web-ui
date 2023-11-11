@@ -74,18 +74,16 @@ export default function Landing() {
           height="1000"
         />
         <div className="absolute bottom-10 left-0 right-0 text-center">
-          <button className="w-5/6 h-20 bg-gray-100 bg-opacity-10 text-white text-2xl  times-italic drop-shadow-lg ">
+          <button className="w-5/6 h-20 bg-gray-100 bg-opacity-10 text-white text-2xl times-italic drop-shadow-lg">
             <a
-              href={
-                'https://open.spotify.com/artist/3R1c8eb89rUzGW6Ac1EhPj?si=0ksVJXvNQEe_AIE7R1dJeg'
-              }
+              href={'https://spotify.link/cOgz1twyuDb'}
               target="_blank"
               rel="noopener noreferrer"
             >
               {' '}
-              <div className={'flex flex-col items-center justify-between'}>
+              <div className={'flex flex-col items-center justify-between '}>
                 {'"SLOW MOVING" OUT NOW'}
-                <FaSpotify />
+                <FaSpotify className="hover:text-green-700 hover:opacity-30" />
               </div>
             </a>
           </button>
