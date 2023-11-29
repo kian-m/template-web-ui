@@ -17,11 +17,54 @@ import EmailListSignUp from '../components/EmailListSignUp';
 import Image from 'next/image';
 import PageBottom from '../components/PageBottom';
 import { getSheetData, SheetData } from '../services/sheets';
+import one from '../../public/1.webp';
+import two from '../../public/2.webp';
+import three from '../../public/3.webp';
+import four from '../../public/4.webp';
+import five from '../../public/5.webp';
+import six from '../../public/6.webp';
+import seven from '../../public/7.webp';
+import eight from '../../public/8.webp';
+import nine from '../../public/9.webp';
+import ten from '../../public/10.webp';
+import eleven from '../../public/11.webp';
+import twelve from '../../public/12.webp';
+import thirteen from '../../public/13.webp';
+import fourteen from '../../public/14.webp';
+import sixteen from '../../public/16.webp';
+import seventeen from '../../public/17.webp';
+import eighteen from '../../public/18.webp';
+import nineteen from '../../public/19.webp';
+import twentyone from '../../public/21.webp';
+import twentytwo from '../../public/22.webp';
+import twentythree from '../../public/23.webp';
+
+const images = [
+  fourteen,
+  sixteen,
+  seventeen,
+  eighteen,
+  nineteen,
+  twentyone,
+  twentytwo,
+  thirteen,
+  twentythree,
+  one,
+  two,
+  three,
+  four,
+  five,
+  six,
+  seven,
+  eight,
+  nine,
+  ten,
+  eleven,
+  twelve,
+];
 export default function Landing() {
   const [bottomVisible, setBottomVisible] = useState(false);
   const [showSubscribe, setShowSubscribe] = useState(true);
-  const [date, setDate] = useState('');
-  const [place, setPlace] = useState('');
 
   const shows = useMemo(() => {
     let showRow: ReactNode[] = [];
@@ -33,7 +76,7 @@ export default function Landing() {
           <div
             className={'flex flex-col items-center justify-center times-italic'}
           >
-            <p className={''}>{date}</p>
+            <p className={'underline'}>{date}</p>
             <p className={''}>{place}</p>
           </div>,
         );
@@ -87,7 +130,7 @@ export default function Landing() {
           width="2000"
           height="1000"
         />
-        <div className="absolute bottom-10 left-0 right-0 text-center">
+        <div className=" absolute bottom-10 left-0 right-0 text-center">
           <button className="w-5/6 h-20 bg-gray-100 bg-opacity-10 text-white text-2xl times-italic drop-shadow-lg">
             <a
               href={'https://spotify.link/cOgz1twyuDb'}
@@ -125,9 +168,20 @@ export default function Landing() {
             name: 'contact',
           },
           {
+            name: 'gallery',
+            visible: state.showGallery,
             component: (
-              <p className={'p-5 border-x-gray-600-950 opacity-90'}>{shows}</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {images.map((image, index) => (
+                  <div key={index} className="relative h-full">
+                    <img src={image.src} />
+                  </div>
+                ))}
+              </div>
             ),
+          },
+          {
+            component: <p className={'p-5 opacity-90'}>{shows}</p>,
             visible: state.showShows,
             name: 'shows',
           },

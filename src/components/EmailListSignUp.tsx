@@ -32,13 +32,6 @@ export default function EmailListSignUp({
         >
           <FaInstagram className="text-2xl" />
         </a>
-        <a
-          href={'https://spotify.link/cOgz1twyuDb'}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FaSpotify className="text-2xl hover:text-green-700 hover:opacity-30" />
-        </a>
         <button
           onClick={() => {
             setShowSubscribe(!showSubscribe);
@@ -46,6 +39,13 @@ export default function EmailListSignUp({
         >
           <FaMailBulk className="text-2xl" />
         </button>
+        <a
+          href={'https://spotify.link/cOgz1twyuDb'}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaSpotify className="text-2xl hover:text-green-700 hover:opacity-30" />
+        </a>
       </main>
       <div
         style={{ width: '100%', height: '1px', backgroundColor: 'white' }}

@@ -1,3 +1,5 @@
+import fetch from 'cross-fetch';
+
 export type DataType = {
   v: string | null;
   f?: string;
