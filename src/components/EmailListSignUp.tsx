@@ -1,6 +1,12 @@
 import { CloseIcon, EmailIcon } from '@chakra-ui/icons';
-import { FaFacebook, FaTwitter, FaInstagram, FaMailBulk } from 'react-icons/fa';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import {
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaMailBulk,
+  FaSpotify,
+} from 'react-icons/fa';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 export default function EmailListSignUp({
   showSubscribe,
@@ -13,7 +19,7 @@ export default function EmailListSignUp({
     <>
       <main className="grid grid-cols-4 gap-4 m-4 ml-12">
         <a
-          href={'https://www.instagram.com/kaciehillmusic/?hl=en'}
+          href={'https://m.facebook.com/profile.php/?id=61551725507991'}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -27,11 +33,11 @@ export default function EmailListSignUp({
           <FaInstagram className="text-2xl" />
         </a>
         <a
-          href={'https://www.instagram.com/kaciehillmusic/?hl=en'}
+          href={'https://spotify.link/cOgz1twyuDb'}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaTwitter className="text-2xl" />
+          <FaSpotify className="text-2xl hover:text-green-700 hover:opacity-30" />
         </a>
         <button
           onClick={() => {

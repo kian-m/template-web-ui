@@ -1,6 +1,13 @@
 'use client';
 
-import React, { useReducer, useState, useRef, forwardRef } from 'react';
+import React, {
+  useReducer,
+  useState,
+  useRef,
+  forwardRef,
+  useMemo,
+  ReactNode,
+} from 'react';
 import Links, { Action, State } from '../components/Links';
 
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
@@ -9,12 +16,31 @@ import { FaSpotify } from 'react-icons/fa';
 import EmailListSignUp from '../components/EmailListSignUp';
 import Image from 'next/image';
 import PageBottom from '../components/PageBottom';
+import { getSheetData, SheetData } from '../services/sheets';
 export default function Landing() {
-  const bottomRef = React.useRef();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [bottomVisible, setBottomVisible] = useState(false);
   const [showSubscribe, setShowSubscribe] = useState(true);
+  const [date, setDate] = useState('');
+  const [place, setPlace] = useState('');
 
+  const shows = useMemo(() => {
+    let showRow: ReactNode[] = [];
+    getSheetData().then((data: SheetData) => {
+      data.forEach((data) => {
+        const place = data.c[0].v;
+        const date = data.c[1].f;
+        showRow.push(
+          <div
+            className={'flex flex-col items-center justify-center times-italic'}
+          >
+            <p className={''}>{date}</p>
+            <p className={''}>{place}</p>
+          </div>,
+        );
+      });
+    });
+    return showRow;
+  }, [getSheetData]);
   const initialState = {
     showContact: false,
     showShows: false,
@@ -51,21 +77,9 @@ export default function Landing() {
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   return (
     <div>
-      <button
-        role={'menu-button'}
-        className="group rounded-lg border border-transparent px-4 py-3 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-        onClick={toggleMenu}
-      >
-        {isMenuOpen ? <MinusIcon /> : <AddIcon />}
-      </button>
-      {isMenuOpen && <Links dispatch={dispatch} />}
+      <Links dispatch={dispatch} />
       <div className="relative">
         <Image
           src="/album-art.webp"
@@ -97,10 +111,10 @@ export default function Landing() {
         components={[
           {
             component: (
-              <div>
+              <div className={'times-italic p-4'}>
                 email:
                 <a
-                  style={{ color: 'navy' }}
+                  style={{ color: 'cyan' }}
                   href="mailto:kaciehillmusic@gmail.com"
                 >
                   kaciehillmusic@gmail.com
@@ -112,19 +126,7 @@ export default function Landing() {
           },
           {
             component: (
-              <p>
-                {' '}
-                <b>Next Show:</b> October 13th{' '}
-                <a
-                  style={{ color: 'blue' }}
-                  href={
-                    'https://www.google.com/travel/hotels/s/FPq7sHiCP9SJJucX8'
-                  }
-                >
-                  Smiley`s Saloon
-                </a>{' '}
-                in Bolinas, CA with Freight Train Lady & Dana (Big Dog)
-              </p>
+              <p className={'p-5 border-x-gray-600-950 opacity-90'}>{shows}</p>
             ),
             visible: state.showShows,
             name: 'shows',
@@ -132,7 +134,11 @@ export default function Landing() {
           {
             component: (
               <>
-                <p>
+                <p
+                  className={
+                    'text-white text-1xl drop-shadow-lg p-5 times-italic bg-emerald-800 opacity-75'
+                  }
+                >
                   San Francisco based singer/songwriter Kacie Hill has been
                   winning over audiences in the Bay Area and Southern California
                   with her heartfelt and authentic songs, playing notable venues

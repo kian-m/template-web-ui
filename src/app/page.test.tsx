@@ -11,7 +11,6 @@ describe('Home', () => {
   it('should render menu when plus is clicked', function () {
     render(<Page />);
 
-    fireEvent.click(screen.getByRole('menu-button'));
     expect(screen.getByText('Contact')).toBeInTheDocument();
     expect(screen.getByText('Shows')).toBeInTheDocument();
     expect(screen.getByText('Gallery')).toBeInTheDocument();
