@@ -76,8 +76,8 @@ export default function Landing() {
           <div
             className={'flex flex-col items-center justify-center times-italic'}
           >
-            <p className={'underline'}>{date}</p>
-            <p className={''}>{place}</p>
+            <p>{date}</p>
+            <p>{place}</p>
           </div>,
         );
       });
