@@ -1,12 +1,6 @@
-import { CloseIcon, EmailIcon } from '@chakra-ui/icons';
-import {
-  FaFacebook,
-  FaTwitter,
-  FaInstagram,
-  FaMailBulk,
-  FaSpotify,
-} from 'react-icons/fa';
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { CloseIcon } from '@chakra-ui/icons';
+import { FaFacebook, FaInstagram, FaMailBulk, FaSpotify } from 'react-icons/fa';
+import React from 'react';
 
 export default function EmailListSignUp({
   showSubscribe,
@@ -47,9 +41,6 @@ export default function EmailListSignUp({
           <FaSpotify className="text-2xl hover:text-green-700 hover:opacity-30" />
         </a>
       </main>
-      <div
-        style={{ width: '100%', height: '1px', backgroundColor: 'white' }}
-      ></div>
       {showSubscribe && (
         <CloseIcon
           boxSize={12}

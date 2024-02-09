@@ -26,8 +26,8 @@ export type Action = {
 };
 export default function Links({ dispatch }: { dispatch: Dispatch<Action> }) {
   return (
-    <main className="flex flex-col items-center justify-between p-3">
-      <div className=" grid-cols-4 lg:space-x-12">
+    <main className="-ml-4 flex flex-col items-center justify-between p-3">
+      <div className="grid grid-cols-4 gap-4 lg:space-x-12">
         <button
           onClick={() => dispatch({ type: ActionTypes.SHOW_CONTACT })}
           className="lg:scale-150 group border border-transparent px-4 py-3 transition-colors hover:border-gray-300 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
@@ -53,7 +53,11 @@ export default function Links({ dispatch }: { dispatch: Dispatch<Action> }) {
           onClick={() => dispatch({ type: ActionTypes.SHOW_ABOUT_ME })}
           className="lg:scale-150 group border border-transparent px-4 py-3 transition-colors hover:border-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
         >
-          <p className={`m-0 text-sm opacity-75 font-extralight`}>About Me</p>
+          <p
+            className={`m-0 text-sm opacity-75 font-extralight whitespace-nowrap`}
+          >
+            About Me
+          </p>
         </button>
       </div>
     </main>
