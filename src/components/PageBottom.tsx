@@ -24,10 +24,7 @@ const PageBottom = ({
       <div
         style={{ width: '100%', height: '1px', backgroundColor: 'white' }}
       ></div>
-      <div className={'flex justify-between'}>
-        {visible && (
-          <CloseIcon boxSize={30} padding={8} onClick={toggleVisibility} />
-        )}
+      <div className={'invisible md:visible lg:visible flex justify-between'}>
         {visible && (
           <CloseIcon boxSize={30} padding={8} onClick={toggleVisibility} />
         )}
