@@ -7,6 +7,7 @@ import React, {
   forwardRef,
   useMemo,
   ReactNode,
+  useEffect,
 } from 'react';
 import Links, { Action, State } from '../components/Links';
 
@@ -66,6 +67,8 @@ export default function Landing() {
   const [bottomVisible, setBottomVisible] = useState(false);
   const [showSubscribe, setShowSubscribe] = useState(true);
   const [outNowVisible, setOutNowVisible] = useState(true);
+  const [upcomingShows, setUpcomingShows] = useState<ReactNode[]>([]);
+  const [pastShows, setPastShows] = useState<ReactNode[]>([]);
 
   const setBottomAndButtonVisible = () => {
     setOutNowVisible(true);
@@ -109,23 +112,51 @@ export default function Landing() {
     }
   };
 
-  const shows = useMemo(() => {
-    let showRow: ReactNode[] = [];
+  useEffect(() => {
     getSheetData().then((data: SheetData) => {
+      let pastShowRows: ReactNode[] = [];
+      let upComingShowRows: ReactNode[] = [];
+
       data.forEach((data) => {
         const place = data.c[0].v;
-        const date = data.c[1].f;
-        showRow.push(
-          <div
-            className={'flex flex-col items-center justify-center times-italic'}
-          >
-            <p>{date}</p>
-            <p>{place}</p>
-          </div>,
-        );
+        const displayTime = data.c[2].v === 'Display';
+        let date = new Date(data.c[1].v as string);
+        let today = new Date();
+        if (date >= today) {
+          upComingShowRows.push(
+            <div
+              className={
+                'flex flex-col items-center justify-center times-italic p-3'
+              }
+            >
+              <p>
+                {date.toDateString()}
+                {displayTime && ', ' + date.toLocaleTimeString()}
+              </p>
+              <p>{place}</p>
+              <div className={'w-max h-4'} />
+            </div>,
+          );
+        } else if (date < today) {
+          pastShowRows.push(
+            <div
+              className={
+                'flex flex-col items-center justify-center times-italic p-3'
+              }
+            >
+              <p>
+                {date.toDateString()}
+                {displayTime && ', ' + date.toLocaleTimeString()}
+              </p>
+              <p>{place}</p>
+            </div>,
+          );
+        }
       });
+      pastShowRows = pastShowRows.reverse();
+      setPastShows(pastShowRows);
+      setUpcomingShows(upComingShowRows);
     });
-    return showRow;
   }, [getSheetData]);
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -203,7 +234,35 @@ export default function Landing() {
               ),
             },
             {
-              component: <p className={'p-5 opacity-90'}>{shows}</p>,
+              component: (
+                <div className={'flex flex-col items-center'}>
+                  {upcomingShows?.length > 0 && (
+                    <>
+                      <p
+                        className={
+                          'text-xl opacity-90 flex flex-col items-center justify-center times-italic font-extrabold underline'
+                        }
+                      >
+                        Upcoming Shows
+                      </p>
+
+                      <p className={'opacity-90'}>{upcomingShows}</p>
+                    </>
+                  )}
+                  {pastShows?.length > 0 && (
+                    <>
+                      <p
+                        className={
+                          'text-xl opacity-90 flex flex-col items-center justify-center times-italic font-extrabold underline'
+                        }
+                      >
+                        Past Shows
+                      </p>
+                      <p className={'opacity-90'}>{pastShows}</p>
+                    </>
+                  )}
+                </div>
+              ),
               visible: state.showShows,
               name: 'shows',
             },
