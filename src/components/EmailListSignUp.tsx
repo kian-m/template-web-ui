@@ -11,7 +11,7 @@ export default function EmailListSignUp({
 }) {
   return (
     <>
-      <main className="grid grid-cols-4 gap-4 m-4 ml-12">
+      <main className="relative flex flex-grow gap-12 m-4 justify-between">
         <a
           href={'https://m.facebook.com/profile.php/?id=61551725507991'}
           target="_blank"

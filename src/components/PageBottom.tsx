@@ -1,5 +1,6 @@
 import React from 'react';
 import { CloseIcon } from '@chakra-ui/icons';
+import Func = jest.Func;
 
 const PageBottom = ({
   components,
@@ -12,10 +13,10 @@ const PageBottom = ({
     name: string;
   }[];
   visible: boolean;
-  setVisible: (b: boolean) => void;
+  setVisible: Function;
 }) => {
   const toggleVisibility = () => {
-    setVisible(!visible);
+    setVisible();
   };
 
   return (

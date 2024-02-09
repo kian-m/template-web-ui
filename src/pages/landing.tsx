@@ -65,6 +65,12 @@ const images = [
 export default function Landing() {
   const [bottomVisible, setBottomVisible] = useState(false);
   const [showSubscribe, setShowSubscribe] = useState(true);
+  const [outNowVisible, setOutNowVisible] = useState(true);
+
+  const setBottomAndButtonVisible = () => {
+    setOutNowVisible(true);
+    setBottomVisible(false);
+  };
 
   const initialState = {
     showContact: false,
@@ -90,6 +96,7 @@ export default function Landing() {
       }
       case 'SHOW_GALLERY': {
         toggleToBottomContent();
+        setOutNowVisible(false);
         return { ...initialState, showGallery: true };
       }
       case 'SHOW_ABOUT_ME': {
@@ -134,26 +141,32 @@ export default function Landing() {
           height="1000"
         />
       </div>
-      <div className="sticky flex justify-center bottom-3/4">
-        <button className="w-5/6 h-20 bg-gray-100 bg-opacity-10 text-white text-2xl times-italic drop-shadow-lg">
-          <a
-            href={'https://spotify.link/cOgz1twyuDb'}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {' '}
-            <div
-              className={
-                'flex flex-col items-center justify-between whitespace-nowrap'
-              }
+      {outNowVisible && (
+        <div className="-mt-28 h-32 lg:sticky md:sticky bottom-1/2 flex justify-center ">
+          <button className="w-5/6  bg-gray-100 bg-opacity-10 text-white text-2xl times-italic drop-shadow-lg">
+            <a
+              href={'https://spotify.link/cOgz1twyuDb'}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              {'"SLOW MOVING" OUT NOW'}
-              <FaSpotify className="hover:text-green-700 hover:opacity-30" />
-            </div>
-          </a>
-        </button>
-      </div>
-      <div className={'sticky lg:bottom-0 lg:mt-20 overflow-auto '}>
+              {' '}
+              <div
+                className={
+                  'flex flex-col items-center justify-between whitespace-nowrap'
+                }
+              >
+                {'"SLOW MOVING" OUT NOW'}
+                <FaSpotify className="hover:text-green-700 hover:opacity-30" />
+              </div>
+            </a>
+          </button>
+        </div>
+      )}
+      <div
+        className={
+          'md:sticky md:bottom-0 md:mt-20 lg:sticky lg:bottom-0 lg:mt-20  overflow-auto '
+        }
+      >
         <BottomSocialMediaLinks
           showSubscribe={showSubscribe}
           setShowSubscribe={setShowSubscribe}
@@ -217,7 +230,7 @@ export default function Landing() {
               name: 'about me',
             },
           ]}
-          setVisible={setBottomVisible}
+          setVisible={setBottomAndButtonVisible}
           visible={bottomVisible}
         />
       </div>
