@@ -80,6 +80,7 @@ export default function Landing() {
   };
 
   const toggleToBottomContent = () => {
+    setOutNowVisible(true);
     setBottomVisible(true);
     setShowSubscribe(false);
   };
