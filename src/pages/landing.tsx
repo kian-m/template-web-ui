@@ -1,17 +1,8 @@
 'use client';
 
-import React, {
-  useReducer,
-  useState,
-  useRef,
-  forwardRef,
-  useMemo,
-  ReactNode,
-  useEffect,
-} from 'react';
+import React, { useReducer, useState, ReactNode, useEffect } from 'react';
 import Links, { Action, State } from '../components/Links';
 
-import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 import { FaSpotify } from 'react-icons/fa';
 
 import BottomSocialMediaLinks from '../components/EmailListSignUp';
@@ -21,9 +12,6 @@ import { getSheetData, SheetData } from '../services/sheets';
 import one from '../../public/1.webp';
 import two from '../../public/2.webp';
 import three from '../../public/3.webp';
-import four from '../../public/4.webp';
-import five from '../../public/5.webp';
-import six from '../../public/6.webp';
 import seven from '../../public/7.webp';
 import eight from '../../public/8.webp';
 import nine from '../../public/9.webp';
@@ -39,9 +27,9 @@ import nineteen from '../../public/19.webp';
 import twentyone from '../../public/21.webp';
 import twentytwo from '../../public/22.webp';
 import twentythree from '../../public/23.webp';
+import { correctForTimeZone } from '../utils/time-util';
 
 const images = [
-  fourteen,
   sixteen,
   seventeen,
   eighteen,
@@ -53,15 +41,13 @@ const images = [
   one,
   two,
   three,
-  four,
-  five,
-  six,
   seven,
   eight,
   nine,
   ten,
   eleven,
   twelve,
+  fourteen,
 ];
 export default function Landing() {
   const [bottomVisible, setBottomVisible] = useState(false);
@@ -120,17 +106,29 @@ export default function Landing() {
       data.forEach((data) => {
         const place = data.c[0].v;
         const displayTime = data.c[2].v === 'Display';
+        const timeZone = data.c[3].v;
         let date = new Date(data.c[1].v as string);
         let today = new Date();
+        const utcDifference = correctForTimeZone(timeZone);
+
+        var options = {
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric',
+          timeZone: 'America/Los_Angeles',
+        };
+
         if (date >= today) {
+          date.setHours(date.getHours() + utcDifference);
           upComingShowRows.push(
             <div
+              key={place}
               className={
                 'flex flex-col items-center justify-center times-italic p-3'
               }
             >
               <p>
-                {date.toDateString()}
+                {date.toLocaleString('en-US', options as any)}
                 {displayTime && ', ' + date.toLocaleTimeString()}
               </p>
               <p>{place}</p>
@@ -138,22 +136,29 @@ export default function Landing() {
             </div>,
           );
         } else if (date < today) {
+          date.setHours(date.getHours() + utcDifference);
           pastShowRows.push(
             <div
+              key={place}
               className={
                 'flex flex-col items-center justify-center times-italic p-3'
               }
             >
               <p>
-                {date.toDateString()}
-                {displayTime && ', ' + date.toLocaleTimeString()}
+                {date.toLocaleString('en-US', options as any)}
+                {displayTime &&
+                  ', ' +
+                    date.toLocaleTimeString('en-US', {
+                      hour: 'numeric',
+                      minute: 'numeric',
+                      second: undefined,
+                    } as any)}
               </p>
               <p>{place}</p>
             </div>,
           );
         }
       });
-      pastShowRows = pastShowRows.reverse();
       setPastShows(pastShowRows);
       setUpcomingShows(upComingShowRows);
     });
