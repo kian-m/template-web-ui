@@ -55,6 +55,7 @@ export default function Landing() {
   const [outNowVisible, setOutNowVisible] = useState(true);
   const [upcomingShows, setUpcomingShows] = useState<ReactNode[]>([]);
   const [pastShows, setPastShows] = useState<ReactNode[]>([]);
+  const [aboutMeContent, setAboutMeContent] = useState('');
 
   const setBottomAndButtonVisible = () => {
     setOutNowVisible(true);
@@ -106,10 +107,11 @@ export default function Landing() {
       data.forEach((data) => {
         const place = data.c[0].v;
         const displayTime = data.c[2].v === 'Display';
-        const timeZone = data.c[3].v;
+        if (data.c[4].v) {
+          setAboutMeContent(data.c[4].v as string);
+        }
         let date = new Date(data.c[1].v as string);
         let today = new Date();
-        const utcDifference = correctForTimeZone(timeZone);
 
         var options = {
           weekday: 'short',
@@ -119,7 +121,7 @@ export default function Landing() {
         };
 
         if (date >= today) {
-          date.setHours(date.getHours() + utcDifference);
+          date.setHours(date.getHours());
           upComingShowRows.push(
             <div
               key={place}
@@ -132,11 +134,10 @@ export default function Landing() {
                 {displayTime && ', ' + date.toLocaleTimeString()}
               </p>
               <p>{place}</p>
-              <div className={'w-max h-4'} />
             </div>,
           );
         } else if (date < today) {
-          date.setHours(date.getHours() + utcDifference);
+          date.setHours(date.getHours());
           pastShowRows.push(
             <div
               key={place}
@@ -159,8 +160,8 @@ export default function Landing() {
           );
         }
       });
-      setPastShows(pastShowRows);
-      setUpcomingShows(upComingShowRows);
+      setPastShows(pastShowRows.reverse());
+      setUpcomingShows(upComingShowRows.reverse());
     });
   }, [getSheetData]);
 
@@ -180,7 +181,7 @@ export default function Landing() {
       </div>
       {outNowVisible && (
         <div className="-mt-32 h-32 lg:sticky md:sticky bottom-1/2 flex justify-center ">
-          <button className="w-5/6  bg-gray-100 bg-opacity-10 text-white text-2xl times-italic drop-shadow-lg">
+          <button className=" rounded-md w-5/6 hover:bg-emerald-800 hover:opacity-40 bg-gray-100 bg-opacity-10 text-white text-2xl font-bold times-italic drop-shadow-lg">
             <a
               href={'https://spotify.link/cOgz1twyuDb'}
               target="_blank"
@@ -215,7 +216,7 @@ export default function Landing() {
                 <div className={'times-italic p-4'}>
                   email:
                   <a
-                    style={{ color: 'cyan' }}
+                    style={{ color: 'dodgerblue' }}
                     href="mailto:kaciehillmusic@gmail.com"
                   >
                     kaciehillmusic@gmail.com
@@ -276,18 +277,10 @@ export default function Landing() {
                 <>
                   <p
                     className={
-                      'text-white text-1xl drop-shadow-lg p-5 times-italic bg-emerald-800 opacity-75'
+                      'text-white text-1xl drop-shadow-lg p-5 times-italic bg-gray-800 opacity-75'
                     }
                   >
-                    San Francisco based singer/songwriter Kacie Hill has been
-                    winning over audiences in the Bay Area and Southern
-                    California with her heartfelt and authentic songs, playing
-                    notable venues such as The Catalyst in Santa Cruz and Cafe
-                    du Nord in SF. Drawing from influences spanning folk, indie,
-                    and alternative genres, Kacie has crafted a distinctive
-                    sound that merges introspective storytelling with
-                    captivating melodies. Kacie`s latest single Slow Moving is
-                    out now, with more on the way.{' '}
+                    {aboutMeContent}
                   </p>
                 </>
               ),

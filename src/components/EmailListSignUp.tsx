@@ -17,14 +17,14 @@ export default function EmailListSignUp({
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaFacebook className="text-2xl" />
+          <FaFacebook className="text-2xl hover:text-blue-600 hover:opacity-30" />
         </a>
         <a
           href={'https://www.instagram.com/kaciehillmusic/?hl=en'}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaInstagram className="text-2xl" />
+          <FaInstagram className="text-2xl hover:text-red-500 hover:opacity-30" />
         </a>
         <button
           onClick={() => {
