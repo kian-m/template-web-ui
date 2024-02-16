@@ -52,13 +52,15 @@ const images = [
 export default function Landing() {
   const [bottomVisible, setBottomVisible] = useState(false);
   const [showSubscribe, setShowSubscribe] = useState(true);
-  const [outNowVisible, setOutNowVisible] = useState(true);
+  const [outNowVisible, setOutNowVisible] = useState(false);
   const [upcomingShows, setUpcomingShows] = useState<ReactNode[]>([]);
   const [pastShows, setPastShows] = useState<ReactNode[]>([]);
   const [aboutMeContent, setAboutMeContent] = useState('');
+  const [videoLink, setVideoLink] = useState('');
+  const [songLink, setSongLink] = useState('');
 
   const setBottomAndButtonVisible = () => {
-    setOutNowVisible(true);
+    // setOutNowVisible(true);
     setBottomVisible(false);
   };
 
@@ -70,7 +72,7 @@ export default function Landing() {
   };
 
   const toggleToBottomContent = () => {
-    setOutNowVisible(true);
+    // setOutNowVisible(true);
     setBottomVisible(true);
     setShowSubscribe(false);
   };
@@ -107,8 +109,20 @@ export default function Landing() {
       data.forEach((data) => {
         const place = data.c[0].v;
         const displayTime = data.c[2].v === 'Display';
-        if (data.c[4].v) {
-          setAboutMeContent(data.c[4].v as string);
+        if (data.c[4]) {
+          if (data.c[4].v) {
+            setAboutMeContent(data.c[4].v as string);
+          }
+        }
+        if (data.c[5]) {
+          if (data.c[5].v) {
+            setVideoLink(data.c[5].v as string);
+          }
+        }
+        if (data.c[6]) {
+          if (data.c[6].v) {
+            setSongLink(data.c[6].v as string);
+          }
         }
         let date = new Date(data.c[1].v as string);
         let today = new Date();
@@ -171,12 +185,28 @@ export default function Landing() {
       <div>
         <Links dispatch={dispatch} />
       </div>
+      <div className="overflow-hidden h-10 m-2 ">
+        <div className="flex items-center justify-start space-x-3 transform translate-x-full transition-transform duration-75 ease-linear scroll-slide times-italic text-xl whitespace-nowrap whitespace-pre">
+          {'"CHORES" THE SINGLE AND MUSIC VIDEO OUT NOW'}
+          {
+            '                                                                                                          '
+          }
+          {'"CHORES" THE SINGLE AND MUSIC VIDEO OUT NOW'}
+          {
+            '                                                                                                          '
+          }
+          {'"CHORES" THE SINGLE AND MUSIC VIDEO OUT NOW'}
+        </div>
+      </div>
+
       <div>
-        <Image
-          src="/album-art.webp"
-          alt="album art"
-          width="2000"
-          height="1000"
+        <iframe
+          className="video"
+          title="Youtube player"
+          sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-presentation"
+          height="455"
+          width="100%"
+          src={videoLink}
         />
       </div>
       {outNowVisible && (
@@ -193,16 +223,28 @@ export default function Landing() {
                   'flex flex-col items-center justify-between whitespace-nowrap'
                 }
               >
-                {'"SLOW MOVING" OUT NOW'}
+                {'"CHORES"\n' + 'THE SINGLE AND MUSIC VIDEO OUT NOW'}
                 <FaSpotify className="hover:text-green-700 hover:opacity-30" />
               </div>
             </a>
           </button>
         </div>
       )}
+      <button className="lg:mt-10 mb-2.5 self-center w-32 bg-orange-100 hover:bg-yellow-300 text-black  py-2 px-4 times-italic">
+        <a href={songLink} target="_blank" rel="noopener noreferrer">
+          {' '}
+          <div
+            className={
+              'flex flex-col items-center justify-between whitespace-nowrap'
+            }
+          >
+            {'LISTEN HERE'}
+          </div>
+        </a>
+      </button>
       <div
         className={
-          'md:sticky md:bottom-0 md:mt-20 lg:sticky lg:bottom-0 lg:mt-20  overflow-auto '
+          ' md:bottom-0 md:mt-20  lg:bottom-0 lg:mt-20  overflow-auto '
         }
       >
         <BottomSocialMediaLinks

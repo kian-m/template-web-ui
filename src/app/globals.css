@@ -18,6 +18,22 @@
   }
 }
 
+.scroll-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: scroll-slide 15s linear running;
+}
+
+@keyframes scroll-slide {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-150%);
+  }
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

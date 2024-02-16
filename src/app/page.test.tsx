@@ -5,10 +5,12 @@ describe('Home', () => {
   it('renders a heading', () => {
     render(<Page />);
 
-    expect(screen.getByText('"SLOW MOVING" OUT NOW')).toBeInTheDocument();
+    expect(
+      screen.getByText(/"CHORES" THE SINGLE AND MUSIC VIDEO OUT NOW/i),
+    ).toBeInTheDocument();
   });
 
-  it('should render menu when plus is clicked', function () {
+  it('should render menu ', function () {
     render(<Page />);
 
     expect(screen.getByText('Contact')).toBeInTheDocument();
