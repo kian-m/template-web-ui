@@ -230,7 +230,7 @@ export default function Landing() {
           </button>
         </div>
       )}
-      <button className="lg:mt-10 mb-2.5 self-center w-32 bg-orange-100 hover:bg-yellow-300 text-black  py-2 px-4 times-italic">
+      <button className="md:mt-5 lg:mt-10 mb-2.5 self-center w-32 bg-orange-100 hover:bg-yellow-300 text-black  py-2 px-4 times-italic">
         <a href={songLink} target="_blank" rel="noopener noreferrer">
           {' '}
           <div
