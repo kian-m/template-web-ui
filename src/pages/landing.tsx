@@ -194,10 +194,6 @@ export default function Landing() {
   }, [getSheetData]);
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  // @ts-ignore
-  // @ts-ignore
-  // @ts-ignore
-  // @ts-ignore
   return (
     <div className={'flex flex-col '}>
       <div>

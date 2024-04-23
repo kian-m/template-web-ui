@@ -1,10 +1,11 @@
 import Landing from './landing';
-import Contact from './contact';
-
+import React from 'react';
+import { Analytics } from '@vercel/analytics/react';
 export default function Home() {
   return (
     <div>
-      <Landing></Landing>
+      <Landing />
+      <Analytics />
     </div>
   );
 }
