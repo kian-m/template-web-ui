@@ -42,15 +42,6 @@ export default function EmailListSignUp({
         </a>
       </main>
       {showSubscribe && (
-        <CloseIcon
-          boxSize={12}
-          padding={2}
-          onClick={() => {
-            setShowSubscribe(!showSubscribe);
-          }}
-        />
-      )}
-      {showSubscribe && (
         <iframe
           src="https://kaciehill.substack.com/embed"
           width={'100%'}

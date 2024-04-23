@@ -21,15 +21,6 @@ const PageBottom = ({
 
   return (
     <div>
-      <div
-        style={{ width: '100%', height: '1px', backgroundColor: 'white' }}
-      ></div>
-      <div className={'invisible md:visible lg:visible flex justify-between'}>
-        {visible && (
-          <CloseIcon boxSize={30} padding={8} onClick={toggleVisibility} />
-        )}
-      </div>
-
       {visible &&
         components.map(({ component, visible, name }) =>
           visible ? (

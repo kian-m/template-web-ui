@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Dispatch, useReducer } from 'react'; // Assuming you are using React Router
+import { Dispatch, useReducer } from 'react';
 enum ActionTypes {
   SHOW_CONTACT = 'SHOW_CONTACT',
   SHOW_SHOWS = 'SHOW_SHOWS',
@@ -24,7 +24,11 @@ const initialState: State = {
 export type Action = {
   type: ActionTypes;
 };
-export default function Links({ dispatch }: { dispatch: Dispatch<Action> }) {
+export default function PageTopNavBar({
+  dispatch,
+}: {
+  dispatch: Dispatch<Action>;
+}) {
   return (
     <main className="-ml-4 flex flex-col items-center justify-between p-3">
       <div className="grid grid-cols-4 gap-4 lg:space-x-12">

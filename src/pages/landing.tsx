@@ -1,12 +1,17 @@
 'use client';
 
-import React, { useReducer, useState, ReactNode, useEffect } from 'react';
-import Links, { Action, State } from '../components/Links';
+import React, {
+  useReducer,
+  useState,
+  ReactNode,
+  useEffect,
+  useRef,
+} from 'react';
+import PageTopNavBar, { Action, State } from '../components/PageTopNavBar';
 
 import { FaSpotify } from 'react-icons/fa';
 
 import BottomSocialMediaLinks from '../components/EmailListSignUp';
-import Image from 'next/image';
 import PageBottomWindow from '../components/PageBottom';
 import { getSheetData, SheetData } from '../services/sheets';
 import one from '../../public/1.webp';
@@ -19,7 +24,6 @@ import ten from '../../public/10.webp';
 import eleven from '../../public/11.webp';
 import twelve from '../../public/12.webp';
 import thirteen from '../../public/13.webp';
-import fourteen from '../../public/14.webp';
 import sixteen from '../../public/16.webp';
 import seventeen from '../../public/17.webp';
 import eighteen from '../../public/18.webp';
@@ -27,7 +31,6 @@ import nineteen from '../../public/19.webp';
 import twentyone from '../../public/21.webp';
 import twentytwo from '../../public/22.webp';
 import twentythree from '../../public/23.webp';
-import { correctForTimeZone } from '../utils/time-util';
 
 const images = [
   sixteen,
@@ -47,10 +50,9 @@ const images = [
   ten,
   eleven,
   twelve,
-  fourteen,
 ];
 export default function Landing() {
-  const [bottomVisible, setBottomVisible] = useState(false);
+  const [bottomVisible, setBottomVisible] = useState(true);
   const [showSubscribe, setShowSubscribe] = useState(true);
   const [outNowVisible, setOutNowVisible] = useState(false);
   const [upcomingShows, setUpcomingShows] = useState<ReactNode[]>([]);
@@ -59,6 +61,15 @@ export default function Landing() {
   const [videoLink, setVideoLink] = useState('');
   const [songLink, setSongLink] = useState('');
 
+  const aboutMeRef = useRef(null);
+  const galleryRef = useRef(null);
+  const showsRef = useRef(null);
+  const contactMeRef = useRef(null);
+  // @ts-ignore
+  const scrollToExample = (ref) => {
+    // @ts-ignore
+    ref.current.scrollIntoView({ behavior: 'smooth' });
+  };
   const setBottomAndButtonVisible = () => {
     // setOutNowVisible(true);
     setBottomVisible(false);
@@ -72,27 +83,30 @@ export default function Landing() {
   };
 
   const toggleToBottomContent = () => {
-    // setOutNowVisible(true);
     setBottomVisible(true);
-    setShowSubscribe(false);
   };
 
   const reducer = (state: State, action: Action) => {
     switch (action.type) {
       case 'SHOW_CONTACT': {
+        scrollToExample(contactMeRef);
         toggleToBottomContent();
         return { ...initialState, showContact: true };
       }
       case 'SHOW_SHOWS': {
+        scrollToExample(showsRef);
         toggleToBottomContent();
         return { ...initialState, showShows: true };
       }
       case 'SHOW_GALLERY': {
         toggleToBottomContent();
         setOutNowVisible(false);
+        scrollToExample(galleryRef);
+
         return { ...initialState, showGallery: true };
       }
       case 'SHOW_ABOUT_ME': {
+        scrollToExample(aboutMeRef);
         toggleToBottomContent();
         return { ...initialState, showAboutMe: true };
       }
@@ -180,23 +194,14 @@ export default function Landing() {
   }, [getSheetData]);
 
   const [state, dispatch] = useReducer(reducer, initialState);
+  // @ts-ignore
+  // @ts-ignore
+  // @ts-ignore
+  // @ts-ignore
   return (
-    <div className={'flex flex-col'}>
+    <div className={'flex flex-col '}>
       <div>
-        <Links dispatch={dispatch} />
-      </div>
-      <div className="overflow-hidden h-10 m-2 ">
-        <div className="flex items-center justify-start space-x-3 transform translate-x-full transition-transform duration-75 ease-linear scroll-slide times-italic text-xl whitespace-nowrap whitespace-pre">
-          {'"CHORES" THE SINGLE AND MUSIC VIDEO OUT NOW'}
-          {
-            '                                                                                                          '
-          }
-          {'"CHORES" THE SINGLE AND MUSIC VIDEO OUT NOW'}
-          {
-            '                                                                                                          '
-          }
-          {'"CHORES" THE SINGLE AND MUSIC VIDEO OUT NOW'}
-        </div>
+        <PageTopNavBar dispatch={dispatch} />
       </div>
 
       <div>
@@ -204,7 +209,7 @@ export default function Landing() {
           className="video"
           title="Youtube player"
           sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-presentation"
-          height="455"
+          height="555"
           width="100%"
           src={videoLink}
         />
@@ -230,10 +235,11 @@ export default function Landing() {
           </button>
         </div>
       )}
-      <button className="md:mt-5 lg:mt-10 mb-2.5 self-center w-32 bg-orange-100 hover:bg-yellow-300 text-black  py-2 px-4 times-italic">
+      <button className="mb-10 mt-20 self-center w-32 bg-orange-100 hover:bg-yellow-300 text-black  py-2 px-4 times-italic ">
         <a href={songLink} target="_blank" rel="noopener noreferrer">
           {' '}
           <div
+            ref={showsRef}
             className={
               'flex flex-col items-center justify-between whitespace-nowrap'
             }
@@ -242,37 +248,56 @@ export default function Landing() {
           </div>
         </a>
       </button>
-      <div
-        className={
-          ' md:bottom-0 md:mt-20  lg:bottom-0 lg:mt-20  overflow-auto '
-        }
-      >
-        <BottomSocialMediaLinks
-          showSubscribe={showSubscribe}
-          setShowSubscribe={setShowSubscribe}
-        />
+      <p className="-mt-8 chalk opacity-75">(on spotify)</p>
+
+      <div className={'  overflow-auto '}>
         <PageBottomWindow
           components={[
             {
               component: (
-                <div className={'times-italic p-4'}>
-                  email:
-                  <a
-                    style={{ color: 'dodgerblue' }}
-                    href="mailto:kaciehillmusic@gmail.com"
-                  >
-                    kaciehillmusic@gmail.com
-                  </a>
+                <div
+                  className={
+                    'flex flex-col items-center border-2 p-10 m-20 mb-32'
+                  }
+                >
+                  {upcomingShows?.length > 0 && (
+                    <>
+                      <p
+                        className={
+                          'text-xl opacity-90 flex flex-col items-center justify-center times-italic font-extrabold mb-3'
+                        }
+                      >
+                        Upcoming Shows
+                      </p>
+
+                      <p className={'opacity-90 mb-3'}>{upcomingShows}</p>
+                    </>
+                  )}
+                  {pastShows?.length > 0 && (
+                    <>
+                      <p
+                        className={
+                          'text-xl opacity-80 mb-3 flex flex-col items-center justify-center times-italic font-extrabold '
+                        }
+                      >
+                        Past Shows
+                      </p>
+                      <p className={'opacity-50'}>{pastShows}</p>
+                    </>
+                  )}
                 </div>
               ),
-              visible: state.showContact,
-              name: 'contact',
+              visible: true,
+              name: 'shows',
             },
             {
               name: 'gallery',
-              visible: state.showGallery,
+              visible: true,
               component: (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div
+                  ref={galleryRef}
+                  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+                >
                   {images.map((image, index) => (
                     <div key={index} className="relative h-full">
                       <img src={image.src} />
@@ -283,55 +308,43 @@ export default function Landing() {
             },
             {
               component: (
-                <div className={'flex flex-col items-center'}>
-                  {upcomingShows?.length > 0 && (
-                    <>
-                      <p
-                        className={
-                          'text-xl opacity-90 flex flex-col items-center justify-center times-italic font-extrabold underline'
-                        }
-                      >
-                        Upcoming Shows
-                      </p>
-
-                      <p className={'opacity-90'}>{upcomingShows}</p>
-                    </>
-                  )}
-                  {pastShows?.length > 0 && (
-                    <>
-                      <p
-                        className={
-                          'text-xl opacity-90 flex flex-col items-center justify-center times-italic font-extrabold underline'
-                        }
-                      >
-                        Past Shows
-                      </p>
-                      <p className={'opacity-90'}>{pastShows}</p>
-                    </>
-                  )}
-                </div>
-              ),
-              visible: state.showShows,
-              name: 'shows',
-            },
-            {
-              component: (
                 <>
                   <p
+                    ref={aboutMeRef}
                     className={
-                      'text-white text-1xl drop-shadow-lg p-5 times-italic bg-gray-800 opacity-75'
+                      'text-white lg:text-1xl drop-shadow-lg p-5 times-italic  opacity-75  border-2 m-10 lg:m-40 md:m-40'
                     }
                   >
                     {aboutMeContent}
                   </p>
                 </>
               ),
-              visible: state.showAboutMe,
+              visible: true,
               name: 'about me',
+            },
+            {
+              component: (
+                <div
+                  ref={contactMeRef}
+                  className={'times-italic p-4 m-20 mb-28 border-b-2'}
+                >
+                  email:
+                  <a href="mailto:kaciehillmusic@gmail.com">
+                    kaciehillmusic@gmail.com
+                  </a>
+                </div>
+              ),
+              visible: true,
+              name: 'contact',
             },
           ]}
           setVisible={setBottomAndButtonVisible}
           visible={bottomVisible}
+        />
+
+        <BottomSocialMediaLinks
+          showSubscribe={showSubscribe}
+          setShowSubscribe={setShowSubscribe}
         />
       </div>
     </div>
