@@ -43,11 +43,6 @@ const images = [
   twentythree,
   one,
   two,
-  three,
-  seven,
-  eight,
-  nine,
-  ten,
   eleven,
   twelve,
 ];
@@ -253,7 +248,7 @@ export default function Landing() {
               component: (
                 <div
                   className={
-                    'flex flex-col items-center border-2 p-10 m-20 mb-32'
+                    'flex flex-col items-center border-2 p-10 m-5 mt-16 mb-32'
                   }
                 >
                   {upcomingShows?.length > 0 && (
@@ -266,7 +261,9 @@ export default function Landing() {
                         Upcoming Shows
                       </p>
 
-                      <p className={'opacity-90 mb-3'}>{upcomingShows}</p>
+                      <p className={'opacity-90 mb-3 justify-self-center'}>
+                        {upcomingShows}
+                      </p>
                     </>
                   )}
                   {pastShows?.length > 0 && (
@@ -278,7 +275,9 @@ export default function Landing() {
                       >
                         Past Shows
                       </p>
-                      <p className={'opacity-50'}>{pastShows}</p>
+                      <p className={'opacity-50 justify-self-center'}>
+                        {pastShows}
+                      </p>
                     </>
                   )}
                 </div>
