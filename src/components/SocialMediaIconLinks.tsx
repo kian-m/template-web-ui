@@ -1,8 +1,14 @@
 import { CloseIcon } from '@chakra-ui/icons';
-import { FaFacebook, FaInstagram, FaMailBulk, FaSpotify } from 'react-icons/fa';
+import {
+  FaFacebook,
+  FaInstagram,
+  FaMailBulk,
+  FaSpotify,
+  FaTiktok,
+} from 'react-icons/fa';
 import React from 'react';
 
-export default function EmailListSignUp({
+export default function SocialMediaIconLinks({
   showSubscribe,
   setShowSubscribe,
 }: {
@@ -12,6 +18,15 @@ export default function EmailListSignUp({
   return (
     <>
       <main className="relative flex flex-grow gap-12 m-4 justify-between">
+        <a
+          href={
+            'https://www.tiktok.com/@kaciehillmusic?is_from_webapp=1&sender_device=pc'
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaTiktok className="text-2xl hover:text-blue-600 hover:opacity-30" />
+        </a>
         <a
           href={'https://m.facebook.com/profile.php/?id=61551725507991'}
           target="_blank"

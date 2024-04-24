@@ -11,7 +11,7 @@ import PageTopNavBar, { Action, State } from '../components/PageTopNavBar';
 
 import { FaSpotify } from 'react-icons/fa';
 
-import BottomSocialMediaLinks from '../components/EmailListSignUp';
+import BottomSocialMediaLinks from '../components/SocialMediaIconLinks';
 import PageBottomWindow from '../components/PageBottom';
 import { getSheetData, SheetData } from '../services/sheets';
 import one from '../../public/1.webp';
