@@ -138,7 +138,7 @@ export default function Landing() {
 
         var options = {
           weekday: 'short',
-          month: 'short',
+          month: 'long',
           day: 'numeric',
           timeZone: 'America/Los_Angeles',
         };
