@@ -239,7 +239,6 @@ export default function Landing() {
           </div>
         </a>
       </button>
-      <p className="-mt-8 chalk opacity-75">(on spotify)</p>
 
       <div className={'  overflow-auto '}>
         <PageBottomWindow

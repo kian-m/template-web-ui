@@ -36,21 +36,27 @@ export default function PageTopNavBar({
           onClick={() => dispatch({ type: ActionTypes.SHOW_CONTACT })}
           className="lg:scale-150 group border border-transparent px-4 py-3 transition-colors hover:border-gray-300 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
         >
-          <p className={`m-0 text-sm opacity-75 font-extralight`}>Contact</p>
+          <p className={`m-0 text-sm opacity-75 font-extralight times-italic`}>
+            Contact
+          </p>
         </button>
 
         <button
           onClick={() => dispatch({ type: ActionTypes.SHOW_SHOWS })}
           className="lg:scale-150 group border border-transparent px-4 py-3 transition-colors hover:border-gray-300 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
         >
-          <p className={`m-0 text-sm opacity-75 font-extralight`}>Shows</p>
+          <p className={`m-0 text-sm opacity-75 font-extralight times-italic`}>
+            Shows
+          </p>
         </button>
 
         <button
           onClick={() => dispatch({ type: ActionTypes.SHOW_GALLERY })}
           className="lg:scale-150 group border border-transparent px-4 py-3 transition-colors hover:border-gray-300 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
         >
-          <p className={`m-0 text-sm opacity-75 font-extralight`}>Gallery</p>
+          <p className={`m-0 text-sm opacity-75 font-extralight times-italic`}>
+            Gallery
+          </p>
         </button>
 
         <button
@@ -58,7 +64,7 @@ export default function PageTopNavBar({
           className="lg:scale-150 group border border-transparent px-4 py-3 transition-colors hover:border-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
         >
           <p
-            className={`m-0 text-sm opacity-75 font-extralight whitespace-nowrap`}
+            className={`m-0 text-sm opacity-75 font-extralight whitespace-nowrap times-italic`}
           >
             About Me
           </p>
