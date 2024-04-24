@@ -31,6 +31,7 @@ import nineteen from '../../public/19.webp';
 import twentyone from '../../public/21.webp';
 import twentytwo from '../../public/22.webp';
 import twentythree from '../../public/23.webp';
+import styled from '@emotion/styled';
 
 const images = [
   sixteen,
@@ -46,6 +47,13 @@ const images = [
   eleven,
   twelve,
 ];
+
+const StyledDiv = styled.div`
+  margin-top: 20px;
+  width: 100%;
+  max-width: 1100px;
+  align-self: center;
+`;
 export default function Landing() {
   const [bottomVisible, setBottomVisible] = useState(true);
   const [showSubscribe, setShowSubscribe] = useState(true);
@@ -149,7 +157,7 @@ export default function Landing() {
             <div
               key={place}
               className={
-                'flex flex-col items-center justify-center times-italic p-3'
+                'flex flex-col items-center justify-center times-italic p-3 whitespace-nowrap'
               }
             >
               <p>
@@ -165,7 +173,7 @@ export default function Landing() {
             <div
               key={place}
               className={
-                'flex flex-col items-center justify-center times-italic p-3'
+                'flex flex-col items-center justify-center times-italic p-3 whitespace-nowrap'
               }
             >
               <p>
@@ -195,7 +203,7 @@ export default function Landing() {
         <PageTopNavBar dispatch={dispatch} />
       </div>
 
-      <div>
+      <StyledDiv>
         <iframe
           className="video"
           title="Youtube player"
@@ -204,7 +212,7 @@ export default function Landing() {
           width="100%"
           src={videoLink}
         />
-      </div>
+      </StyledDiv>
       {outNowVisible && (
         <div className="-mt-32 h-32 lg:sticky md:sticky bottom-1/2 flex justify-center ">
           <button className=" rounded-md w-5/6 hover:bg-emerald-800 hover:opacity-40 bg-gray-100 bg-opacity-10 text-white text-2xl font-bold times-italic drop-shadow-lg">
@@ -260,7 +268,11 @@ export default function Landing() {
                         Upcoming Shows
                       </p>
 
-                      <p className={'opacity-90 mb-3 justify-self-center'}>
+                      <p
+                        className={
+                          'opacity-90 mb-3 justify-self-center whitespace-nowrap'
+                        }
+                      >
                         {upcomingShows}
                       </p>
                     </>
