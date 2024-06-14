@@ -34,12 +34,13 @@ export default function Landing() {
       {sleepButtonClicked && <Sleep />}
       <div className="button-container">
         <button
+          aria-label="gym"
           className={`circle-button button1 ${
             gymButtonClicked
               ? 'button-top-left'
               : foodButtonClicked || sleepButtonClicked
-              ? 'button-top-right'
-              : ''
+                ? 'button-top-right'
+                : ''
           }`}
           onClick={() => {
             setgymButtonClicked(true);
@@ -50,12 +51,13 @@ export default function Landing() {
           <FontAwesomeIcon icon={faDumbbell} size="lg" color="white" />
         </button>
         <button
+          aria-label="eat"
           className={`circle-button button2 ${
             foodButtonClicked
               ? 'button-top-left'
               : gymButtonClicked || sleepButtonClicked
-              ? 'button-top-right'
-              : ''
+                ? 'button-top-right'
+                : ''
           }`}
           onClick={() => {
             setfoodButtonClicked(true);
@@ -66,12 +68,13 @@ export default function Landing() {
           <FontAwesomeIcon icon={faUtensils} size="lg" color="white" />
         </button>
         <button
+          aria-label="sleep"
           className={`circle-button button3 ${
             sleepButtonClicked
               ? 'button-top-left'
               : gymButtonClicked || foodButtonClicked
-              ? 'button-top-right'
-              : ''
+                ? 'button-top-right'
+                : ''
           }`}
           onClick={() => {
             setsleepButtonClicked(true);
