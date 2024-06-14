@@ -18,15 +18,6 @@
   }
 }
 
-@keyframes moveBall {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(0, 800px); /* Adjust the target position */
-  }
-}
-
 .circle {
   z-index: 0;
   display: block;
@@ -39,23 +30,10 @@
 }
 
 
-.scroll-slide {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  animation: scroll-slide 15s linear running;
-}
-
-@keyframes scroll-slide {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-150%);
-  }
-}
-
 body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: auto;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -77,4 +55,82 @@ body {
 .chalk {
   align-self: center;
   font-family: cursive, "Al Tarikh", Menlo;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100vh;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.circle-button {
+  position: relative;
+  width: 20vmin;
+  height: 20vmin;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  animation: fadeIn 1s ease-in-out;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  transition: width 0.3s ease, height 0.3s ease, box-shadow 0.3s ease, z-index 0.3s ease;
+}
+.circle-button:hover {
+  width: 24vmin;
+  height: 24vmin;
+  z-index: 1;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.button-top-left {
+  margin: 40px;
+  background: black;
+  box-shadow: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease;
+}
+
+
+.button-top-left:hover {
+    width: 20vmin;
+    height: 20vmin;
+    background: black;
+    box-shadow: none;
+}
+
+.button-top-right {
+  visibility: hidden;
+  top: 0;
+  right: 0;}
+
+.button-return {
+  margin: 10px;
+  height: 10vmin;
+  width: 10vmin;
+  position: absolute;
+  top: 0;
+  right: 0;
+  box-shadow: none;
+}
+
+.button-return:hover {
+  margin: 10px;
+  height: 10vmin;
+  width: 10vmin;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
