@@ -1,5 +1,5 @@
 {
-  "extends": ["next/core-web-vitals","plugin:prettier/recommended"],
+  "extends": ["next/core-web-vitals"],
   "rules": {
     // Enforce a space before and after the arrow (=>) in arrow functions
     "arrow-spacing": "error",

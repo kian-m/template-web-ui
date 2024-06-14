@@ -35,8 +35,8 @@ export default function Sleep() {
             sleepNowClicked
               ? 'button-top-left'
               : sleepLaterClicked || wakeUpAtClicked
-              ? 'button-top-right'
-              : ''
+                ? 'button-top-right'
+                : ''
           }`}
           onClick={() => {
             setSleepNowClicked(true);
@@ -51,8 +51,8 @@ export default function Sleep() {
             sleepLaterClicked
               ? 'button-top-left'
               : sleepNowClicked || wakeUpAtClicked
-              ? 'button-top-right'
-              : ''
+                ? 'button-top-right'
+                : ''
           }`}
           onClick={() => {
             setSleepLaterClicked(true);
@@ -67,8 +67,8 @@ export default function Sleep() {
             wakeUpAtClicked
               ? 'button-top-left'
               : sleepNowClicked || sleepLaterClicked
-              ? 'button-top-right'
-              : ''
+                ? 'button-top-right'
+                : ''
           }`}
           onClick={() => {
             setWakeUpAtClicked(true);
