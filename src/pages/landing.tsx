@@ -1,20 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faUtensils,
+  faArrowLeft,
   faDumbbell,
   faMoon,
-  faArrowLeft,
+  faUtensils,
 } from '@fortawesome/free-solid-svg-icons';
 import Sleep from './sleep';
+import MenuDropdown from '../components/MenuDropdown';
+import { addLastVisitDate, getDaysSinceLastVisit } from '../utils/date-util';
+import { FadingTextContext } from '../contexts/FadingTextContext';
+import { addToLocalStorage, getFromLocalStorage } from '../utils/local-storage';
 
 export default function Landing() {
+  const { setText } = useContext(FadingTextContext);
   const [gymButtonClicked, setgymButtonClicked] = useState(false);
   const [foodButtonClicked, setfoodButtonClicked] = useState(false);
   const [sleepButtonClicked, setsleepButtonClicked] = useState(false);
-
+  const lastVisitDays = getDaysSinceLastVisit();
   const anyButtonClicked =
     gymButtonClicked || foodButtonClicked || sleepButtonClicked;
 
@@ -24,8 +29,36 @@ export default function Landing() {
     setsleepButtonClicked(false);
   };
 
+  useEffect(() => {
+    if (lastVisitDays == -1) {
+      setText(
+        'Welcome! \n Save, or load your progress by clicking the menu button.',
+      );
+    } else {
+      if (lastVisitDays == 1) {
+        //TODO: fix double render so this isnt 0.5
+        addToLocalStorage('visits', getFromLocalStorage('visits') + 0.5);
+      }
+      if (lastVisitDays > 1) {
+        addToLocalStorage('visits', '1');
+      }
+      if (lastVisitDays > 0) {
+        setText(
+          'Welcome back!' +
+            (getFromLocalStorage('visits')
+              ? '\n Congratulations on a ' +
+                getFromLocalStorage('visits') +
+                ' day streak!'
+              : ''),
+        );
+      }
+    }
+    addLastVisitDate();
+  }, []);
+
   return (
     <>
+      {!anyButtonClicked && <MenuDropdown />}
       {anyButtonClicked && (
         <button className="circle-button button-return" onClick={resetButtons}>
           <FontAwesomeIcon icon={faArrowLeft} size="lg" color="white" />

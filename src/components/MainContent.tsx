@@ -1,6 +1,4 @@
 import React from 'react';
-import { CloseIcon } from '@chakra-ui/icons';
-import Func = jest.Func;
 
 const MainContent = ({
   components,

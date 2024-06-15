@@ -1,4 +1,3 @@
-import { CloseIcon } from '@chakra-ui/icons';
 import {
   FaFacebook,
   FaInstagram,

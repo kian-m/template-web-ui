@@ -31,6 +31,7 @@ export default function Sleep() {
       )}
       <div className="button-container">
         <button
+          aria-label="now"
           className={`circle-button button1 ${
             sleepNowClicked
               ? 'button-top-left'
@@ -47,6 +48,7 @@ export default function Sleep() {
           <FontAwesomeIcon icon={faBed} size="lg" color="white" />
         </button>
         <button
+          aria-label="later"
           className={`circle-button button2 ${
             sleepLaterClicked
               ? 'button-top-left'
@@ -63,6 +65,7 @@ export default function Sleep() {
           <FontAwesomeIcon icon={faClock} size="lg" color="white" />
         </button>
         <button
+          aria-label="wake"
           className={`circle-button button3 ${
             wakeUpAtClicked
               ? 'button-top-left'

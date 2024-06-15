@@ -134,3 +134,119 @@ body {
   top: 0;
   right: 0;
 }
+
+.menu {
+  animation: fadeIn 1s ease-in-out;
+  transition: width 0.3s ease, height 0.3s ease, box-shadow 0.3s ease, z-index 0.3s ease;
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  position: fixed;
+  right:0;
+  color: #b9b6b6;
+}
+
+.menu-line {
+  width: 80%;
+  height: 0.10rem;
+  background: white;
+}
+
+.menu-line:hover {
+  box-shadow: 0 0 10px rgba(245, 237, 237, 0.91);
+}
+
+.dropdown {
+  position: absolute;
+  right: 80%;
+  top: 100%;
+  background: #000000;
+  color: rgba(255, 255, 255, 0.6);
+  width: 30%;
+  opacity: 1; /* Start invisible */
+  transition: opacity 0.3s ease-in-out; /* Transition effect */
+  white-space:  pre-wrap;
+}
+
+.dropdown-item1 {
+  padding: 10px;
+}
+
+.dropdown-item1:hover{
+  border-bottom: 1px solid white;
+
+}
+
+.dropdown-item2 {
+  padding: 10px;
+}
+
+.dropdown-item2:hover{
+  border-bottom: 1px solid white;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  position: absolute;
+  top: 15%;
+  width: 100%;
+}
+
+.rounded-input {
+  background: black;
+  width: 200px;
+  padding: 10px;
+  border-radius: 50px;
+  outline: none;
+  border: 0.5px solid white;
+}
+
+.submit-button {
+  scale: 80%;
+  margin-top: 0.5%;
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+.checkmark {
+  margin-left: 4%;
+  color: green;
+  animation: fadeOut 2s ease-in-out forwards;
+}
+
+
+.cross {
+  color: darkred;
+  animation: fadeOut 2s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.close-button {
+    margin-top: 1.5px;
+    scale: 70%;
+    position: relative;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    cursor: pointer;
+}

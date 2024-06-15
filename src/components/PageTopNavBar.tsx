@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { Dispatch, useReducer } from 'react';
+import { Dispatch } from 'react';
+
 enum ActionTypes {
   SHOW_CONTACT = 'SHOW_CONTACT',
   SHOW_SHOWS = 'SHOW_SHOWS',
