@@ -36,19 +36,21 @@ export default function Landing() {
       );
     } else {
       if (lastVisitDays == 1) {
-        addToLocalStorage('visits', getFromLocalStorage('visits') + 1);
+        addToLocalStorage(
+          'visits',
+          (parseInt(getFromLocalStorage('visits')) + 1).toString(),
+        );
       }
       if (lastVisitDays > 1) {
         addToLocalStorage('visits', '1');
       }
       if (lastVisitDays > 0) {
         setText(
-          'Welcome back!' +
-            (getFromLocalStorage('visits')
-              ? '\n Congratulations on a ' +
+          getFromLocalStorage('visits')
+            ? ' Congratulations! \n' +
                 getFromLocalStorage('visits') +
                 ' day streak!'
-              : ''),
+            : '',
         );
       }
     }
