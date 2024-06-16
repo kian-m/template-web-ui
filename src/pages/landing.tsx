@@ -36,8 +36,7 @@ export default function Landing() {
       );
     } else {
       if (lastVisitDays == 1) {
-        //TODO: fix double render so this isnt 0.5
-        addToLocalStorage('visits', getFromLocalStorage('visits') + 0.5);
+        addToLocalStorage('visits', getFromLocalStorage('visits') + 1);
       }
       if (lastVisitDays > 1) {
         addToLocalStorage('visits', '1');
