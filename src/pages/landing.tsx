@@ -31,9 +31,7 @@ export default function Landing() {
 
   useEffect(() => {
     if (lastVisitDays == -1) {
-      setText(
-        'Welcome! \n Save, or load your progress by clicking the menu button.',
-      );
+      setText('Save, or load your progress by clicking the menu button.');
     } else {
       if (lastVisitDays == 1) {
         addToLocalStorage(
@@ -44,10 +42,10 @@ export default function Landing() {
       if (lastVisitDays > 1) {
         addToLocalStorage('visits', '1');
       }
-      if (lastVisitDays > 0) {
+      if (lastVisitDays > 1) {
         setText(
           getFromLocalStorage('visits')
-            ? ' Congratulations! \n' +
+            ? '- Congratulations - \n' +
                 getFromLocalStorage('visits') +
                 ' day streak!'
             : '',
