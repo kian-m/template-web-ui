@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'lifeboard'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_35F43EEA92A04F5989ACFE2E4423EDDC }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7963359798BA470DA5F99A9F5A1C28A1 }}
           package: .
