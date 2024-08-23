@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -20,18 +20,22 @@ jobs:
 
       - name: Install dependencies, build, and test
         run: |
-          npm ci --only=production
+          npm install
           npm run build --if-present
           npm run test --if-present
 
       - name: Create tarball
         run: |
-          tar -czvf next-app.tar.gz .next package.json package-lock.json
+          mkdir node-app
+          mv .next node-app/
+          mv package.json node-app/
+          mv package-lock.json node-app/
+          tar -czvf next-app.tar.gz node-app
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: next-app
+          name: node-app
           path: next-app.tar.gz
 
   deploy:
@@ -45,7 +49,15 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: next-app
+          name: node-app
+
+      - name: Extract tarball
+        run: |
+          mkdir node-app
+          tar -xzf next-app.tar.gz -C node-app
+
+      - name: List directory contents
+        run: ls -al
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
@@ -54,4 +66,4 @@ jobs:
           app-name: 'lifeboard'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7963359798BA470DA5F99A9F5A1C28A1 }}
-          package: next-app.tar.gz
+          package: node-app
