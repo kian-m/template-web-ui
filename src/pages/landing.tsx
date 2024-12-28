@@ -13,6 +13,8 @@ import MenuDropdown from '../components/MenuDropdown';
 import { addLastVisitDate, getDaysSinceLastVisit } from '../utils/date-util';
 import { FadingTextContext } from '../contexts/FadingTextContext';
 import { addToLocalStorage, getFromLocalStorage } from '../utils/local-storage';
+import Gym from './gym';
+import Food from './food';
 
 export default function Landing() {
   const { setText } = useContext(FadingTextContext);
@@ -64,6 +66,8 @@ export default function Landing() {
         </button>
       )}
       {sleepButtonClicked && <Sleep />}
+      {gymButtonClicked && <Gym />}
+      {foodButtonClicked && <Food />}
       <div className="button-container">
         <button
           aria-label="gym"

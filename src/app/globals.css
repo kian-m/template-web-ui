@@ -18,6 +18,17 @@
   }
 }
 
+@keyframes fadeInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .circle {
   z-index: 0;
   display: block;
@@ -249,4 +260,98 @@ body {
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
     padding: 30px;
     cursor: pointer;
+}
+
+.wakeUpContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  animation: fadeInFromTop 1s ease-in-out;
+}
+
+.wakeUpList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.wakeUpTime {
+  font-size: 2rem;
+  text-align: center;
+  margin: 3rem 0;
+  color: rgba(255, 255, 255, 0.19);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.17);
+}
+
+.sleepTimeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.sleepForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sleepLabel {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  animation: fadeIn 2s ease-in-out;
+}
+
+.dropdownContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.small-period {
+  font-size: 0.75rem;
+}
+
+.submitButton {
+  scale: 80%;
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  animation: fadeIn 2s ease-in-out;
+}
+
+
+.fade-in-text {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  font-family: fantasy;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
+}
+
+
+select {
+  padding-left: 3vmin;
+  position: relative;
+  width: 10vmin;
+  height: 4vmin;
+  border: none;
+  cursor: pointer;
+  animation: fadeIn 1s ease-in-out;
+  box-shadow: 0 4px 6px rgba(246, 244, 244, 0.3), 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease, height 0.3s ease, box-shadow 0.3s ease, z-index 0.3s ease;
+  background: linear-gradient(145deg, #440909, #f1e5e5);
+  appearance: none;
+  border-radius: 20px;
+  background: transparent;
 }

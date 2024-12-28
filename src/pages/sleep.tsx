@@ -7,8 +7,11 @@ import {
   faClock,
   faSun,
 } from '@fortawesome/free-solid-svg-icons';
+import WakeUpOptions from './sleep-now';
+import SleepTimePrompt from './sleep-time';
 
 export default function Sleep() {
+  const [date, setDate] = useState(new Date());
   const [sleepNowClicked, setSleepNowClicked] = useState(false);
   const [sleepLaterClicked, setSleepLaterClicked] = useState(false);
   const [wakeUpAtClicked, setWakeUpAtClicked] = useState(false);
@@ -24,6 +27,16 @@ export default function Sleep() {
 
   return (
     <>
+      {sleepNowClicked && <WakeUpOptions date={date} />}
+      {sleepLaterClicked && (
+        <SleepTimePrompt
+          setDate={(d: Date) => {
+            setDate(d);
+            setSleepLaterClicked(false);
+            setSleepNowClicked(true);
+          }}
+        />
+      )}
       {anyButtonClicked && (
         <button className="circle-button button-return" onClick={resetButtons}>
           <FontAwesomeIcon icon={faArrowLeft} size="lg" color="white" />
