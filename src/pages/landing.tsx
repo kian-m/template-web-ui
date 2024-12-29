@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -64,7 +64,7 @@ export default function Landing() {
   });
 
   return (
-    <>
+    <Suspense>
       {!anyButtonClicked && <MenuDropdown />}
       {anyButtonClicked && (
         <button className="circle-button button-return" onClick={resetButtons}>
@@ -127,6 +127,6 @@ export default function Landing() {
           <FontAwesomeIcon icon={faMoon} size="lg" color="white" />
         </button>
       </div>
-    </>
+    </Suspense>
   );
 }

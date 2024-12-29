@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -29,7 +29,7 @@ export default function Sleep() {
   };
 
   return (
-    <>
+    <Suspense>
       {sleepNowClicked && <WakeUpOptions date={date} />}
       {sleepLaterClicked && (
         <SleepTimePrompt
@@ -99,6 +99,6 @@ export default function Sleep() {
           <FontAwesomeIcon icon={faSun} size="lg" color="white" />
         </button>
       </div>
-    </>
+    </Suspense>
   );
 }
