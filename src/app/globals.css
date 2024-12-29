@@ -341,10 +341,10 @@ body {
 
 
 select {
-  padding-left: 3vmin;
   position: relative;
-  width: 10vmin;
-  height: 4vmin;
+  padding: 0.5rem;
+  width: 3rem;
+  height: 110%;
   border: none;
   cursor: pointer;
   animation: fadeIn 1s ease-in-out;
