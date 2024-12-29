@@ -16,11 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
-      <meta property="og:image" content="/img.webp" />
+      <meta property="og:image" content="./img.webp" />
       <link
           rel="icon"
           sizes="16x16 32x32 64x64"
-          href="/img.webp"
+          href="./img.webp"
           type="image/png"
       />
     </html>
