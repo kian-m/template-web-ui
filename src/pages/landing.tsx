@@ -1,6 +1,7 @@
 'use client';
 
 import { useContext, useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowLeft,
@@ -17,6 +18,8 @@ import Gym from './gym';
 import Food from './food';
 
 export default function Landing() {
+  const searchParams = useSearchParams();
+  const sleep = searchParams?.get('sleep');
   const { setText } = useContext(FadingTextContext);
   const [gymButtonClicked, setgymButtonClicked] = useState(false);
   const [foodButtonClicked, setfoodButtonClicked] = useState(false);
@@ -55,6 +58,9 @@ export default function Landing() {
       }
     }
     addLastVisitDate();
+    if(sleep) {
+      setsleepButtonClicked(true);
+    }
   });
 
   return (

@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowLeft,
@@ -11,9 +12,11 @@ import WakeUpOptions from './sleep-now';
 import SleepTimePrompt from './sleep-time';
 
 export default function Sleep() {
+  const searchParams = useSearchParams();
+  const page = searchParams?.get('sleep');
   const [date, setDate] = useState(new Date());
-  const [sleepNowClicked, setSleepNowClicked] = useState(false);
-  const [sleepLaterClicked, setSleepLaterClicked] = useState(false);
+  const [sleepNowClicked, setSleepNowClicked] = useState(page === 'now'? true : false);
+  const [sleepLaterClicked, setSleepLaterClicked] = useState(page === 'time'? true : false);
   const [wakeUpAtClicked, setWakeUpAtClicked] = useState(false);
 
   const anyButtonClicked =
