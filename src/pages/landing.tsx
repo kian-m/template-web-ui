@@ -64,7 +64,7 @@ export default function Landing() {
   });
 
   return (
-    <Suspense>
+    <Suspense fallback={<div>Loading...</div>}>
       {!anyButtonClicked && <MenuDropdown />}
       {anyButtonClicked && (
         <button className="circle-button button-return" onClick={resetButtons}>
