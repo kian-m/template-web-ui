@@ -53,6 +53,7 @@ export default function Sleep() {
                 : ''
           }`}
           onClick={() => {
+            setDate(new Date());
             setSleepNowClicked(true);
             setSleepLaterClicked(false);
             setWakeUpAtClicked(false);
