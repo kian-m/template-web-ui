@@ -1,5 +1,5 @@
 'use client';
-import { useState, Suspense } from 'react';
+import { useState, Suspense, useContext, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -10,9 +10,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import WakeUpOptions from './sleep-now';
 import SleepTimePrompt from './sleep-time';
+import { FadingTextContext } from '../../contexts/FadingTextContext';
 
 export default function Sleep() {
   const searchParams = useSearchParams();
+  const { setText, setShow } = useContext(FadingTextContext);
   const router = useRouter();
   const page = searchParams?.get('sleep');
   const [date, setDate] = useState(new Date());
@@ -23,7 +25,12 @@ export default function Sleep() {
   const anyButtonClicked =
       sleepNowClicked || sleepLaterClicked || wakeUpAtClicked;
 
+
+  useEffect(() => {
+    if(!sleepNowClicked && !sleepLaterClicked) setText("Sleep now, later, or set a wake time");
+  }, []);
   const resetButtons = () => {
+    setText('');
     setSleepNowClicked(false);
     setSleepLaterClicked(false);
     setWakeUpAtClicked(false);

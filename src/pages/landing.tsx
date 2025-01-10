@@ -9,7 +9,7 @@ import {
   faMoon,
   faUtensils,
 } from '@fortawesome/free-solid-svg-icons';
-import Sleep from './sleep';
+import Sleep from './sleep/sleep';
 import MenuDropdown from '../components/MenuDropdown';
 import { addLastVisitDate, getDaysSinceLastVisit } from '../utils/date-util';
 import { FadingTextContext } from '../contexts/FadingTextContext';
@@ -29,6 +29,7 @@ export default function Landing() {
     gymButtonClicked || foodButtonClicked || sleepButtonClicked;
 
   const resetButtons = () => {
+    setText('');
     setgymButtonClicked(false);
     setfoodButtonClicked(false);
     setsleepButtonClicked(false);
@@ -36,7 +37,7 @@ export default function Landing() {
 
   useEffect(() => {
     if (lastVisitDays == -1) {
-      setText('Save, or load your progress by clicking the menu button.');
+      setText('This product is currently in an open, unfinished beta. Stay tuned, and thank you for being an early adopter - Kian');
     } else {
       if (lastVisitDays == 1) {
         addToLocalStorage(

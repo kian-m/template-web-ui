@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { FadingTextContext } from '../../contexts/FadingTextContext';
 
 const getWakeUpTimes = (time: number) => {
   const sleepCycleMinutes = 90;
@@ -30,9 +31,12 @@ const getColor = (index: number) => {
 
 export default function WakeUpOptions({ date }: { date: Date }) {
   const [wakeUpTimes, setWakeUpTimes] = useState<Date[]>([]);
+  const { setText, setShow, setTimeoutValue } = useContext(FadingTextContext);
 
   useEffect(() => {
     setWakeUpTimes(getWakeUpTimes(date.getTime()));
+    setTimeoutValue(10)
+    setText("Select a time to wake between deep sleep cycles")
   }, []);
 
   return (

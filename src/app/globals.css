@@ -104,13 +104,13 @@ body {
 }
 
 .button-top-left {
-  margin: 40px;
+  margin: 55px;
   background: black;
   box-shadow: none;
   position: absolute;
   top: 0;
-  left: 0;
-  transform: translate(-50%, -50%);
+  right: 0;
+  transform: translate(50%, -50%);
   transition: all 0.5s ease;
 }
 
@@ -133,7 +133,7 @@ body {
   width: 10vmin;
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   box-shadow: none;
 }
 

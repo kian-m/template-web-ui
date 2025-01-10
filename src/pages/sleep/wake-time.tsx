@@ -7,7 +7,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { VStack } from '@chakra-ui/react';
 
-export default function SleepTimePrompt({
+export default function WakeTimePrompt({
   setDate,
 }: {
   setDate: (t: Date) => void;

@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'My Health Portal',
-  description: 'Fitness, Food & Rest'
+  description: 'Fitness, Nutrition & Sleep'
 };
 export default function RootLayout({
   children,
