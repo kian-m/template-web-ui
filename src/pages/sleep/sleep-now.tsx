@@ -29,15 +29,23 @@ const getColor = (index: number) => {
   return colors[index];
 };
 
-export default function WakeUpOptions({ date }: { date: Date }) {
+export default function WakeUpOptions({
+  date,
+  wake,
+}: {
+  date: Date;
+  wake: boolean;
+}) {
   const [wakeUpTimes, setWakeUpTimes] = useState<Date[]>([]);
   const { setText, setShow, setTimeoutValue } = useContext(FadingTextContext);
 
   useEffect(() => {
+    console.log(wake);
     setWakeUpTimes(getWakeUpTimes(date.getTime()));
-    setTimeoutValue(10)
-    setText("Select a time to wake between deep sleep cycles")
-  }, []);
+    if (wake) {
+      setText('Select a time to sleep to wake between deep sleep cycles');
+    } else setText('Select a time to wake between deep sleep cycles');
+  }, [wake]);
 
   return (
     <div className="wakeUpContainer">

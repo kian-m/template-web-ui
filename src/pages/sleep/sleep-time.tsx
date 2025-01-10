@@ -13,15 +13,15 @@ export default function SleepTimePrompt({
 }: {
   setDate: (t: Date) => void;
 }) {
-  const { setText, setShow, setTimeoutValue } = useContext(FadingTextContext);
+  const { setText, setTimeoutValue } = useContext(FadingTextContext);
 
   const [hour, setHour] = useState<string>('12');
   const [minute, setMinute] = useState<string>('00');
   const [period, setPeriod] = useState<string>('AM');
 
   useEffect(() => {
-    setTimeoutValue(10)
-    setText("Select the time you wish to go to bed")
+    setTimeoutValue(10);
+    setText('Select the time you wish to go to bed');
   });
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

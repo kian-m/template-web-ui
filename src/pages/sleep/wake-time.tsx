@@ -1,11 +1,8 @@
-import { useState } from 'react';
-import {
-  faArrowRight,
-  faBed,
-  faClock,
-} from '@fortawesome/free-solid-svg-icons';
+import { useContext, useEffect, useState } from 'react';
+import { faArrowRight, faBed, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { VStack } from '@chakra-ui/react';
+import { FadingTextContext } from '../../contexts/FadingTextContext';
 
 export default function WakeTimePrompt({
   setDate,
@@ -32,13 +29,14 @@ export default function WakeTimePrompt({
       hours = 0;
     }
 
-    // Set the hours and minutes of the Date object
     date.setHours(hours);
     date.setMinutes(minutes);
     date.setSeconds(0);
     date.setMilliseconds(0);
 
-    setDate(new Date(date));
+    date.setMinutes(date.getMinutes() - 670);
+
+    setDate(date);
   };
 
   return (
@@ -50,7 +48,7 @@ export default function WakeTimePrompt({
           style={{ marginBottom: '10vmin' }}
         >
           <VStack style={{ marginLeft: '-1rem' }}>
-            <FontAwesomeIcon icon={faClock} size="2xs" color="white" />
+            <FontAwesomeIcon icon={faSun} size="2xs" color="white" />
             <FontAwesomeIcon
               style={{ marginLeft: '1rem' }}
               icon={faBed}

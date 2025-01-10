@@ -128,7 +128,7 @@ body {
   right: 0;}
 
 .button-return {
-  margin: 10px;
+  margin: 32px;
   height: 10vmin;
   width: 10vmin;
   position: absolute;
@@ -138,7 +138,7 @@ body {
 }
 
 .button-return:hover {
-  margin: 10px;
+  margin: 32px;
   height: 10vmin;
   width: 10vmin;
   position: absolute;
