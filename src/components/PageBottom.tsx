@@ -1,5 +1,6 @@
 import React from 'react';
 import { CloseIcon } from '@chakra-ui/icons';
+import Func = jest.Func;
 
 const PageBottom = ({
   components,
@@ -12,20 +13,14 @@ const PageBottom = ({
     name: string;
   }[];
   visible: boolean;
-  setVisible: (b: boolean) => void;
+  setVisible: Function;
 }) => {
   const toggleVisibility = () => {
-    setVisible(!visible);
+    setVisible();
   };
 
   return (
     <div>
-      {visible && (
-        <CloseIcon boxSize={12} padding={2} onClick={toggleVisibility} />
-      )}
-      <div
-        style={{ width: '100%', height: '1px', backgroundColor: 'white' }}
-      ></div>
       {visible &&
         components.map(({ component, visible, name }) =>
           visible ? (
@@ -34,7 +29,7 @@ const PageBottom = ({
               key={name}
               tabIndex={visible ? 0 : undefined} // Add tabindex to make it focusable
             >
-              <button autoFocus style={{ backgroundColor: 'black' }} />
+              <button style={{ backgroundColor: 'black' }} />
               {component}
             </div>
           ) : (
