@@ -8,10 +8,11 @@ import {
   faClock,
   faSun,
 } from '@fortawesome/free-solid-svg-icons';
-import WakeUpOptions from './sleep-now';
+import TimeOptions from './sleep-now';
 import SleepTimePrompt from './sleep-time';
 import { FadingTextContext } from '../../contexts/FadingTextContext';
 import WakeTimePrompt from './wake-time';
+import { set } from 'yaml/dist/schema/yaml-1.1/set';
 
 export default function Sleep() {
   const searchParams = useSearchParams();
@@ -40,18 +41,19 @@ export default function Sleep() {
     router.replace(newUrl);
   };
 
-  const TimeOptions = useCallback(
-    () => <WakeUpOptions date={date} wake={wake} />,
-    [wake],
+  const SleepWakeOptions = useCallback(
+    () => <TimeOptions date={date} wake={wake} />,
+    [wake, setWake],
   );
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      {sleepNowClicked && <TimeOptions />}
+      {sleepNowClicked && <SleepWakeOptions />}
       {sleepLaterClicked && (
         <SleepTimePrompt
           setDate={(d: Date) => {
             setDate(d);
+            setWake(false);
             setSleepLaterClicked(false);
             setSleepNowClicked(true);
           }}
@@ -84,6 +86,7 @@ export default function Sleep() {
           }`}
           onClick={() => {
             setDate(new Date());
+            setWake(false);
             setSleepNowClicked(true);
             setSleepLaterClicked(false);
             setWakeUpAtClicked(false);

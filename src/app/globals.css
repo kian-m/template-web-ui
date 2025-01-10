@@ -339,6 +339,16 @@ body {
   animation: fadeIn 2s ease-in-out;
 }
 
+@keyframes fadeInHalf {
+  0% { opacity: 0; }
+  100% { opacity: 0.5; }
+}
+
+@keyframes fadeOutHalf {
+  0% { opacity: 0.5; }
+  100% { opacity: 0; }
+}
+
 
 select {
   position: relative;

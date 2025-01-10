@@ -20,7 +20,6 @@ export default function SleepTimePrompt({
   const [period, setPeriod] = useState<string>('AM');
 
   useEffect(() => {
-    setTimeoutValue(10);
     setText('Select the time you wish to go to bed');
   });
   const handleSubmit = (e: React.FormEvent) => {

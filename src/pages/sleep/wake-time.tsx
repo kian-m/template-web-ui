@@ -48,7 +48,12 @@ export default function WakeTimePrompt({
           style={{ marginBottom: '10vmin' }}
         >
           <VStack style={{ marginLeft: '-1rem' }}>
-            <FontAwesomeIcon icon={faSun} size="2xs" color="white" />
+            <FontAwesomeIcon
+              icon={faSun}
+              size="2xs"
+              color="white"
+              style={{ animation: 'fadeIn 3s ease-in-out' }}
+            />
             <FontAwesomeIcon
               style={{ marginLeft: '1rem' }}
               icon={faBed}

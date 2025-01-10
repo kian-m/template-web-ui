@@ -29,7 +29,7 @@ const getColor = (index: number) => {
   return colors[index];
 };
 
-export default function WakeUpOptions({
+export default function TimeOptions({
   date,
   wake,
 }: {

@@ -30,7 +30,7 @@ export const FadingTextProvider: React.FC<FadingTextProviderProps> = ({
     setTimeout(() => {
       setText(newText);
       setShow(true);
-    }, 500); // Add a slight delay to ensure the previous text is hidden before updating
+    }, 1000);
   };
 
   return (
@@ -41,18 +41,19 @@ export const FadingTextProvider: React.FC<FadingTextProviderProps> = ({
         <div
           style={{
             position: 'absolute',
-            top: '0',
+            top: '2%',
             left: '50%',
-            margin: '10 auto',
+            margin: '20 auto',
             transform: 'translateX(-50%)',
             alignSelf: 'center',
             textAlign: 'center',
             whiteSpace: 'pre-line',
             marginTop: '5%',
             fontSize: '0.8rem',
-            fontFamily: 'monospace',
-            animation: `fadeIn 3s ease-in-out, fadeOut 1s ${timeoutValue}s forwards`,
-            transition: 'opacity 1s',
+            opacity: '0.5',
+            fontFamily: 'Optima, sans-serif',
+            animation: `fadeInHalf 3s ease-in-out, fadeOutHalf 2s ${timeoutValue}s forwards`,
+            transition: 'opacity 50% 8s',
           }}
         >
           {text}
