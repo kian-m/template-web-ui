@@ -23,10 +23,20 @@ export default function RootLayout({
           href="/icon.png"
           type="image/png"
         />
-        <link rel="icon" href="/icon.png" type="image/png" />
+        <link rel="icon" href="/browsericon.png" type="image/png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/icon.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/icon.png" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/browsericon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/browsericon.png"
+        />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
     </html>
