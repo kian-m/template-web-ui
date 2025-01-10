@@ -23,7 +23,7 @@ export const FadingTextProvider: React.FC<FadingTextProviderProps> = ({
 }) => {
   const [text, setText] = useState('');
   const [showText, setShow] = useState(true);
-  const [timeoutValue, setTimeoutValue] = useState(4); // State for timeout
+  const [timeoutValue, setTimeoutValue] = useState(8);
 
   const updateText = (newText: string) => {
     setShow(false);

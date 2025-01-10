@@ -43,7 +43,7 @@ export default function Sleep() {
 
   const SleepWakeOptions = useCallback(
     () => <TimeOptions date={date} wake={wake} />,
-    [wake, setWake],
+    [wake, setWake, date],
   );
 
   return (
@@ -63,7 +63,7 @@ export default function Sleep() {
         <WakeTimePrompt
           setDate={(d: Date) => {
             setDate(d);
-            setSleepLaterClicked(false);
+            setWakeUpAtClicked(false);
             setWake(true);
             setSleepNowClicked(true);
           }}

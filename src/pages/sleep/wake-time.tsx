@@ -36,7 +36,7 @@ export default function WakeTimePrompt({
 
     date.setMinutes(date.getMinutes() - 670);
 
-    setDate(date);
+    setDate(new Date(date));
   };
 
   return (
