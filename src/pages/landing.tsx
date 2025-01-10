@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowLeft,
+  faCalendarDays,
   faDumbbell,
   faMoon,
   faUtensils,
@@ -16,6 +17,7 @@ import { FadingTextContext } from '../contexts/FadingTextContext';
 import { addToLocalStorage, getFromLocalStorage } from '../utils/local-storage';
 import Gym from './gym';
 import Food from './food';
+import Calendar from './calendar/calendar';
 
 export default function Landing() {
   const searchParams = useSearchParams();
@@ -24,12 +26,14 @@ export default function Landing() {
   const [gymButtonClicked, setgymButtonClicked] = useState(false);
   const [foodButtonClicked, setfoodButtonClicked] = useState(false);
   const [sleepButtonClicked, setsleepButtonClicked] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
   const lastVisitDays = getDaysSinceLastVisit();
   const anyButtonClicked =
-    gymButtonClicked || foodButtonClicked || sleepButtonClicked;
+    gymButtonClicked || foodButtonClicked || sleepButtonClicked || showCalendar;
 
   const resetButtons = () => {
     setText('');
+    setShowCalendar(false);
     setgymButtonClicked(false);
     setfoodButtonClicked(false);
     setsleepButtonClicked(false);
@@ -37,7 +41,9 @@ export default function Landing() {
 
   useEffect(() => {
     if (lastVisitDays == -1) {
-      setText('This product is currently in an open, unfinished beta. Stay tuned, and thank you for being an early adopter - Kian');
+      setText(
+        'This product is currently in an open, unfinished beta. Stay tuned, and thank you for being an early adopter - Kian',
+      );
     } else {
       if (lastVisitDays == 1) {
         addToLocalStorage(
@@ -59,7 +65,7 @@ export default function Landing() {
       }
     }
     addLastVisitDate();
-    if(sleep) {
+    if (sleep) {
       setsleepButtonClicked(true);
     }
   });
@@ -72,6 +78,7 @@ export default function Landing() {
           <FontAwesomeIcon icon={faArrowLeft} size="lg" color="white" />
         </button>
       )}
+      {showCalendar && <Calendar />}
       {sleepButtonClicked && <Sleep />}
       {gymButtonClicked && <Gym />}
       {foodButtonClicked && <Food />}
@@ -127,6 +134,16 @@ export default function Landing() {
         >
           <FontAwesomeIcon icon={faMoon} size="lg" color="white" />
         </button>
+        {!anyButtonClicked && (
+          <button
+            style={{ left: 26, top: 20, position: 'absolute', opacity: '70%' }}
+            onClick={() => {
+              setShowCalendar(true);
+            }}
+          >
+            <FontAwesomeIcon icon={faCalendarDays} size="lg" color="white" />
+          </button>
+        )}
       </div>
     </Suspense>
   );

@@ -10,7 +10,6 @@ export const encryptLocalStorage = async (): Promise<void> => {
     await navigator.clipboard.writeText('No data available');
   } else {
     const ciphertext = CryptoJS.AES.encrypt(data, SECRET_KEY).toString();
-
     try {
       await navigator.clipboard.writeText(ciphertext);
       console.log('Encrypted data copied to clipboard');

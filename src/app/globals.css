@@ -128,7 +128,7 @@ body {
   right: 0;}
 
 .button-return {
-  margin: 32px;
+  margin: 20px;
   height: 10vmin;
   width: 10vmin;
   position: absolute;
@@ -138,7 +138,7 @@ body {
 }
 
 .button-return:hover {
-  margin: 32px;
+  margin: 20px;
   height: 10vmin;
   width: 10vmin;
   position: absolute;
@@ -364,4 +364,48 @@ select {
   appearance: none;
   border-radius: 20px;
   background: transparent;
+}
+.calendar {
+  margin-top: 18%;
+  color: white;
+  opacity: 80%;
+  font-family: Optima, sans-serif;
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.header span {
+  font-size: 1.2rem;
+}
+
+.daysOfWeek, .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.dayOfWeek, .day {
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+.empty {
+  visibility: hidden;
+}
+
+.icon-style {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.month {
+  position: absolute;
+  padding-bottom: 10%;
+  left:35%
 }
