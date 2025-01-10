@@ -3,10 +3,9 @@ import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
 
-
 export const metadata = {
   title: 'My Health Portal',
-  description: 'Fitness, Nutrition & Sleep'
+  description: 'Fitness, Nutrition & Sleep',
 };
 export default function RootLayout({
   children,
@@ -16,13 +15,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
-      <meta property="og:image" content="/img.webp" />
-      <link
+      <head>
+        <meta property="og:image" content="/icon.png" />
+        <link
           rel="icon"
           sizes="16x16 32x32 64x64"
-          href="/img.webp"
+          href="/icon.png"
           type="image/png"
-      />
+        />
+        <link rel="icon" href="/icon.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/icon.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+      </head>
     </html>
   );
 }
