@@ -42,7 +42,7 @@ export default function Landing() {
   useEffect(() => {
     if (lastVisitDays == -1) {
       setText(
-        'This product is currently in an open, unfinished beta. Stay tuned, and thank you for being an early adopter - Kian',
+        'This product is currently in an open, unfinished beta. Stay tuned, and thank you for being an early adopter.',
       );
     } else {
       if (lastVisitDays == 1) {
