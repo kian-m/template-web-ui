@@ -11,7 +11,10 @@ import {
   faMoon,
   faUtensils,
 } from '@fortawesome/free-solid-svg-icons';
-import { getSleepScoreFromLocalStorage } from '../../utils/local-storage';
+import {
+  addSleepToLocalStorage,
+  getSleepScoreFromLocalStorage,
+} from '../../utils/local-storage';
 
 const daysOfWeek = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
 
@@ -21,6 +24,7 @@ const Calendar: React.FC = () => {
 
   useEffect(() => {
     setIsClient(true);
+    addSleepToLocalStorage('2025-01-10', 3);
   }, []);
 
   const daySleepScore = (date: string): number => {
@@ -61,7 +65,14 @@ const Calendar: React.FC = () => {
     );
   };
 
-  useEffect(() => {}, [currentDate]);
+  const isCurrentDate = (date: Date): boolean => {
+    const today = new Date();
+    return (
+      date.getFullYear() === today.getFullYear() &&
+      date.getMonth() === today.getMonth() &&
+      date.getDate() === today.getDate()
+    );
+  };
 
   const renderDays = () => {
     const days = [];
@@ -76,7 +87,10 @@ const Calendar: React.FC = () => {
       );
       const dateString = date.toISOString().split('T')[0];
       days.push(
-        <div key={i} className="day">
+        <div
+          key={i}
+          className={`day ${isCurrentDate(date) ? 'current-day' : ''}`}
+        >
           {i}
           <div>
             <FontAwesomeIcon

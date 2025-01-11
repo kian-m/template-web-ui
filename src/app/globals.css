@@ -104,7 +104,7 @@ body {
 }
 
 .button-top-left {
-  margin: 55px;
+  margin: 38px;
   background: black;
   box-shadow: none;
   position: absolute;
@@ -408,4 +408,12 @@ select {
   position: absolute;
   padding-bottom: 10%;
   left:35%
+}
+
+.current-day {
+  height: 70%;
+  border-radius: 10px;
+  background-color: rgba(77, 66, 66, 0.5);
+  border: 2px inset #000000;
+  box-shadow: inset 2px 2px 5px rgb(0, 0, 0), inset -2px -2px 5px rgba(58, 43, 43, 0.1);
 }
