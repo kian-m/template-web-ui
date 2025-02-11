@@ -36,11 +36,15 @@ export default function TimeOptions({
   date: Date;
   wake: boolean;
 }) {
+  const [loaded, setLoaded] = useState(true);
   const [wakeUpTimes, setWakeUpTimes] = useState<Date[]>([]);
   const { setText, setShow, setTimeoutValue } = useContext(FadingTextContext);
 
   useEffect(() => {
-    console.log(wake);
+    setLoaded(true);
+  });
+
+  useEffect(() => {
     setWakeUpTimes(getWakeUpTimes(date.getTime()));
     if (wake) {
       setText('Select a time to sleep to wake between deep sleep cycles');
@@ -48,26 +52,28 @@ export default function TimeOptions({
   }, [wake]);
 
   return (
-    <div className="wakeUpContainer">
-      <ul className="wakeUpList">
-        {wakeUpTimes.map((time, index) => {
-          const timeString = time.toLocaleTimeString([], {
-            hour: 'numeric',
-            minute: '2-digit',
-          });
-          const [mainTime, period] = timeString.split(' ');
+    loaded && (
+      <div className="wakeUpContainer">
+        <ul className="wakeUpList">
+          {wakeUpTimes.map((time, index) => {
+            const timeString = time.toLocaleTimeString([], {
+              hour: 'numeric',
+              minute: '2-digit',
+            });
+            const [mainTime, period] = timeString.split(' ');
 
-          return (
-            <li
-              key={index}
-              className="wakeUpTime"
-              style={{ color: getColor(index) }}
-            >
-              {mainTime} <span className="small-period">{period}</span>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+            return (
+              <li
+                key={index}
+                className="wakeUpTime"
+                style={{ color: getColor(index) }}
+              >
+                {mainTime} <span className="small-period">{period}</span>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    )
   );
 }

@@ -24,9 +24,14 @@ export default function Sleep() {
   const [sleepLaterClicked, setSleepLaterClicked] = useState(page === 'time');
   const [wakeUpAtClicked, setWakeUpAtClicked] = useState(false);
   const [wake, setWake] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   const anyButtonClicked =
     sleepNowClicked || sleepLaterClicked || wakeUpAtClicked;
+
+  useEffect(() => {
+    setLoaded(true);
+  });
 
   useEffect(() => {
     if (!sleepNowClicked && !sleepLaterClicked)
@@ -47,91 +52,96 @@ export default function Sleep() {
   );
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      {sleepNowClicked && <SleepWakeOptions />}
-      {sleepLaterClicked && (
-        <SleepTimePrompt
-          setDate={(d: Date) => {
-            setDate(d);
-            setWake(false);
-            setSleepLaterClicked(false);
-            setSleepNowClicked(true);
-          }}
-        />
-      )}
-      {wakeUpAtClicked && (
-        <WakeTimePrompt
-          setDate={(d: Date) => {
-            setDate(d);
-            setWakeUpAtClicked(false);
-            setWake(true);
-            setSleepNowClicked(true);
-          }}
-        />
-      )}
-      {anyButtonClicked && (
-        <button className="circle-button button-return" onClick={resetButtons}>
-          <FontAwesomeIcon icon={faArrowLeft} size="lg" color="white" />
-        </button>
-      )}
-      <div className="button-container">
-        <button
-          aria-label="now"
-          className={`circle-button button1 ${
-            sleepNowClicked
-              ? 'button-top-left'
-              : sleepLaterClicked || wakeUpAtClicked
-                ? 'button-top-right'
-                : ''
-          }`}
-          onClick={() => {
-            setDate(new Date());
-            setWake(false);
-            setSleepNowClicked(true);
-            setSleepLaterClicked(false);
-            setWakeUpAtClicked(false);
-            router.replace(`${window.location.pathname}?sleep=now`);
-          }}
-        >
-          <FontAwesomeIcon icon={faBed} size="lg" color="white" />
-        </button>
-        <button
-          aria-label="later"
-          className={`circle-button button2 ${
-            sleepLaterClicked
-              ? 'button-top-left'
-              : sleepNowClicked || wakeUpAtClicked
-                ? 'button-top-right'
-                : ''
-          }`}
-          onClick={() => {
-            setSleepLaterClicked(true);
-            setSleepNowClicked(false);
-            setWakeUpAtClicked(false);
-            router.replace(`${window.location.pathname}?sleep=time`);
-          }}
-        >
-          <FontAwesomeIcon icon={faClock} size="lg" color="white" />
-        </button>
-        <button
-          aria-label="wake"
-          className={`circle-button button3 ${
-            wakeUpAtClicked
-              ? 'button-top-left'
-              : sleepNowClicked || sleepLaterClicked
-                ? 'button-top-right'
-                : ''
-          }`}
-          onClick={() => {
-            setText('Select the time you wish to wake up');
-            setWakeUpAtClicked(true);
-            setSleepNowClicked(false);
-            setSleepLaterClicked(false);
-          }}
-        >
-          <FontAwesomeIcon icon={faSun} size="lg" color="white" />
-        </button>
-      </div>
-    </Suspense>
+    loaded && (
+      <Suspense fallback={<div>Loading...</div>}>
+        {sleepNowClicked && <SleepWakeOptions />}
+        {sleepLaterClicked && (
+          <SleepTimePrompt
+            setDate={(d: Date) => {
+              setDate(d);
+              setWake(false);
+              setSleepLaterClicked(false);
+              setSleepNowClicked(true);
+            }}
+          />
+        )}
+        {wakeUpAtClicked && (
+          <WakeTimePrompt
+            setDate={(d: Date) => {
+              setDate(d);
+              setWakeUpAtClicked(false);
+              setWake(true);
+              setSleepNowClicked(true);
+            }}
+          />
+        )}
+        {anyButtonClicked && (
+          <button
+            className="circle-button button-return"
+            onClick={resetButtons}
+          >
+            <FontAwesomeIcon icon={faArrowLeft} size="lg" color="white" />
+          </button>
+        )}
+        <div className="button-container">
+          <button
+            aria-label="now"
+            className={`circle-button button1 ${
+              sleepNowClicked
+                ? 'button-top-left'
+                : sleepLaterClicked || wakeUpAtClicked
+                  ? 'button-top-right'
+                  : ''
+            }`}
+            onClick={() => {
+              setDate(new Date());
+              setWake(false);
+              setSleepNowClicked(true);
+              setSleepLaterClicked(false);
+              setWakeUpAtClicked(false);
+              router.replace(`${window.location.pathname}?sleep=now`);
+            }}
+          >
+            <FontAwesomeIcon icon={faBed} size="lg" color="white" />
+          </button>
+          <button
+            aria-label="later"
+            className={`circle-button button2 ${
+              sleepLaterClicked
+                ? 'button-top-left'
+                : sleepNowClicked || wakeUpAtClicked
+                  ? 'button-top-right'
+                  : ''
+            }`}
+            onClick={() => {
+              setSleepLaterClicked(true);
+              setSleepNowClicked(false);
+              setWakeUpAtClicked(false);
+              router.replace(`${window.location.pathname}?sleep=time`);
+            }}
+          >
+            <FontAwesomeIcon icon={faClock} size="lg" color="white" />
+          </button>
+          <button
+            aria-label="wake"
+            className={`circle-button button3 ${
+              wakeUpAtClicked
+                ? 'button-top-left'
+                : sleepNowClicked || sleepLaterClicked
+                  ? 'button-top-right'
+                  : ''
+            }`}
+            onClick={() => {
+              setText('Select the time you wish to wake up');
+              setWakeUpAtClicked(true);
+              setSleepNowClicked(false);
+              setSleepLaterClicked(false);
+            }}
+          >
+            <FontAwesomeIcon icon={faSun} size="lg" color="white" />
+          </button>
+        </div>
+      </Suspense>
+    )
   );
 }

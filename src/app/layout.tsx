@@ -16,15 +16,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>{children}</body>
       <head>
-        <meta property="og:image" content="/icon.png" />
+        <meta property="og:image" content="/icon.jpg" />
         <link
           rel="icon"
           sizes="16x16 32x32 64x64"
-          href="/icon.png"
-          type="image/png"
+          href="/icon.jpg"
+          type="image/jpg"
         />
         <link rel="icon" href="/browsericon.png" type="image/png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/icon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/icon.jpg" />
         <link
           rel="icon"
           type="image/png"
