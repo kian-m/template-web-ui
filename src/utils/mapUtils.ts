@@ -51,7 +51,7 @@ export const getDirectionsUrl = (destination: LibraryLocation): string => {
     return `https://www.google.com/maps/dir/?api=1&destination=${address}`;
 };
 
-// Custom map style focused on highlighting affluent neighborhoods
+// Custom map style focused on highlighting neighborhoods
 export const mapStyles = [
     {
         "featureType": "administrative.neighborhood",
