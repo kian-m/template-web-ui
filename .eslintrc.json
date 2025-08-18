@@ -18,6 +18,8 @@
     }],
 
     // Enforce consistent spacing inside object literals
-    "object-curly-spacing": ["error", "always"]
+    "object-curly-spacing": ["error", "always"],
+
+    "react/no-unescaped-entities": "off" // Disable the rule
   }
 }

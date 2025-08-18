@@ -3,25 +3,165 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  /* Navy Blue */
+  --color-navy-50: #f0f4f9;
+  --color-navy-100: #d9e2ec;
+  --color-navy-200: #bccdde;
+  --color-navy-300: #94abc5;
+  --color-navy-400: #6885a8;
+  --color-navy-500: #4d6890;
+  --color-navy-600: #3d5478;
+  --color-navy-700: #334163;
+  --color-navy-800: #092f5e;
+  --color-navy-900: #051e3e;
+
+  /* Rustic Yellow */
+  --color-yellow-50: #fffde7;
+  --color-yellow-100: #fff9c4;
+  --color-yellow-200: #fff59d;
+  --color-yellow-300: #fff176;
+  --color-yellow-400: #ffee58;
+  --color-yellow-500: #ffeb3b;
+  --color-yellow-600: #c6a100;
+  --color-yellow-700: #c67c00;
+  --color-yellow-800: #c67100;
+  --color-yellow-900: #c62828;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-gray-800 bg-white;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Focus styling */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-yellow-600 ring-offset-2;
+  }
+
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
+
+  /* Links in text content */
+  .prose a {
+    @apply text-yellow-600 font-medium no-underline hover:underline;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-navy-400 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-navy-500;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer components {
+  /* Custom component classes */
+  .shadow-highlight {
+    box-shadow: 0 0 0 2px var(--color-yellow-600);
+  }
+
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(to right, var(--color-navy-800), var(--color-navy-600));
+  }
+
+  /* Google Maps info window styling */
+  .info-window {
+    @apply p-3;
+  }
+
+  .info-window h3 {
+    @apply text-base font-bold mb-1;
+  }
+
+  .info-window p {
+    @apply text-sm;
+  }
+
+  .info-window .button {
+    @apply mt-2 py-1 px-3 bg-yellow-600 text-white text-xs font-medium rounded hover:bg-yellow-700 transition-colors;
+  }
+}
+
+@layer utilities {
+  /* Custom utilities */
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  .rotate-1 {
+    transform: rotate(1deg);
+  }
+
+  .rotate-2 {
+    transform: rotate(2deg);
+  }
+
+  .rotate-3 {
+    transform: rotate(3deg);
+  }
+
+  .-rotate-1 {
+    transform: rotate(-1deg);
+  }
+
+  .-rotate-2 {
+    transform: rotate(-2deg);
+  }
+
+  .-rotate-3 {
+    transform: rotate(-3deg);
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse 2s infinite;
 }
