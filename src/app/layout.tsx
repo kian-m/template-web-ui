@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { siteContent } from '@/data/siteContent';
+import PostHogProvider from '@/components/PostHogProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -46,6 +47,7 @@ export default function RootLayout ({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={inter.className}>
+      <PostHogProvider />
       <header className="sticky top-0 z-50 bg-white shadow-md">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center py-4">
