@@ -89,7 +89,7 @@ export default function RootLayout ({
         </head>
         <body className="antialiased bg-background text-foreground">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <AnalyticsProvider/>
+            <AnalyticsProvider userId={undefined}/>
             <CalProvider>
                 {children}
             </CalProvider>
