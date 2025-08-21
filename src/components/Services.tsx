@@ -47,9 +47,9 @@ export default function Services () {
     ]
 
     const testTypes = [
-        { icon: <Calculator className="w-6 h-6" />, name: "SAT", topics: "Math, Reading, Writing" },
-        { icon: <PenTool className="w-6 h-6" />, name: "ACT", topics: "English, Math, Reading, Science" },
-        { icon: <BookOpen className="w-6 h-6" />, name: "AP classes", topics: "Calculus (AB & BC), AP Physics 1, 2, C E&M, C Mechanics, ..." },
+        { icon: <Calculator className="w-6 h-6" />, name: "Standardized tests", topics: "SAT, ACT, GRE,..." },
+        { icon: <PenTool className="w-6 h-6" />, name: "Introductory College Courses", topics: "College Algebra, Calculus, Differential Equations, and more." },
+        { icon: <BookOpen className="w-6 h-6" />, name: "AP classes", topics: "Calculus, Physics, Statistics, and more. " },
         { icon: <Microscope className="w-6 h-6" />, name: "Academic Support", topics: "Math, Physics, Chemistry, Biology" }
     ]
 
@@ -142,7 +142,8 @@ export default function Services () {
                             className={`academic-card p-8 text-center academic-hover relative ${location.popular ? 'border-2 border-academic-gold' : ''}`}
                         >
                             {location.popular && (
-                                <span className="absolute top-4 right-4 bg-academic-gold text-academic-navy text-xs font-semibold px-3 py-1 rounded-full">
+                                <span
+                                    className="absolute top-4 right-4 bg-academic-gold text-academic-navy text-xs font-semibold px-3 py-1 rounded-full">
                                     Most Popular
                                 </span>
                             )}
@@ -159,7 +160,7 @@ export default function Services () {
                     ))}
                 </div>
                 <p className="mt-6 text-center text-xs text-academic-medium-blue dark:text-academic-off-white">
-                    *In-person sessions may include additional fees.
+                *In-person sessions include an additional fee.
                 </p>
 
                 <div className="mt-12 text-center">
