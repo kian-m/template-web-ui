@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
 import { Phone, Mail, Clock, Calendar, User } from 'lucide-react'
+import { useCal } from './CalProvider'
 
 // Contact SVG Icon
 const ContactIcon = () => (
@@ -11,13 +11,7 @@ const ContactIcon = () => (
 )
 
 export default function Contact () {
-    const [ scheduleType, setScheduleType ] = useState<'consultation' | 'session' | null>(null)
-
-    const getCalLink = () => {
-        return scheduleType === 'consultation'
-            ? 'https://cal.com/thebayareatutor/free-consultation?embed=1'
-            : 'https://cal.com/thebayareatutor/tutoring-session?embed=1'
-    }
+    const { open } = useCal()
 
     return (
         <section id="contact" className="py-20 lg:py-32 bg-academic-navy">
@@ -107,46 +101,17 @@ export default function Contact () {
                         </div>
 
                         {/* Scheduling Section */}
-                        <div className="academic-card p-8">
-                            {!scheduleType && (
-                                <div className="text-center">
-                                    <p className="text-gray-300 mb-8">
-                                        Start with a free consultation or schedule your first tutoring session
-                                    </p>
-
-                                    <div className="space-y-4">
-                                        <button
-                                            onClick={() => setScheduleType('consultation')}
-                                            className="w-full academic-button px-6 py-4 text-lg font-semibold rounded-lg flex items-center justify-center space-x-2"
-                                        >
-                                            <Calendar className="w-5 h-5" />
-                                            <span>Schedule Free Consultation</span>
-                                        </button>
-
-                                        <button
-                                            onClick={() => setScheduleType('session')}
-                                            className="w-full px-6 py-4 text-lg font-semibold rounded-lg border-2 border-academic-gold/30 hover:border-academic-gold/60 text-white hover:bg-academic-gold/10 transition-all duration-300"
-                                        >
-                                            Schedule Tutoring Session
-                                        </button>
-                                    </div>
-                                </div>
-                            )}
-
-                            {scheduleType && (
-                                <div className="space-y-4">
-                                    <iframe
-                                        src={getCalLink()}
-                                        className="w-full h-[700px] border-none rounded-md"
-                                    ></iframe>
-                                    <button
-                                        onClick={() => setScheduleType(null)}
-                                        className="px-6 py-3 text-lg font-semibold rounded-lg border-2 border-white/20 hover:border-academic-gold/50 text-white hover:bg-academic-gold/10 transition-all duration-300"
-                                    >
-                                        Back
-                                    </button>
-                                </div>
-                            )}
+                        <div className="academic-card p-8 flex flex-col justify-center text-center">
+                            <p className="text-gray-300 mb-6">
+                                Ready to get started? Schedule a free consultation to discuss your goals.
+                            </p>
+                            <button
+                                onClick={open}
+                                className="schedule-trigger academic-button px-6 py-4 text-lg font-semibold rounded-lg flex items-center justify-center space-x-2 mx-auto"
+                            >
+                                <Calendar className="w-5 h-5" />
+                                <span>Schedule Now</span>
+                            </button>
                         </div>
                     </div>
                 </div>

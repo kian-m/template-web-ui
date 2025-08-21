@@ -2,14 +2,11 @@
 
 import { Calendar } from 'lucide-react'
 import { siteContent } from '@/data/siteContent'
+import { useCal } from './CalProvider'
 
 export default function Pricing () {
     const { subheading, plans } = siteContent.pricing
-
-    const scrollToContact = () => {
-        const element = document.getElementById('contact')
-        if (element) element.scrollIntoView({ behavior: 'smooth' })
-    }
+    const { open } = useCal()
 
     return (
         <section id="pricing" className="py-20 lg:py-32 bg-academic-dark-blue">
@@ -28,10 +25,10 @@ export default function Pricing () {
                     {plans.map(plan => (
                         <div
                             key={plan.id}
-                            className={`academic-card p-8 text-center academic-hover relative ${plan.popular ? 'border-2 border-academic-gold' : ''}`}
+                            className={`academic-card p-8 text-center academic-hover relative flex flex-col ${plan.popular ? 'border-2 border-academic-gold' : ''}`}
                         >
                             {plan.popular && (
-                                <span className="absolute top-4 right-4 bg-academic-gold text-academic-navy text-xs font-semibold px-3 py-1 rounded-full">
+                                <span className="absolute top-4 right-4 border-2 border-academic-gold text-academic-gold text-xs font-semibold px-3 py-1 rounded-full bg-academic-navy">
                                     Most Popular
                                 </span>
                             )}
@@ -40,14 +37,17 @@ export default function Pricing () {
                                 ${plan.price}
                                 <span className="text-lg text-gray-300">{plan.unit}</span>
                             </div>
-                            <ul className="space-y-2 mb-6">
+                            <ul className="space-y-2 mb-6 flex-grow">
                                 {plan.features.map((feature, idx) => (
-                                    <li key={idx} className="text-gray-300 text-sm">{feature}</li>
+                                    <li key={idx} className="flex items-start text-gray-300 text-sm">
+                                        <div className="w-2 h-2 bg-academic-gold rounded-full mt-1 mr-2 flex-shrink-0"></div>
+                                        {feature}
+                                    </li>
                                 ))}
                             </ul>
                             <button
-                                onClick={scrollToContact}
-                                className="academic-button w-full px-4 py-3 font-semibold rounded-md flex items-center justify-center space-x-2"
+                                onClick={open}
+                                className="schedule-trigger academic-button w-full px-4 py-3 font-semibold rounded-md flex items-center justify-center space-x-2 mt-auto"
                             >
                                 <Calendar className="w-4 h-4" />
                                 <span>{plan.cta}</span>

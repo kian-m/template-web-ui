@@ -87,8 +87,8 @@ export default function Services () {
                             </p>
                             <ul className="space-y-2">
                                 {service.features.map((feature, idx) => (
-                                    <li key={idx} className="text-sm text-gray-400 flex items-center">
-                                        <div className="w-1.5 h-1.5 bg-academic-gold rounded-full mr-3"></div>
+                                    <li key={idx} className="text-sm text-gray-400 flex items-start">
+                                        <div className="w-2 h-2 bg-academic-gold rounded-full mt-1 mr-3 flex-shrink-0"></div>
                                         {feature}
                                     </li>
                                 ))}
