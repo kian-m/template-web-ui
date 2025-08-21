@@ -25,7 +25,7 @@ const schoolLogos = [
         phone: '925-280-3950'
     },
     {
-        src: 'https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/Artwork_PNG_LL%20Knight.png',
+        src: '/las-lomas.svg',
         alt: 'Las Lomas High School logo',
         name: 'Las Lomas High School',
         phone: '925-280-3920'
