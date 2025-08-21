@@ -1,7 +1,7 @@
 'use client'
 
-import { Phone, Mail, Clock, Calendar, User, Check } from 'lucide-react'
-import { useCalModal } from '@/components/CalModal'
+import { useState } from 'react'
+import { Phone, Mail, Clock, Calendar, User } from 'lucide-react'
 
 // Contact SVG Icon
 const ContactIcon = () => (
@@ -11,7 +11,13 @@ const ContactIcon = () => (
 )
 
 export default function Contact () {
-    const { open } = useCalModal()
+    const [ scheduleType, setScheduleType ] = useState<'consultation' | 'session' | null>(null)
+
+    const getCalLink = () => {
+        return scheduleType === 'consultation'
+            ? 'https://cal.com/thebayareatutor/free-consultation?embed=1'
+            : 'https://cal.com/thebayareatutor/tutoring-session?embed=1'
+    }
 
     return (
         <section id="contact" className="py-20 lg:py-32 bg-academic-navy">
@@ -73,25 +79,25 @@ export default function Contact () {
                                 </h3>
                                 <div className="space-y-4">
                                     <div className="flex items-start">
-                                        <Check className="w-5 h-5 text-academic-gold mr-2 mt-0.5 flex-shrink-0" />
+                                        <div className="w-2 h-2 bg-academic-gold rounded-full mt-2 mr-3 flex-shrink-0"></div>
                                         <div className="text-gray-300 text-sm">
                                             <span className="text-white font-medium">Free 30-minute consultation</span> to discuss your goals and challenges
                                         </div>
                                     </div>
                                     <div className="flex items-start">
-                                        <Check className="w-5 h-5 text-academic-gold mr-2 mt-0.5 flex-shrink-0" />
+                                        <div className="w-2 h-2 bg-academic-gold rounded-full mt-2 mr-3 flex-shrink-0"></div>
                                         <div className="text-gray-300 text-sm">
                                             <span className="text-white font-medium">Personalized learning plan</span> that works with your school curriculum
                                         </div>
                                     </div>
                                     <div className="flex items-start">
-                                        <Check className="w-5 h-5 text-academic-gold mr-2 mt-0.5 flex-shrink-0" />
+                                        <div className="w-2 h-2 bg-academic-gold rounded-full mt-2 mr-3 flex-shrink-0"></div>
                                         <div className="text-gray-300 text-sm">
                                             <span className="text-white font-medium">Flexible scheduling</span> for your busy lifestyle
                                         </div>
                                     </div>
                                     <div className="flex items-start">
-                                        <Check className="w-5 h-5 text-academic-gold mr-2 mt-0.5 flex-shrink-0" />
+                                        <div className="w-2 h-2 bg-academic-gold rounded-full mt-2 mr-3 flex-shrink-0"></div>
                                         <div className="text-gray-300 text-sm">
                                             <span className="text-white font-medium">Ongoing support</span> between sessions via email
                                         </div>
@@ -101,31 +107,46 @@ export default function Contact () {
                         </div>
 
                         {/* Scheduling Section */}
-                        <div className="academic-card p-8 flex flex-col justify-between">
-                            <div className="text-center">
-                                <p className="text-gray-300 mb-8">
-                                    Start with a free consultation or schedule your first tutoring session
-                                </p>
+                        <div className="academic-card p-8">
+                            {!scheduleType && (
+                                <div className="text-center">
+                                    <p className="text-gray-300 mb-8">
+                                        Start with a free consultation or schedule your first tutoring session
+                                    </p>
 
+                                    <div className="space-y-4">
+                                        <button
+                                            onClick={() => setScheduleType('consultation')}
+                                            className="w-full academic-button px-6 py-4 text-lg font-semibold rounded-lg flex items-center justify-center space-x-2"
+                                        >
+                                            <Calendar className="w-5 h-5" />
+                                            <span>Schedule Free Consultation</span>
+                                        </button>
+
+                                        <button
+                                            onClick={() => setScheduleType('session')}
+                                            className="w-full px-6 py-4 text-lg font-semibold rounded-lg border-2 border-academic-gold/30 hover:border-academic-gold/60 text-white hover:bg-academic-gold/10 transition-all duration-300"
+                                        >
+                                            Schedule Tutoring Session
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+
+                            {scheduleType && (
                                 <div className="space-y-4">
+                                    <iframe
+                                        src={getCalLink()}
+                                        className="w-full h-[700px] border-none rounded-md"
+                                    ></iframe>
                                     <button
-                                        data-schedule
-                                        onClick={() => open('https://cal.com/thebayarea/consultation?embed=1')}
-                                        className="w-full academic-button px-6 py-4 text-lg font-semibold rounded-lg flex items-center justify-center space-x-2"
+                                        onClick={() => setScheduleType(null)}
+                                        className="px-6 py-3 text-lg font-semibold rounded-lg border-2 border-white/20 hover:border-academic-gold/50 text-white hover:bg-academic-gold/10 transition-all duration-300"
                                     >
-                                        <Calendar className="w-5 h-5" />
-                                        <span>Schedule Free Consultation</span>
-                                    </button>
-
-                                    <button
-                                        data-schedule
-                                        onClick={() => open('https://cal.com/thebayarea/consultation?embed=1')}
-                                        className="w-full px-6 py-4 text-lg font-semibold rounded-lg border-2 border-academic-gold/30 hover:border-academic-gold/60 text-white hover:bg-academic-gold/10 transition-all duration-300"
-                                    >
-                                        Schedule Tutoring Session
+                                        Back
                                     </button>
                                 </div>
-                            </div>
+                            )}
                         </div>
                     </div>
                 </div>

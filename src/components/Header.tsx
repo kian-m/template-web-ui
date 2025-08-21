@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { Menu, X, Calendar } from 'lucide-react'
-import { useCalModal } from '@/components/CalModal'
 
 export default function Header () {
     const [ isScrolled, setIsScrolled ] = useState(false)
@@ -25,30 +24,9 @@ export default function Header () {
         }
     }
 
-    const { open } = useCalModal()
     const handleScheduleClick = () => {
-        open('https://cal.com/thebayarea/consultation?embed=1')
+        scrollToSection('contact')
     }
-
-    const [ showFloating, setShowFloating ] = useState(true)
-
-    useEffect(() => {
-        const checkButtons = () => {
-            const buttons = document.querySelectorAll('[data-schedule]')
-            const anyVisible = Array.from(buttons).some((btn) => {
-                const rect = btn.getBoundingClientRect()
-                return rect.top < window.innerHeight && rect.bottom > 0
-            })
-            setShowFloating(!anyVisible)
-        }
-        checkButtons()
-        window.addEventListener('scroll', checkButtons)
-        window.addEventListener('resize', checkButtons)
-        return () => {
-            window.removeEventListener('scroll', checkButtons)
-            window.removeEventListener('resize', checkButtons)
-        }
-    }, [ ])
 
     return (
         <>
@@ -89,7 +67,6 @@ export default function Header () {
                                 FAQ
                             </button>
                             <button
-                                data-schedule
                                 onClick={handleScheduleClick}
                                 className="academic-button px-6 py-2 text-sm font-semibold rounded-md flex items-center space-x-2"
                             >
@@ -129,7 +106,6 @@ export default function Header () {
                                 FAQ
                             </button>
                             <button
-                                data-schedule
                                 onClick={handleScheduleClick}
                                 className="academic-button w-full px-4 py-2 text-sm font-semibold rounded-md flex items-center justify-center space-x-2"
                             >
@@ -142,15 +118,13 @@ export default function Header () {
             </header>
 
             {/* Floating Schedule Button */}
-            {showFloating && (
-                <button
-                    onClick={handleScheduleClick}
-                    className="schedule-button academic-button px-4 py-3 rounded-full flex items-center justify-center space-x-2 animate-academic-glow"
-                >
-                    <Calendar className="w-5 h-5" />
-                    <span className="font-semibold">Schedule Now</span>
-                </button>
-            )}
+            <button
+                onClick={handleScheduleClick}
+                className="schedule-button academic-button px-4 py-3 rounded-full flex items-center justify-center space-x-2 animate-academic-glow"
+            >
+                <Calendar className="w-5 h-5" />
+                <span className="font-semibold">Schedule Now</span>
+            </button>
         </>
     )
 }

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import { CalModalProvider } from '@/components/CalModal'
 
 export const metadata: Metadata = {
     title: 'Bay Area Academic Tutoring | SAT, ACT & School Support | Expert Private Tutor',
@@ -81,9 +80,7 @@ export default function RootLayout ({
             />
         </head>
         <body className="bg-academic-navy text-white antialiased">
-        <CalModalProvider>
-            {children}
-        </CalModalProvider>
+        {children}
         </body>
         </html>
     )
