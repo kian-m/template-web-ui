@@ -20,6 +20,6 @@ export default function Pricing () {
           ))}
         </div>
       </div>
-    </section>
+        <p className="pt-2 text-center text-lg text-academic-medium-blue dark:text-academic-off-white mt-4">*In-person price adjustments are applied based on distance to stay minimal. <a href="mailto:amir@thebayareatutor.com" className="text-blue-600 hover:text-blue-800 underline">Email</a>, <a href="tel:+19252371327" className="text-blue-600 hover:text-blue-800 underline">call (925) 237-1327</a> or schedule a consultation for more accurate pricing.</p>    </section>
   )
 }

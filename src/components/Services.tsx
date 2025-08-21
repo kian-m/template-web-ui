@@ -68,7 +68,7 @@ export default function Services () {
                         <span className="block text-academic-gold dark:text-gradient">Services</span>
                     </h2>
                     <p className="text-lg sm:text-xl text-academic-medium-blue dark:text-academic-off-white max-w-3xl mx-auto">
-                        You get expert support for standardized tests and academic success. I provide personalized tutoring that works with your schedule and learning style.
+                        Expert support for standardized tests and academic success. I provide personalized tutoring that works with your schedule and learning style.
                     </p>
                 </div>
 
@@ -159,7 +159,7 @@ export default function Services () {
                     ))}
                 </div>
                 <p className="mt-6 text-center text-xs text-academic-medium-blue dark:text-academic-off-white">
-                    *In-person sessions may include additional travel fees.
+                    *In-person sessions may include additional fees.
                 </p>
 
                 <div className="mt-12 text-center">

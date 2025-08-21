@@ -30,7 +30,6 @@ export const metadata: Metadata = {
         description: 'UC Berkeley graduate providing expert tutoring for SAT, ACT, and academic support',
         images: ['/og-image.jpg'],
     },
-    viewport: 'width=device-width, initial-scale=1',
     robots: {
         index: true,
         follow: true,
