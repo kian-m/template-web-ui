@@ -5,6 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
 
 :root {
     --academic-navy: #0B1426;
@@ -119,6 +120,10 @@ body {
     font-family: 'Playfair Display', serif;
 }
 
+.logo-font {
+    font-family: 'Montserrat', sans-serif;
+}
+
 @media (max-width: 768px) {
     .academic-card {
         border-radius: 8px;
@@ -129,8 +134,11 @@ body {
     }
 
     .schedule-button {
-        bottom: 15px;
-        right: 15px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        border-radius: 0;
     }
 }
 

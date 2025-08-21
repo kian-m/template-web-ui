@@ -25,6 +25,7 @@ module.exports = {
                 'title': ['Playfair Display', 'serif'],
                 'sans': ['Inter', 'system-ui', 'sans-serif'],
                 'mono': ['JetBrains Mono', 'monospace'],
+                'brand': ['Montserrat', 'sans-serif'],
             },
             animation: {
                 'fade-in': 'fadeIn 0.6s ease-in-out',

@@ -41,8 +41,8 @@ export default function Header() {
                     <div className="flex items-center justify-between h-16 lg:h-20">
                         {/* Logo */}
                         <div className="flex items-center">
-                            <h1 className="text-xl lg:text-2xl font-bold text-academic-gold title-font">
-                                Bay Area Academic Tutor
+                            <h1 className="text-2xl lg:text-3xl font-extrabold text-academic-gold logo-font tracking-wide drop-shadow">
+                                The Bay Area Tutor
                             </h1>
                         </div>
 
@@ -128,10 +128,10 @@ export default function Header() {
             {/* Floating Schedule Button */}
             <button
                 onClick={handleScheduleClick}
-                className="schedule-button academic-button px-4 py-3 rounded-full flex items-center space-x-2 animate-academic-glow"
+                className="schedule-button academic-button px-4 py-3 rounded-full flex items-center justify-center space-x-2 animate-academic-glow"
             >
                 <Calendar className="w-5 h-5" />
-                <span className="hidden sm:inline font-semibold">Schedule Now</span>
+                <span className="font-semibold">Schedule Now</span>
             </button>
         </>
     )
