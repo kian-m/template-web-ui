@@ -1,7 +1,7 @@
 'use client'
+/* eslint-disable @next/next/no-img-element */
 
-import { ArrowRight, Star, MapPin, GraduationCap } from 'lucide-react'
-import Image from 'next/image'
+import { ArrowRight, MapPin } from 'lucide-react'
 import { useCal } from './CalProvider'
 
 // Academic Achievement SVG Icon
@@ -81,57 +81,45 @@ export default function Hero () {
                             Trusted by families from these East Bay schools:
                         </p>
                         <div className="bg-gray-100/10 rounded-xl p-6 flex flex-wrap items-center justify-center gap-8 opacity-90">
-                            <Image
-                                src="/logos/acalanes.svg"
+                            <img
+                                src="https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/Acalanes_A.png"
                                 alt="Acalanes High School logo"
                                 className="h-12 w-auto"
-                                width={120}
-                                height={48}
                                 data-name="Acalanes High School"
                                 data-phone="925-280-3970"
                             />
-                            <Image
-                                src="/logos/campolindo.svg"
+                            <img
+                                src="https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/BlockC.png"
                                 alt="Campolindo High School logo"
                                 className="h-12 w-auto"
-                                width={120}
-                                height={48}
                                 data-name="Campolindo High School"
                                 data-phone="925-280-3950"
                             />
-                            <Image
-                                src="/logos/laslomas.svg"
+                            <img
+                                src="https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/Artwork_PNG_LL%20Knight.png"
                                 alt="Las Lomas High School logo"
                                 className="h-12 w-auto"
-                                width={120}
-                                height={48}
                                 data-name="Las Lomas High School"
                                 data-phone="925-280-3920"
                             />
-                            <Image
-                                src="/logos/miramonte.svg"
+                            <img
+                                src="https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/2020%20Block%20M.jpg"
                                 alt="Miramonte High School logo"
                                 className="h-12 w-auto"
-                                width={120}
-                                height={48}
                                 data-name="Miramonte High School"
                                 data-phone="925-280-3930"
                             />
-                            <Image
-                                src="/logos/carondelet.svg"
+                            <img
+                                src="https://www.carondeleths.org/logo.png"
                                 alt="Carondelet High School logo"
                                 className="h-12 w-auto"
-                                width={120}
-                                height={48}
                                 data-name="Carondelet High School"
                                 data-phone="925-686-5353"
                             />
-                            <Image
-                                src="/logos/delasalle.svg"
+                            <img
+                                src="https://resources.finalsite.net/images/v1689581096/delasallehigh/ruhsaayrud0sfww3csrt/header-logo.svg"
                                 alt="De La Salle High School logo"
                                 className="h-12 w-auto"
-                                width={120}
-                                height={48}
                                 data-name="De La Salle High School"
                                 data-phone="925-288-8100"
                             />
