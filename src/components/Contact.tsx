@@ -134,7 +134,6 @@ export default function Contact() {
                         <div className="academic-card p-8">
                             {!scheduleType && !isSubmitted && (
                                 <div className="text-center">
-                                    <h3 className="text-2xl font-bold text-white mb-6 title-font">Choose Your Next Step</h3>
                                     <p className="text-gray-300 mb-8">
                                         Start with a free consultation or schedule your first tutoring session
                                     </p>

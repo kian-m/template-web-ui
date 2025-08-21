@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react'
+import { siteContent } from '@/data/siteContent'
 
 // FAQ SVG Icon
 const FAQIcon = () => (
@@ -23,32 +24,10 @@ export default function FAQ() {
         setOpenItem(openItem === index ? null : index)
     }
 
-    const faqs: FAQItem[] = [
-        {
-            question: "How do you customize tutoring to work with my current classes?",
-            answer: "I review your current coursework, understand your teachers' methods, and align my tutoring to support what you're learning in class. You get help that directly improves your classroom performance while building stronger foundations."
-        },
-        {
-            question: "What makes your Bay Area knowledge valuable for students?",
-            answer: "I know the teachers, curricula, and academic expectations at local high schools. This means your tutoring directly supports your classroom experience. I can prepare you for specific teacher styles and help you excel in your current environment."
-        },
-        {
-            question: "Do you offer both test prep and academic tutoring?",
-            answer: "Yes. You can get comprehensive support for SAT, ACT, and SAT Subject Tests, plus ongoing help with your high school courses. I create integrated plans that improve both your test scores and classroom grades."
-        },
-        {
-            question: "Where do tutoring sessions take place?",
-            answer: "You choose what works best. I offer sessions at your home, Bay Area libraries, or online. Each location provides a professional learning environment tailored to your preferences and schedule."
-        },
-        {
-            question: "How quickly can I expect to see improvement?",
-            answer: "Most students see improvements within 4-6 weeks of consistent tutoring. Your progress depends on your starting point, goals, and commitment. I track your progress and adjust our approach to ensure steady improvement."
-        },
-        {
-            question: "What's included in the free consultation?",
-            answer: "We discuss your academic goals, review your current challenges, and I explain how I can help you succeed. You'll get a clear understanding of my approach and a preliminary learning plan with no commitment required."
-        }
-    ]
+    const faqs: FAQItem[] = siteContent.faq.items.map(item => ({
+        question: item.question,
+        answer: item.answer
+    }))
 
     return (
         <section id="faq" className="py-20 lg:py-32 bg-academic-dark-blue">
