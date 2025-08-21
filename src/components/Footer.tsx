@@ -38,7 +38,7 @@ export default function Footer () {
                             </div>
                             <div className="flex items-center space-x-3">
                                 <Mail className="w-5 h-5 text-academic-gold" />
-                                <a href="mailto:tutor@thebayareatutor.com" className="hover:text-academic-gold transition-colors font-medium">
+                                <a href="mailto:amir@thebayareatutor.com" className="hover:text-academic-gold transition-colors font-medium">
                                     tutor@thebayareatutor.com
                                 </a>
                             </div>
