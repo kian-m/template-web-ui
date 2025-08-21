@@ -14,6 +14,10 @@ export const EVENTS = {
     MEDIA_INTERACTION: 'media_interaction',
     HOVER: 'hover',
     KEYBOARD: 'keyboard_input',
+    SCHEDULE_NOW: 'schedule_now_click',
+    BOOK_NOW: 'book_now_click',
+    CONTACT_CLICK: 'contact_click',
+    FAQ_INTERACTION: 'faq_interaction',
 }
 
 export function trackPageView (props) {
@@ -66,4 +70,20 @@ export function trackHover (props) {
 
 export function trackKeyboard (props) {
     captureEvent(EVENTS.KEYBOARD, props)
+}
+
+export function trackScheduleNow (props) {
+    captureEvent(EVENTS.SCHEDULE_NOW, props)
+}
+
+export function trackBookNow (props) {
+    captureEvent(EVENTS.BOOK_NOW, props)
+}
+
+export function trackContactClick (props) {
+    captureEvent(EVENTS.CONTACT_CLICK, props)
+}
+
+export function trackFaqInteraction (props) {
+    captureEvent(EVENTS.FAQ_INTERACTION, props)
 }

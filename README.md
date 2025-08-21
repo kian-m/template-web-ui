@@ -56,10 +56,14 @@ import {
   trackFormInteraction,
   trackScrollPercentage,
   trackNavigationEvent,
-  trackMediaInteraction,
+ trackMediaInteraction,
   trackProductViewed,
   trackAddToCart,
-  trackPurchase
+  trackPurchase,
+  trackScheduleNow,
+  trackBookNow,
+  trackContactClick,
+  trackFaqInteraction,
 } from '../analytics/events'
 
 // manual examples (page views are automatic)
@@ -71,7 +75,18 @@ trackMediaInteraction({ media_type: 'video_play', element: 'intro.mp4', timestam
 trackProductViewed({ product_id: 'sku-1', product_name: 'Premium Course', price: 199, timestamp: Date.now() })
 trackAddToCart({ product_id: 'sku-1', quantity: 1, price: 199, timestamp: Date.now() })
 trackPurchase({ order_id: 'order-1', total: 199, products: [{ product_id: 'sku-1', quantity: 1, price: 199 }], timestamp: Date.now() })
+trackScheduleNow({ page_location: '/schedule', timestamp: Date.now() })
+trackBookNow({ page_location: '/pricing', price: '99', group: 'gold', timestamp: Date.now() })
+trackContactClick({ page_location: '/about', contact_type: 'email', value: 'mailto:info@example.com', timestamp: Date.now() })
+trackFaqInteraction({ faq_id: 'shipping', action: 'open', timestamp: Date.now() })
 ```
+
+### Automatic Tracking
+
+- Add `data-action="schedule_now"` to "Schedule Now" buttons.
+- Add `data-action="book_now"` and optional `data-price`/`data-group` to "Book Now" buttons.
+- Links with `mailto:` or `tel:` schemes are captured as contact clicks automatically.
+- Mark FAQ containers with `data-faq-id="your-id"` to capture FAQ interactions.
 
 ### Testing
 

@@ -78,3 +78,28 @@ export interface KeyboardInputEvent {
     page_location: string
     timestamp: number
 }
+
+export interface ScheduleNowEvent {
+    page_location: string
+    timestamp: number
+}
+
+export interface BookNowEvent {
+    page_location: string
+    price?: string
+    group?: string
+    timestamp: number
+}
+
+export interface ContactClickEvent {
+    page_location: string
+    contact_type: 'email' | 'phone'
+    value: string
+    timestamp: number
+}
+
+export interface FaqInteractionEvent {
+    faq_id: string
+    action: string
+    timestamp: number
+}

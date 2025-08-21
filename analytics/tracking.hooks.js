@@ -11,6 +11,10 @@ import {
     trackMediaInteraction,
     trackHover,
     trackKeyboard,
+    trackScheduleNow,
+    trackBookNow,
+    trackContactClick,
+    trackFaqInteraction,
 } from './events.js'
 import { identifyUser, setupErrorTracking, timeOnPage, resetTimer, trackPerformance } from './utils.js'
 
@@ -29,21 +33,51 @@ export function useAnalytics (userId) {
         })
 
         const clickHandler = e => {
-            const target = e.target.closest('button, a, img')
+            const target = e.target.closest('[data-action], a, button, img')
             const page_location = window.location.pathname
             const timestamp = Date.now()
-            if (target) {
-                if (target.tagName === 'BUTTON') {
-                    trackButtonClick({ button_text: target.textContent || 'button', page_location, timestamp })
-                } else if (target.tagName === 'A') {
-                    const text = target.textContent || target.href
-                    trackNavigationEvent({ type: 'menu_click', value: text, page_location, timestamp })
-                    if (target.getAttribute('download') !== null) {
-                        trackMediaInteraction({ media_type: 'download_started', element: target.href, timestamp })
-                    }
-                } else if (target.tagName === 'IMG') {
-                    trackMediaInteraction({ media_type: 'image_click', element: target.src, timestamp })
+            const faq = e.target.closest('[data-faq-id]')
+            if (faq) {
+                trackFaqInteraction({ faq_id: faq.dataset.faqId, action: 'toggle', timestamp })
+            }
+            if (!target) return
+
+            const action = target.dataset.action
+            if (action === 'schedule_now') {
+                trackScheduleNow({ page_location, timestamp })
+                return
+            }
+
+            if (action === 'book_now') {
+                trackBookNow({
+                    page_location,
+                    price: target.dataset.price,
+                    group: target.dataset.group,
+                    timestamp,
+                })
+                return
+            }
+
+            if (target.tagName === 'A' && (/^mailto:/i.test(target.href) || /^tel:/i.test(target.href))) {
+                trackContactClick({
+                    page_location,
+                    contact_type: /^mailto:/i.test(target.href) ? 'email' : 'phone',
+                    value: target.href,
+                    timestamp,
+                })
+                return
+            }
+
+            if (target.tagName === 'BUTTON') {
+                trackButtonClick({ button_text: target.textContent || 'button', page_location, timestamp })
+            } else if (target.tagName === 'A') {
+                const text = target.textContent || target.href
+                trackNavigationEvent({ type: 'menu_click', value: text, page_location, timestamp })
+                if (target.getAttribute('download') !== null) {
+                    trackMediaInteraction({ media_type: 'download_started', element: target.href, timestamp })
                 }
+            } else if (target.tagName === 'IMG') {
+                trackMediaInteraction({ media_type: 'image_click', element: target.src, timestamp })
             }
         }
 
