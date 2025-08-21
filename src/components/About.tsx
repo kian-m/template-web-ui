@@ -1,6 +1,7 @@
 'use client'
 
 import { GraduationCap, Award, Users, TrendingUp, Clock, Target, School, MapPin } from 'lucide-react'
+import { siteContent } from '@/data/siteContent'
 
 // Teaching Philosophy SVG Icon
 const TeachingIcon = () => (
@@ -16,15 +17,8 @@ const ExperienceIcon = () => (
     </svg>
 )
 
-export default function About() {
-    const expertise = [
-        "Advanced test preparation strategies for SAT, ACT, and SAT Subject Tests",
-        "Deep familiarity with Bay Area high school curricula and teaching styles",
-        "Personalized learning approaches that work with your unique strengths",
-        "Academic support that complements and enhances classroom learning",
-        "Study skills and time management techniques for long-term success",
-        "College preparation and application strategy guidance"
-    ]
+export default function About () {
+    const expertise = siteContent.about.expertise
 
     const achievements = [
         { icon: <GraduationCap className="w-6 h-6" />, stat: "UC Berkeley", label: "Graduate" },

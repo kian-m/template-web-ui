@@ -24,25 +24,25 @@ const PersonalizedIcon = () => (
     </svg>
 )
 
-export default function Services() {
+export default function Services () {
     const services = [
         {
             icon: <TestPrepIcon />,
             title: "Test Preparation",
             description: "Expert preparation for SAT, ACT, and SAT Subject Tests. You'll master test strategies and content knowledge with proven methods.",
-            features: ["SAT, ACT, SAT Subject Tests", "Practice tests & strategies", "Score improvement focus", "Test-day confidence building"]
+            features: [ "SAT, ACT, SAT Subject Tests", "Practice tests & strategies", "Score improvement focus", "Test-day confidence building" ]
         },
         {
             icon: <AcademicSupportIcon />,
             title: "Academic Tutoring",
             description: "Comprehensive support for your high school courses. I help you understand, master, and excel in your current classes.",
-            features: ["All high school subjects", "Homework & project help", "Study skills development", "Grade improvement"]
+            features: [ "All high school subjects", "Homework & project help", "Study skills development", "Grade improvement" ]
         },
         {
             icon: <PersonalizedIcon />,
             title: "Personalized Learning",
             description: "Every student learns differently. I create custom learning plans that work with your strengths and address your specific needs.",
-            features: ["Individual learning plans", "Progress tracking", "Flexible pacing", "Confidence building"]
+            features: [ "Individual learning plans", "Progress tracking", "Flexible pacing", "Confidence building" ]
         }
     ]
 
@@ -54,9 +54,9 @@ export default function Services() {
     ]
 
     const locations = [
-        { icon: <Home className="w-6 h-6" />, name: "Your Home", description: "Comfortable, familiar environment" },
-        { icon: <Building2 className="w-6 h-6" />, name: "Bay Area Libraries", description: "Quiet, professional settings" },
-        { icon: <Monitor className="w-6 h-6" />, name: "Online Sessions", description: "Flexible, worldwide availability" }
+        { icon: <Home className="w-6 h-6" />, name: "Your Home*", description: "Comfortable, familiar environment" },
+        { icon: <Building2 className="w-6 h-6" />, name: "Bay Area Libraries*", description: "Quiet, professional settings" },
+        { icon: <Monitor className="w-6 h-6" />, name: "Online Sessions", description: "Flexible, worldwide availability", popular: true }
     ]
 
     return (
@@ -137,7 +137,15 @@ export default function Services() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {locations.map((location, index) => (
-                        <div key={index} className="academic-card p-8 text-center academic-hover">
+                        <div
+                            key={index}
+                            className={`academic-card p-8 text-center academic-hover relative ${location.popular ? 'border-2 border-academic-gold' : ''}`}
+                        >
+                            {location.popular && (
+                                <span className="absolute top-4 right-4 bg-academic-gold text-academic-navy text-xs font-semibold px-3 py-1 rounded-full">
+                                    Most Popular
+                                </span>
+                            )}
                             <div className="text-academic-gold mb-4 flex justify-center">
                                 {location.icon}
                             </div>
@@ -150,6 +158,9 @@ export default function Services() {
                         </div>
                     ))}
                 </div>
+                <p className="mt-6 text-center text-xs text-gray-400">
+                    *In-person sessions may include additional travel fees.
+                </p>
 
                 <div className="mt-12 text-center">
                     <div className="inline-flex items-center space-x-2 bg-academic-gold/20 backdrop-blur-sm border border-academic-gold/30 rounded-full px-6 py-3">

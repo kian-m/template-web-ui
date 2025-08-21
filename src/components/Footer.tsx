@@ -2,7 +2,7 @@
 
 import { Phone, Mail, GraduationCap, ArrowUp, MapPin, Calendar } from 'lucide-react'
 
-export default function Footer() {
+export default function Footer () {
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' })
     }
@@ -44,7 +44,7 @@ export default function Footer() {
                             </div>
                             <div className="flex items-center space-x-3">
                                 <MapPin className="w-5 h-5 text-academic-gold" />
-                                <span className="text-white font-medium">Bay Area • In-Person & Online</span>
+                                <span className="text-white font-medium">Bay Area • In-Person* & Online</span>
                             </div>
                         </div>
                     </div>
@@ -109,16 +109,9 @@ export default function Footer() {
                             <p className="text-gray-400 text-sm">Get the best tutoring support in the Bay Area</p>
                         </div>
                         <div className="flex flex-col sm:flex-row items-center gap-4">
-                            <a
-                                href="tel:(925)237-1327"
-                                className="academic-button px-6 py-3 font-semibold rounded-lg flex items-center space-x-2"
-                            >
-                                <Phone className="w-4 h-4" />
-                                <span>Call Now</span>
-                            </a>
                             <button
                                 onClick={() => scrollToSection('contact')}
-                                className="px-6 py-3 font-semibold rounded-lg border-2 border-white/20 hover:border-academic-gold/50 text-white hover:bg-academic-gold/10 transition-all duration-300 flex items-center space-x-2"
+                                className="academic-button px-6 py-3 font-semibold rounded-lg flex items-center space-x-2"
                             >
                                 <Calendar className="w-4 h-4" />
                                 <span>Schedule Now</span>
@@ -126,6 +119,8 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
+
+                <p className="text-center text-xs text-gray-400 mt-4">*In-person sessions may include additional travel fees.</p>
 
                 {/* Bottom Bar */}
                 <div className="border-t border-academic-medium-blue/30 py-6">

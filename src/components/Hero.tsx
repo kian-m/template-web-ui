@@ -9,7 +9,7 @@ const AcademicIcon = () => (
     </svg>
 )
 
-export default function Hero() {
+export default function Hero () {
     const scrollToContact = () => {
         const element = document.getElementById('contact')
         if (element) {
@@ -55,7 +55,7 @@ export default function Hero() {
                     {/* Location Badge */}
                     <div className="inline-flex items-center space-x-2 bg-academic-medium-blue/50 backdrop-blur-sm border border-academic-gold/20 rounded-full px-4 py-2 mb-8 animate-slide-up delay-300">
                         <MapPin className="w-4 h-4 text-academic-gold" />
-                        <span className="text-sm text-white">In-Person & Online • Bay Area Libraries & Your Home</span>
+                        <span className="text-sm text-white">In-Person* & Online • Bay Area Libraries & Your Home</span>
                     </div>
 
                     {/* CTA Buttons */}

@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Menu, X, Phone, Calendar } from 'lucide-react'
+import { Menu, X, Calendar } from 'lucide-react'
 
-export default function Header() {
-    const [isScrolled, setIsScrolled] = useState(false)
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+export default function Header () {
+    const [ isScrolled, setIsScrolled ] = useState(false)
+    const [ isMobileMenuOpen, setIsMobileMenuOpen ] = useState(false)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -14,7 +14,7 @@ export default function Header() {
 
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
-    }, [])
+    }, [ ])
 
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId)
@@ -66,10 +66,6 @@ export default function Header() {
                             >
                                 FAQ
                             </button>
-                            <div className="flex items-center space-x-2 text-sm">
-                                <Phone className="w-4 h-4 text-academic-gold" />
-                                <span className="text-white font-medium">(925) 237-1327</span>
-                            </div>
                             <button
                                 onClick={handleScheduleClick}
                                 className="academic-button px-6 py-2 text-sm font-semibold rounded-md flex items-center space-x-2"
@@ -109,10 +105,6 @@ export default function Header() {
                             >
                                 FAQ
                             </button>
-                            <div className="flex items-center space-x-2 py-2">
-                                <Phone className="w-4 h-4 text-academic-gold" />
-                                <span className="text-white font-medium">(925) 237-1327</span>
-                            </div>
                             <button
                                 onClick={handleScheduleClick}
                                 className="academic-button w-full px-4 py-2 text-sm font-semibold rounded-md flex items-center justify-center space-x-2"
