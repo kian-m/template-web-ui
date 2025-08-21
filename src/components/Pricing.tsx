@@ -12,7 +12,7 @@ export default function Pricing () {
           <h2 className="text-3xl md:text-4xl font-bold text-foreground dark:text-academic-off-white mb-3">
             {heading}
           </h2>
-          <p className="text-xl text-muted max-w-3xl mx-auto">{subheading}</p>
+          <p className="text-xl text-academic-medium-blue dark:text-academic-off-white max-w-3xl mx-auto">{subheading}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {plans.map((plan) => (

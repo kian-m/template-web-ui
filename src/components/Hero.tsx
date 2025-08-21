@@ -43,13 +43,13 @@ export default function Hero () {
                     </h1>
 
                     {/* Subheading */}
-                    <p className="text-lg sm:text-xl lg:text-2xl text-muted mb-8 max-w-4xl mx-auto animate-slide-up delay-200 leading-relaxed">
+                    <p className="text-lg sm:text-xl lg:text-2xl text-academic-medium-blue dark:text-academic-off-white mb-8 max-w-4xl mx-auto animate-slide-up delay-200 leading-relaxed">
                         You deserve the best academic support. I provide expert tutoring for SAT, ACT, SAT Subject Tests,
                         and comprehensive school support. Familiar with Bay Area curricula and teachers.
                     </p>
 
                     {/* Location Badge */}
-                    <div className="inline-flex items-center space-x-2 bg-academic-light-blue/20 dark:bg-academic-medium-blue/50 backdrop-blur-sm border border-academic-gold/20 rounded-full px-4 py-2 mb-8 animate-slide-up delay-300">
+                    <div className="inline-flex items-center space-x-2 bg-blue-100 dark:bg-academic-medium-blue/50 backdrop-blur-sm border border-academic-gold/20 rounded-full px-4 py-2 mb-8 animate-slide-up delay-300">
                         <MapPin className="w-4 h-4 text-academic-gold" />
                         <span className="text-sm text-foreground dark:text-white">In-Person* & Online • Bay Area Libraries & Your Home</span>
                     </div>
@@ -78,19 +78,19 @@ export default function Hero () {
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto animate-slide-up delay-500">
                         <div className="text-center">
                             <div className="text-2xl sm:text-3xl font-bold text-academic-gold mb-1 title-font">15+</div>
-                            <div className="text-sm text-muted">Years Experience</div>
+                            <div className="text-sm text-academic-medium-blue dark:text-academic-off-white">Years Experience</div>
                         </div>
                         <div className="text-center">
                             <div className="text-2xl sm:text-3xl font-bold text-academic-gold mb-1 title-font">All</div>
-                            <div className="text-sm text-muted">Test Types</div>
+                            <div className="text-sm text-academic-medium-blue dark:text-academic-off-white">Test Types</div>
                         </div>
                         <div className="text-center">
                             <div className="text-2xl sm:text-3xl font-bold text-academic-gold mb-1 title-font">Local</div>
-                            <div className="text-sm text-muted">Schools Known</div>
+                            <div className="text-sm text-academic-medium-blue dark:text-academic-off-white">Schools Known</div>
                         </div>
                         <div className="text-center">
                             <div className="text-2xl sm:text-3xl font-bold text-academic-gold mb-1 title-font">Care</div>
-                            <div className="text-sm text-muted">& Attention</div>
+                            <div className="text-sm text-academic-medium-blue dark:text-academic-off-white">& Attention</div>
                         </div>
                     </div>
                 </div>

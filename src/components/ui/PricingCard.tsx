@@ -22,14 +22,14 @@ const PricingCard = ({ plan }: PricingCardProps) => {
 
                 <div className="flex items-baseline mb-6">
                     <span className="text-4xl font-bold text-foreground dark:text-white">${plan.price}</span>
-                    <span className="text-muted ml-1">{plan.unit}</span>
+                    <span className="text-academic-medium-blue dark:text-academic-off-white ml-1">{plan.unit}</span>
                 </div>
 
                 <ul className="space-y-3 mb-8 flex-grow">
                     {plan.features.map((feature, index) => (
                         <li key={index} className="flex items-center">
                             <Check className="w-5 h-5 text-academic-gold mr-2 flex-shrink-0" />
-                            <span className="text-muted">{feature}</span>
+                            <span className="text-academic-medium-blue dark:text-academic-off-white">{feature}</span>
                         </li>
                     ))}
                 </ul>

@@ -41,7 +41,7 @@ export default function FAQ () {
                             <span className="text-foreground dark:text-white">Frequently Asked</span>
                             <span className="block text-academic-gold dark:text-gradient">Questions</span>
                         </h2>
-                        <p className="text-lg sm:text-xl text-muted max-w-2xl mx-auto">
+                        <p className="text-lg sm:text-xl text-academic-medium-blue dark:text-academic-off-white max-w-2xl mx-auto">
                             Get answers to common questions about my tutoring services and approach
                         </p>
                     </div>
@@ -67,7 +67,7 @@ export default function FAQ () {
 
                                 <div className={`faq-content ${openItem === index ? 'open' : ''}`}>
                                     <div className="px-6 pb-6">
-                                        <p className="text-muted leading-relaxed">
+                                        <p className="text-academic-medium-blue dark:text-academic-off-white leading-relaxed">
                                             {faq.answer}
                                         </p>
                                     </div>
@@ -79,7 +79,7 @@ export default function FAQ () {
                     <div className="mt-12 text-center">
                         <div className="inline-block academic-card p-6">
                             <h3 className="text-xl font-bold text-foreground dark:text-white mb-3 title-font">Still have questions?</h3>
-                            <p className="text-muted mb-4">
+                            <p className="text-academic-medium-blue dark:text-academic-off-white mb-4">
                                 Contact me directly to discuss your specific needs and goals
                             </p>
                             <button

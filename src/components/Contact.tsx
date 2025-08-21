@@ -25,7 +25,7 @@ export default function Contact () {
                             <span className="text-foreground dark:text-white">Schedule Your</span>
                             <span className="block text-academic-gold dark:text-gradient">Academic Success</span>
                         </h2>
-                        <p className="text-lg sm:text-xl text-muted max-w-3xl mx-auto">
+                        <p className="text-lg sm:text-xl text-academic-medium-blue dark:text-academic-off-white max-w-3xl mx-auto">
                             Take the first step toward academic excellence. Contact me to discuss your goals and start your journey to better grades and test scores.
                         </p>
                     </div>
@@ -41,8 +41,8 @@ export default function Contact () {
                                         <Phone className="w-6 h-6 text-academic-gold mt-1 flex-shrink-0" />
                                         <div>
                                             <div className="text-foreground dark:text-white font-semibold mb-1">Phone</div>
-                                            <div className="text-muted">(925) 237-1327</div>
-                                            <div className="text-sm text-muted mt-1">Call or text for quick responses</div>
+                                            <div className="text-academic-medium-blue dark:text-academic-off-white">(925) 237-1327</div>
+                                            <div className="text-sm text-academic-medium-blue dark:text-academic-off-white mt-1">Call or text for quick responses</div>
                                         </div>
                                     </div>
 
@@ -50,8 +50,8 @@ export default function Contact () {
                                         <Mail className="w-6 h-6 text-academic-gold mt-1 flex-shrink-0" />
                                         <div>
                                             <div className="text-foreground dark:text-white font-semibold mb-1">Email</div>
-                                            <div className="text-muted">tutor@thebayareatutor.com</div>
-                                            <div className="text-sm text-muted mt-1">I respond within 24 hours</div>
+                                            <div className="text-academic-medium-blue dark:text-academic-off-white">tutor@thebayareatutor.com</div>
+                                            <div className="text-sm text-academic-medium-blue dark:text-academic-off-white mt-1">I respond within 24 hours</div>
                                         </div>
                                     </div>
 
@@ -59,8 +59,8 @@ export default function Contact () {
                                         <Clock className="w-6 h-6 text-academic-gold mt-1 flex-shrink-0" />
                                         <div>
                                             <div className="text-foreground dark:text-white font-semibold mb-1">Availability</div>
-                                            <div className="text-muted">Flexible scheduling</div>
-                                            <div className="text-sm text-muted mt-1">Evenings, weekends, and online sessions</div>
+                                            <div className="text-academic-medium-blue dark:text-academic-off-white">Flexible scheduling</div>
+                                            <div className="text-sm text-academic-medium-blue dark:text-academic-off-white mt-1">Evenings, weekends, and online sessions</div>
                                         </div>
                                     </div>
                                 </div>
@@ -74,25 +74,25 @@ export default function Contact () {
                                 <div className="space-y-4">
                                     <div className="flex items-start">
                                         <div className="w-2 h-2 bg-academic-gold rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                        <div className="text-muted text-sm">
+                                        <div className="text-academic-medium-blue dark:text-academic-off-white text-sm">
                                             <span className="text-foreground dark:text-white font-medium">Free 30-minute consultation</span> to discuss your goals and challenges
                                         </div>
                                     </div>
                                     <div className="flex items-start">
                                         <div className="w-2 h-2 bg-academic-gold rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                        <div className="text-muted text-sm">
+                                        <div className="text-academic-medium-blue dark:text-academic-off-white text-sm">
                                             <span className="text-foreground dark:text-white font-medium">Personalized learning plan</span> that works with your school curriculum
                                         </div>
                                     </div>
                                     <div className="flex items-start">
                                         <div className="w-2 h-2 bg-academic-gold rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                        <div className="text-muted text-sm">
+                                        <div className="text-academic-medium-blue dark:text-academic-off-white text-sm">
                                             <span className="text-foreground dark:text-white font-medium">Flexible scheduling</span> for your busy lifestyle
                                         </div>
                                     </div>
                                     <div className="flex items-start">
                                         <div className="w-2 h-2 bg-academic-gold rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                        <div className="text-muted text-sm">
+                                        <div className="text-academic-medium-blue dark:text-academic-off-white text-sm">
                                             <span className="text-foreground dark:text-white font-medium">Ongoing support</span> between sessions via email
                                         </div>
                                     </div>
@@ -102,7 +102,7 @@ export default function Contact () {
 
                         {/* Scheduling Section */}
                         <div className="academic-card p-8 flex flex-col justify-center text-center">
-                            <p className="text-muted mb-6">
+                            <p className="text-academic-medium-blue dark:text-academic-off-white mb-6">
                                 Ready to get started? Schedule a free consultation to discuss your goals.
                             </p>
                             <button

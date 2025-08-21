@@ -25,7 +25,7 @@ export default function Footer () {
                             <GraduationCap className="w-8 h-8 text-academic-gold" />
                             <h3 className="text-2xl font-bold text-academic-gold title-font">Bay Area Academic Tutor</h3>
                         </div>
-                        <p className="text-muted leading-relaxed max-w-md">
+                        <p className="text-academic-medium-blue dark:text-academic-off-white leading-relaxed max-w-md">
                             Expert academic tutoring for SAT, ACT, SAT Subject Tests, and comprehensive school support.
                             UC Berkeley graduate with deep Bay Area experience and curriculum knowledge.
                         </p>
@@ -56,7 +56,7 @@ export default function Footer () {
                             <li>
                                 <button
                                     onClick={() => scrollToSection('services')}
-                                    className="text-muted hover:text-academic-gold transition-colors text-sm"
+                                    className="text-academic-medium-blue dark:text-academic-off-white hover:text-academic-gold transition-colors text-sm"
                                 >
                                     Test Preparation
                                 </button>
@@ -64,7 +64,7 @@ export default function Footer () {
                             <li>
                                 <button
                                     onClick={() => scrollToSection('services')}
-                                    className="text-muted hover:text-academic-gold transition-colors text-sm"
+                                    className="text-academic-medium-blue dark:text-academic-off-white hover:text-academic-gold transition-colors text-sm"
                                 >
                                     Academic Support
                                 </button>
@@ -72,7 +72,7 @@ export default function Footer () {
                             <li>
                                 <button
                                     onClick={() => scrollToSection('services')}
-                                    className="text-muted hover:text-academic-gold transition-colors text-sm"
+                                    className="text-academic-medium-blue dark:text-academic-off-white hover:text-academic-gold transition-colors text-sm"
                                 >
                                     Personalized Learning
                                 </button>
@@ -80,7 +80,7 @@ export default function Footer () {
                             <li>
                                 <button
                                     onClick={() => scrollToSection('contact')}
-                                    className="text-muted hover:text-academic-gold transition-colors text-sm"
+                                    className="text-academic-medium-blue dark:text-academic-off-white hover:text-academic-gold transition-colors text-sm"
                                 >
                                     Free Consultation
                                 </button>
@@ -92,10 +92,10 @@ export default function Footer () {
                     <div>
                         <h4 className="text-lg font-semibold mb-6 title-font">Test Types</h4>
                         <ul className="space-y-3">
-                            <li className="text-muted text-sm">SAT Prep</li>
-                            <li className="text-muted text-sm">ACT Prep</li>
-                            <li className="text-muted text-sm">SAT Subject Tests</li>
-                            <li className="text-muted text-sm">Academic Tutoring</li>
+                            <li className="text-academic-medium-blue dark:text-academic-off-white text-sm">SAT Prep</li>
+                            <li className="text-academic-medium-blue dark:text-academic-off-white text-sm">ACT Prep</li>
+                            <li className="text-academic-medium-blue dark:text-academic-off-white text-sm">SAT Subject Tests</li>
+                            <li className="text-academic-medium-blue dark:text-academic-off-white text-sm">Academic Tutoring</li>
                             <li className="text-academic-gold text-sm font-medium">Almost All Subjects Covered</li>
                         </ul>
                     </div>
@@ -106,7 +106,7 @@ export default function Footer () {
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
                         <div className="text-center sm:text-left">
                             <h4 className="text-lg font-semibold mb-2 title-font">Start Your Academic Success Today</h4>
-                            <p className="text-muted text-sm">Get the best tutoring support in the Bay Area</p>
+                            <p className="text-academic-medium-blue dark:text-academic-off-white text-sm">Get the best tutoring support in the Bay Area</p>
                         </div>
                         <div className="flex flex-col sm:flex-row items-center gap-4">
                             <button
@@ -120,12 +120,12 @@ export default function Footer () {
                     </div>
                 </div>
 
-                <p className="text-center text-xs text-muted mt-4">*In-person sessions may include additional travel fees.</p>
+                <p className="text-center text-xs text-academic-medium-blue dark:text-academic-off-white mt-4">*In-person sessions may include additional travel fees.</p>
 
                 {/* Bottom Bar */}
                 <div className="border-t border-academic-medium-blue/30 py-6">
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-muted">
+                        <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-academic-medium-blue dark:text-academic-off-white">
                             <span>&copy; {new Date().getFullYear()} Bay Area Academic Tutor. All rights reserved.</span>
                             <span className="hidden sm:block">•</span>
                             <span>UC Berkeley Graduate • 15+ Years Experience • Bay Area Expert</span>
@@ -133,7 +133,7 @@ export default function Footer () {
 
                         <button
                             onClick={scrollToTop}
-                            className="flex items-center space-x-2 text-muted hover:text-academic-gold transition-colors text-sm"
+                            className="flex items-center space-x-2 text-academic-medium-blue dark:text-academic-off-white hover:text-academic-gold transition-colors text-sm"
                         >
                             <span>Back to Top</span>
                             <ArrowUp className="w-4 h-4" />
