@@ -29,14 +29,14 @@ export default function Services () {
         {
             icon: <TestPrepIcon />,
             title: "Test Preparation",
-            description: "Expert preparation for SAT, ACT, and SAT Subject Tests. You'll master test strategies and content knowledge with proven methods.",
-            features: [ "SAT, ACT, SAT Subject Tests", "Practice tests & strategies", "Score improvement focus", "Test-day confidence building" ]
+            description: "Expert preparation for SAT, ACT, and AP classes. You'll master test strategies and content knowledge with proven methods.",
+            features: [ "SAT, ACT, AP classes", "Practice tests & strategies", "Score improvement focus", "Test-day confidence building" ]
         },
         {
             icon: <AcademicSupportIcon />,
             title: "Academic Tutoring",
             description: "Comprehensive support for your high school courses. I help you understand, master, and excel in your current classes.",
-            features: [ "All high school subjects", "Homework & project help", "Study skills development", "Grade improvement" ]
+            features: [ "Most high school subjects", "Homework & project help", "Study skills development", "Grade improvement" ]
         },
         {
             icon: <PersonalizedIcon />,
@@ -49,8 +49,8 @@ export default function Services () {
     const testTypes = [
         { icon: <Calculator className="w-6 h-6" />, name: "SAT", topics: "Math, Reading, Writing" },
         { icon: <PenTool className="w-6 h-6" />, name: "ACT", topics: "English, Math, Reading, Science" },
-        { icon: <BookOpen className="w-6 h-6" />, name: "SAT Subject Tests", topics: "Math, Science, History, Languages" },
-        { icon: <Microscope className="w-6 h-6" />, name: "Academic Support", topics: "All High School Subjects" }
+        { icon: <BookOpen className="w-6 h-6" />, name: "AP classes", topics: "Calculus (AB & BC), AP Physics 1, 2, C E&M, C Mechanics, ..." },
+        { icon: <Microscope className="w-6 h-6" />, name: "Academic Support", topics: "Math, Physics, Chemistry, Biology" }
     ]
 
     const locations = [
