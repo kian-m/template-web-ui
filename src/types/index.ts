@@ -28,6 +28,8 @@ export interface PricingPlan {
     popular?: boolean;
     features: string[];
     cta: string;
+    sessions?: number;
+    savings?: number;
 }
 
 export interface FAQ {

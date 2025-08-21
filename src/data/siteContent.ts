@@ -198,6 +198,7 @@ export const siteContent: SiteContent = {
                 name: "Single Session",
                 price: 85,
                 unit: "/hour",
+                sessions: 1,
                 features: [
                     "One-on-one personalized instruction",
                     "Flexible scheduling",
@@ -211,6 +212,8 @@ export const siteContent: SiteContent = {
                 price: 65,
                 unit: "/hour",
                 popular: true,
+                sessions: 16,
+                savings: 320,
                 features: [
                     "16 weekly sessions (one semester)",
                     "Best value for long-term improvement",
@@ -226,6 +229,8 @@ export const siteContent: SiteContent = {
                 price: 75,
                 unit: "/hour",
                 popular: false,
+                sessions: 10,
+                savings: 100,
                 features: [
                     "Save $100 compared to single sessions",
                     "Consistent weekly or bi-weekly sessions",
