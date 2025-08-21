@@ -80,7 +80,7 @@ export default function Hero () {
                         <p className="text-sm text-gray-400 mb-4">
                             Trusted by families from these East Bay schools:
                         </p>
-                        <div className="flex flex-wrap items-center justify-center gap-8 opacity-80">
+                        <div className="bg-gray-100/10 rounded-xl p-6 flex flex-wrap items-center justify-center gap-8 opacity-90">
                             <Image
                                 src="/logos/acalanes.svg"
                                 alt="Acalanes High School logo"
@@ -116,6 +116,24 @@ export default function Hero () {
                                 height={48}
                                 data-name="Miramonte High School"
                                 data-phone="925-280-3930"
+                            />
+                            <Image
+                                src="/logos/carondelet.svg"
+                                alt="Carondelet High School logo"
+                                className="h-12 w-auto"
+                                width={120}
+                                height={48}
+                                data-name="Carondelet High School"
+                                data-phone="925-686-5353"
+                            />
+                            <Image
+                                src="/logos/delasalle.svg"
+                                alt="De La Salle High School logo"
+                                className="h-12 w-auto"
+                                width={120}
+                                height={48}
+                                data-name="De La Salle High School"
+                                data-phone="925-288-8100"
                             />
                         </div>
                     </div>
