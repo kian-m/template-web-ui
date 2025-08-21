@@ -1,6 +1,7 @@
 'use client'
 
 import { ArrowRight, Star, MapPin, GraduationCap } from 'lucide-react'
+import Image from 'next/image'
 import { useCal } from './CalProvider'
 
 // Academic Achievement SVG Icon
@@ -74,23 +75,48 @@ export default function Hero () {
                         </button>
                     </div>
 
-                    {/* Key Stats */}
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto animate-slide-up delay-500">
-                        <div className="text-center">
-                            <div className="text-2xl sm:text-3xl font-bold text-academic-gold mb-1 title-font">15+</div>
-                            <div className="text-sm text-gray-400">Years Experience</div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-2xl sm:text-3xl font-bold text-academic-gold mb-1 title-font">All</div>
-                            <div className="text-sm text-gray-400">Test Types</div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-2xl sm:text-3xl font-bold text-academic-gold mb-1 title-font">Local</div>
-                            <div className="text-sm text-gray-400">Schools Known</div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-2xl sm:text-3xl font-bold text-academic-gold mb-1 title-font">Care</div>
-                            <div className="text-sm text-gray-400">& Attention</div>
+                    {/* School Logos */}
+                    <div className="mt-12 animate-slide-up delay-500">
+                        <p className="text-sm text-gray-400 mb-4">
+                            Trusted by families from these East Bay schools:
+                        </p>
+                        <div className="flex flex-wrap items-center justify-center gap-8 opacity-80">
+                            <Image
+                                src="/logos/acalanes.svg"
+                                alt="Acalanes High School logo"
+                                className="h-12 w-auto"
+                                width={120}
+                                height={48}
+                                data-name="Acalanes High School"
+                                data-phone="925-280-3970"
+                            />
+                            <Image
+                                src="/logos/campolindo.svg"
+                                alt="Campolindo High School logo"
+                                className="h-12 w-auto"
+                                width={120}
+                                height={48}
+                                data-name="Campolindo High School"
+                                data-phone="925-280-3950"
+                            />
+                            <Image
+                                src="/logos/laslomas.svg"
+                                alt="Las Lomas High School logo"
+                                className="h-12 w-auto"
+                                width={120}
+                                height={48}
+                                data-name="Las Lomas High School"
+                                data-phone="925-280-3920"
+                            />
+                            <Image
+                                src="/logos/miramonte.svg"
+                                alt="Miramonte High School logo"
+                                className="h-12 w-auto"
+                                width={120}
+                                height={48}
+                                data-name="Miramonte High School"
+                                data-phone="925-280-3930"
+                            />
                         </div>
                     </div>
                 </div>
