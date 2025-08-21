@@ -139,23 +139,24 @@ export default function Services () {
                     {locations.map((location, index) => (
                         <div
                             key={index}
-                            className={`academic-card p-8 text-center academic-hover relative ${location.popular ? 'border-2 border-academic-gold' : ''}`}
+                            className={`academic-card rounded-lg shadow-lg overflow-hidden border flex flex-col text-center transition-all hover:shadow-xl ${location.popular ? 'border-academic-gold transform scale-105 z-10' : 'border-academic-navy/20 dark:border-academic-off-white/20'}`}
                         >
                             {location.popular && (
-                                <span
-                                    className="absolute top-4 right-4 bg-academic-gold text-academic-navy text-xs font-semibold px-3 py-1 rounded-full">
+                                <div className="bg-academic-gold text-academic-navy text-center py-1 text-sm font-medium">
                                     Most Popular
-                                </span>
+                                </div>
                             )}
-                            <div className="text-academic-gold mb-4 flex justify-center">
-                                {location.icon}
+                            <div className="p-8 flex flex-col flex-grow">
+                                <div className="text-academic-gold mb-4 flex justify-center">
+                                    {location.icon}
+                                </div>
+                                <h4 className="text-lg font-semibold text-foreground dark:text-white mb-2 title-font">
+                                    {location.name}
+                                </h4>
+                                <p className="text-sm text-academic-medium-blue dark:text-academic-off-white">
+                                    {location.description}
+                                </p>
                             </div>
-                            <h4 className="text-lg font-semibold text-foreground dark:text-white mb-2 title-font">
-                                {location.name}
-                            </h4>
-                            <p className="text-sm text-academic-medium-blue dark:text-academic-off-white">
-                                {location.description}
-                            </p>
                         </div>
                     ))}
                 </div>
