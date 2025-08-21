@@ -11,6 +11,45 @@ const AcademicIcon = () => (
     </svg>
 )
 
+const schoolLogos = [
+    {
+        src: 'https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/Acalanes_A.png',
+        alt: 'Acalanes High School logo',
+        name: 'Acalanes High School',
+        phone: '925-280-3970'
+    },
+    {
+        src: 'https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/BlockC.png',
+        alt: 'Campolindo High School logo',
+        name: 'Campolindo High School',
+        phone: '925-280-3950'
+    },
+    {
+        src: 'https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/Artwork_PNG_LL%20Knight.png',
+        alt: 'Las Lomas High School logo',
+        name: 'Las Lomas High School',
+        phone: '925-280-3920'
+    },
+    {
+        src: 'https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/2020%20Block%20M.jpg',
+        alt: 'Miramonte High School logo',
+        name: 'Miramonte High School',
+        phone: '925-280-3930'
+    },
+    {
+        src: 'https://www.carondeleths.org/logo.png',
+        alt: 'Carondelet High School logo',
+        name: 'Carondelet High School',
+        phone: '925-686-5353'
+    },
+    {
+        src: 'https://resources.finalsite.net/images/v1689581096/delasallehigh/ruhsaayrud0sfww3csrt/header-logo.svg',
+        alt: 'De La Salle High School logo',
+        name: 'De La Salle High School',
+        phone: '925-288-8100'
+    }
+]
+
 export default function Hero () {
     const { open } = useCal()
 
@@ -80,49 +119,21 @@ export default function Hero () {
                         <p className="text-sm text-gray-400 mb-4">
                             Trusted by families from these East Bay schools:
                         </p>
-                        <div className="bg-gray-100/10 rounded-xl p-6 flex flex-wrap items-center justify-center gap-8 opacity-90">
-                            <img
-                                src="https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/Acalanes_A.png"
-                                alt="Acalanes High School logo"
-                                className="h-12 w-auto"
-                                data-name="Acalanes High School"
-                                data-phone="925-280-3970"
-                            />
-                            <img
-                                src="https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/BlockC.png"
-                                alt="Campolindo High School logo"
-                                className="h-12 w-auto"
-                                data-name="Campolindo High School"
-                                data-phone="925-280-3950"
-                            />
-                            <img
-                                src="https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/Artwork_PNG_LL%20Knight.png"
-                                alt="Las Lomas High School logo"
-                                className="h-12 w-auto"
-                                data-name="Las Lomas High School"
-                                data-phone="925-280-3920"
-                            />
-                            <img
-                                src="https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/2020%20Block%20M.jpg"
-                                alt="Miramonte High School logo"
-                                className="h-12 w-auto"
-                                data-name="Miramonte High School"
-                                data-phone="925-280-3930"
-                            />
-                            <img
-                                src="https://www.carondeleths.org/logo.png"
-                                alt="Carondelet High School logo"
-                                className="h-12 w-auto"
-                                data-name="Carondelet High School"
-                                data-phone="925-686-5353"
-                            />
-                            <img
-                                src="https://resources.finalsite.net/images/v1689581096/delasallehigh/ruhsaayrud0sfww3csrt/header-logo.svg"
-                                alt="De La Salle High School logo"
-                                className="h-12 w-auto"
-                                data-name="De La Salle High School"
-                                data-phone="925-288-8100"
-                            />
+                        <div className="relative overflow-hidden bg-gray-100/10 rounded-xl py-8">
+                            <div className="flex items-center gap-16 animate-logo-scroll">
+                                {[ ...schoolLogos, ...schoolLogos ].map((logo, idx) => (
+                                    <img
+                                        key={idx}
+                                        src={logo.src}
+                                        alt={logo.alt}
+                                        className="h-24 w-auto flex-shrink-0"
+                                        data-name={logo.name}
+                                        data-phone={logo.phone}
+                                    />
+                                ))}
+                            </div>
+                            <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-gray-100/10 to-transparent"></div>
+                            <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-gray-100/10 to-transparent"></div>
                         </div>
                     </div>
                 </div>
