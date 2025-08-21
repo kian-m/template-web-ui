@@ -1,24 +1,22 @@
 import Button from './Button';
 import { PricingPlan } from "@/types";
+import { useCal } from '../CalProvider';
 
 interface PricingCardProps {
     plan: PricingPlan;
 }
 
 const PricingCard = ({ plan }: PricingCardProps) => {
+    const { open } = useCal();
     return (
-        <div className={`
-      bg-white rounded-lg shadow-lg overflow-hidden border
-      ${plan.popular ? 'border-yellow-500 transform scale-105 z-10' : 'border-gray-200'}
-      transition-all hover:shadow-xl
-    `}>
+        <div className={`bg-white rounded-lg shadow-lg overflow-hidden border flex flex-col ${plan.popular ? 'border-yellow-500 transform scale-105 z-10' : 'border-gray-200'} transition-all hover:shadow-xl`}>
             {plan.popular && (
                 <div className="bg-yellow-600 text-white text-center py-1 text-sm font-medium">
                     Most Popular
                 </div>
             )}
 
-            <div className="p-6">
+            <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-bold text-navy-800 mb-2">{plan.name}</h3>
 
                 <div className="flex items-baseline mb-6">
@@ -26,12 +24,10 @@ const PricingCard = ({ plan }: PricingCardProps) => {
                     <span className="text-gray-600 ml-1">{plan.unit}</span>
                 </div>
 
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-3 mb-8 flex-grow">
                     {plan.features.map((feature, index) => (
                         <li key={index} className="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-600 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                            </svg>
+                            <div className="w-2 h-2 bg-yellow-600 rounded-full mt-1.5 mr-3 flex-shrink-0"></div>
                             <span className="text-gray-700">{feature}</span>
                         </li>
                     ))}
@@ -40,7 +36,8 @@ const PricingCard = ({ plan }: PricingCardProps) => {
                 <Button
                     variant={plan.popular ? 'primary' : 'outline'}
                     fullWidth
-                    href="#schedule"
+                    onClick={open}
+                    className="schedule-trigger"
                 >
                     {plan.cta}
                 </Button>

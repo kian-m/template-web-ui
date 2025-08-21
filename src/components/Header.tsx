@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Menu, X, Calendar } from 'lucide-react'
+import { useCal } from './CalProvider'
 
 export default function Header () {
     const [ isScrolled, setIsScrolled ] = useState(false)
@@ -24,9 +25,30 @@ export default function Header () {
         }
     }
 
+    const { open } = useCal()
+
     const handleScheduleClick = () => {
-        scrollToSection('contact')
+        open()
+        setIsMobileMenuOpen(false)
     }
+
+    const [ showFloating, setShowFloating ] = useState(true)
+
+    useEffect(() => {
+        const triggers = document.querySelectorAll('.schedule-trigger')
+        const visibleMap = new Map<Element, boolean>()
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                visibleMap.set(entry.target, entry.isIntersecting)
+            })
+            const anyVisible = Array.from(visibleMap.values()).some(Boolean)
+            setShowFloating(!anyVisible)
+        }, { threshold: 0.1 })
+
+        triggers.forEach(el => observer.observe(el))
+        return () => observer.disconnect()
+    }, [ isMobileMenuOpen ])
 
     return (
         <>
@@ -68,7 +90,7 @@ export default function Header () {
                             </button>
                             <button
                                 onClick={handleScheduleClick}
-                                className="academic-button px-6 py-2 text-sm font-semibold rounded-md flex items-center space-x-2"
+                                className="schedule-trigger academic-button px-6 py-2 text-sm font-semibold rounded-md flex items-center space-x-2"
                             >
                                 <Calendar className="w-4 h-4" />
                                 <span>Schedule Now</span>
@@ -107,7 +129,7 @@ export default function Header () {
                             </button>
                             <button
                                 onClick={handleScheduleClick}
-                                className="academic-button w-full px-4 py-2 text-sm font-semibold rounded-md flex items-center justify-center space-x-2"
+                                className="schedule-trigger academic-button w-full px-4 py-2 text-sm font-semibold rounded-md flex items-center justify-center space-x-2"
                             >
                                 <Calendar className="w-4 h-4" />
                                 <span>Schedule Now</span>
@@ -118,13 +140,15 @@ export default function Header () {
             </header>
 
             {/* Floating Schedule Button */}
-            <button
-                onClick={handleScheduleClick}
-                className="schedule-button academic-button px-4 py-3 rounded-full flex items-center justify-center space-x-2 animate-academic-glow"
-            >
-                <Calendar className="w-5 h-5" />
-                <span className="font-semibold">Schedule Now</span>
-            </button>
+            {showFloating && (
+                <button
+                    onClick={handleScheduleClick}
+                    className="schedule-button academic-button px-4 py-3 rounded-full flex items-center justify-center space-x-2 animate-academic-glow"
+                >
+                    <Calendar className="w-5 h-5" />
+                    <span className="font-semibold">Schedule Now</span>
+                </button>
+            )}
         </>
     )
 }

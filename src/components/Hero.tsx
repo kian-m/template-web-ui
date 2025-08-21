@@ -1,6 +1,7 @@
 'use client'
 
 import { ArrowRight, Star, MapPin, GraduationCap } from 'lucide-react'
+import { useCal } from './CalProvider'
 
 // Academic Achievement SVG Icon
 const AcademicIcon = () => (
@@ -10,12 +11,7 @@ const AcademicIcon = () => (
 )
 
 export default function Hero () {
-    const scrollToContact = () => {
-        const element = document.getElementById('contact')
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' })
-        }
-    }
+    const { open } = useCal()
 
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -61,8 +57,8 @@ export default function Hero () {
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-slide-up delay-400">
                         <button
-                            onClick={scrollToContact}
-                            className="academic-button px-8 py-4 text-lg font-semibold rounded-lg flex items-center space-x-2 w-full sm:w-auto"
+                            onClick={open}
+                            className="schedule-trigger academic-button px-8 py-4 text-lg font-semibold rounded-lg flex items-center space-x-2 w-full sm:w-auto"
                         >
                             <span>Schedule Free Consultation</span>
                             <ArrowRight className="w-5 h-5" />

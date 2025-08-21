@@ -2,6 +2,7 @@
 
 import { GraduationCap, Award, Users, TrendingUp, Clock, Target, School, MapPin } from 'lucide-react'
 import { siteContent } from '@/data/siteContent'
+import { useCal } from './CalProvider'
 
 // Teaching Philosophy SVG Icon
 const TeachingIcon = () => (
@@ -18,6 +19,7 @@ const ExperienceIcon = () => (
 )
 
 export default function About () {
+    const { open } = useCal()
     const expertise = siteContent.about.expertise
 
     const achievements = [
@@ -138,21 +140,21 @@ export default function About () {
                             </div>
                             <div className="space-y-6">
                                 <div className="flex items-start space-x-4">
-                                    <div className="w-3 h-3 bg-academic-gold rounded-full mt-1 flex-shrink-0"></div>
+                                    <div className="w-2 h-2 bg-academic-gold rounded-full mt-1 flex-shrink-0"></div>
                                     <div>
                                         <div className="text-white font-semibold mb-1">Private Tutoring</div>
                                         <div className="text-gray-400 text-sm">One-on-one academic support in homes and libraries</div>
                                     </div>
                                 </div>
                                 <div className="flex items-start space-x-4">
-                                    <div className="w-3 h-3 bg-academic-gold rounded-full mt-1 flex-shrink-0"></div>
+                                    <div className="w-2 h-2 bg-academic-gold rounded-full mt-1 flex-shrink-0"></div>
                                     <div>
                                         <div className="text-white font-semibold mb-1">Tutoring Centers</div>
                                         <div className="text-gray-400 text-sm">Professional tutoring experience at established locations</div>
                                     </div>
                                 </div>
                                 <div className="flex items-start space-x-4">
-                                    <div className="w-3 h-3 bg-academic-gold rounded-full mt-1 flex-shrink-0"></div>
+                                    <div className="w-2 h-2 bg-academic-gold rounded-full mt-1 flex-shrink-0"></div>
                                     <div>
                                         <div className="text-white font-semibold mb-1">Curriculum Expertise</div>
                                         <div className="text-gray-400 text-sm">Deep knowledge of Bay Area school programs and standards</div>
@@ -170,11 +172,8 @@ export default function About () {
                                 You get the best tutoring support in the Bay Area. Let's discuss your goals and create a plan for your academic success.
                             </p>
                             <button
-                                onClick={() => {
-                                    const element = document.getElementById('contact')
-                                    if (element) element.scrollIntoView({ behavior: 'smooth' })
-                                }}
-                                className="academic-button px-8 py-3 text-lg font-semibold rounded-lg"
+                                onClick={() => open()}
+                                className="schedule-trigger academic-button px-8 py-3 text-lg font-semibold rounded-lg"
                             >
                                 Schedule Your Free Consultation
                             </button>
