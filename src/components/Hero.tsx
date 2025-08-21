@@ -3,6 +3,7 @@
 
 import { ArrowRight, MapPin } from 'lucide-react'
 import { useCal } from './CalProvider'
+import Image from "next/image";
 
 // Academic Achievement SVG Icon
 const AcademicIcon = () => (
@@ -70,6 +71,16 @@ export default function Hero () {
 
             <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-20">
                 <div className="max-w-5xl mx-auto text-center">
+                    <div className="p-2 flex justify-center">
+                        <Image
+                            src="/memoji.png"
+                            alt="Professional tutor helping student with advanced mathematics problem"
+                            width={175}
+                            height={175}
+                            className="rounded"
+                            priority
+                        />
+                    </div>
                     {/* Badge */}
                     <div className="inline-flex items-center space-x-2 bg-academic-gold/20 backdrop-blur-sm border border-academic-gold/30 rounded-full px-4 py-2 mb-8 animate-fade-in">
                         <AcademicIcon />
