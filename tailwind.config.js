@@ -32,6 +32,7 @@ module.exports = {
                 'slide-up': 'slideUp 0.8s ease-out',
                 'academic-glow': 'academicGlow 2s ease-in-out infinite alternate',
                 'pulse-slow': 'pulse 3s ease-in-out infinite',
+                'logo-scroll': 'logoScroll 40s linear infinite',
             },
             keyframes: {
                 fadeIn: {
@@ -45,6 +46,10 @@ module.exports = {
                 academicGlow: {
                     '0%': { boxShadow: '0 0 20px rgba(212, 175, 55, 0.3)' },
                     '100%': { boxShadow: '0 0 30px rgba(212, 175, 55, 0.6)' },
+                },
+                logoScroll: {
+                    '0%': { transform: 'translateX(-50%)' },
+                    '100%': { transform: 'translateX(0)' },
                 }
             }
         },

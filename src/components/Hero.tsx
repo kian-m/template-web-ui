@@ -1,6 +1,7 @@
 'use client'
+/* eslint-disable @next/next/no-img-element */
 
-import { ArrowRight, Star, MapPin, GraduationCap } from 'lucide-react'
+import { ArrowRight, MapPin } from 'lucide-react'
 import { useCal } from './CalProvider'
 
 // Academic Achievement SVG Icon
@@ -9,6 +10,45 @@ const AcademicIcon = () => (
         <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/>
     </svg>
 )
+
+const schoolLogos = [
+    {
+        src: 'https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/Acalanes_A.png',
+        alt: 'Acalanes High School logo',
+        name: 'Acalanes High School',
+        phone: '925-280-3970'
+    },
+    {
+        src: 'https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/BlockC.png',
+        alt: 'Campolindo High School logo',
+        name: 'Campolindo High School',
+        phone: '925-280-3950'
+    },
+    {
+        src: '/las-lomas.svg',
+        alt: 'Las Lomas High School logo',
+        name: 'Las Lomas High School',
+        phone: '925-280-3920'
+    },
+    {
+        src: 'https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/2020%20Block%20M.jpg',
+        alt: 'Miramonte High School logo',
+        name: 'Miramonte High School',
+        phone: '925-280-3930'
+    },
+    {
+        src: '/carondelet.svg',
+        alt: 'Carondelet High School logo',
+        name: 'Carondelet High School',
+        phone: '925-686-5353'
+    },
+    {
+        src: 'https://resources.finalsite.net/images/v1689581096/delasallehigh/ruhsaayrud0sfww3csrt/header-logo.svg',
+        alt: 'De La Salle High School logo',
+        name: 'De La Salle High School',
+        phone: '925-288-8100'
+    }
+]
 
 export default function Hero () {
     const { open } = useCal()
@@ -74,23 +114,26 @@ export default function Hero () {
                         </button>
                     </div>
 
-                    {/* Key Stats */}
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto animate-slide-up delay-500">
-                        <div className="text-center">
-                            <div className="text-2xl sm:text-3xl font-bold text-academic-gold mb-1 title-font">15+</div>
-                            <div className="text-sm text-gray-400">Years Experience</div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-2xl sm:text-3xl font-bold text-academic-gold mb-1 title-font">All</div>
-                            <div className="text-sm text-gray-400">Test Types</div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-2xl sm:text-3xl font-bold text-academic-gold mb-1 title-font">Local</div>
-                            <div className="text-sm text-gray-400">Schools Known</div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-2xl sm:text-3xl font-bold text-academic-gold mb-1 title-font">Care</div>
-                            <div className="text-sm text-gray-400">& Attention</div>
+                    {/* School Logos */}
+                    <div className="mt-12 animate-slide-up delay-500">
+                        <p className="text-sm text-gray-400 mb-4">
+                            Trusted by families from these East Bay schools:
+                        </p>
+                        <div className="relative overflow-hidden bg-gray-100/10 rounded-xl py-8">
+                            <div className="flex items-center gap-16 animate-logo-scroll">
+                                {[ ...schoolLogos, ...schoolLogos ].map((logo, idx) => (
+                                    <img
+                                        key={idx}
+                                        src={logo.src}
+                                        alt={logo.alt}
+                                        className="h-24 w-auto flex-shrink-0"
+                                        data-name={logo.name}
+                                        data-phone={logo.phone}
+                                    />
+                                ))}
+                            </div>
+                            <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-gray-100/10 to-transparent"></div>
+                            <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-gray-100/10 to-transparent"></div>
                         </div>
                     </div>
                 </div>
