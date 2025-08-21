@@ -288,14 +288,19 @@ export const siteContent: SiteContent = {
             {
                 id: "faq-8",
                 question: "Do you assign homework?",
-                answer: "Yes, I typically provide practice problems between sessions to reinforce concepts we've covered. The amount varies based on the student's needs and schedule, but consistent practice is key to improvement in math and physics. I carefully select problems that will be most beneficial to your child's specific learning goals."
+                answer: "I typically don't assign extra homework since students already have plenty from school, but I'm happy to provide more when requested."
+            },
+            {
+                id: "faq-9",
+                question: "What forms of payment do you accept?",
+                answer: "I primarily accept Zelle, Venmo, PayPal, and other digital payment methods."
             }
         ]
     },
     contact: {
         heading: "Book Your Free Consultation",
         subheading: "Let's discuss how I can help your child excel academically",
-        email: "contact@bayareatutoring.com",
+        email: "amir@thebayareatutor.com",
         phone: "(925) 555-1234",
         availability: [
             "Weekdays: 3pm - 8pm",
