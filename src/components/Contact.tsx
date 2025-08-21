@@ -106,7 +106,7 @@ export default function Contact () {
                                 Ready to get started? Schedule a free consultation to discuss your goals.
                             </p>
                             <button
-                                onClick={open}
+                                onClick={() => open()}
                                 className="schedule-trigger academic-button px-6 py-4 text-lg font-semibold rounded-lg flex items-center justify-center space-x-2 mx-auto"
                             >
                                 <Calendar className="w-5 h-5" />

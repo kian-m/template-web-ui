@@ -15,7 +15,7 @@ export default function Header () {
 
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
-    }, [ ])
+    }, [])
 
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId)
@@ -48,7 +48,7 @@ export default function Header () {
 
         triggers.forEach(el => observer.observe(el))
         return () => observer.disconnect()
-    }, [ isMobileMenuOpen ])
+    }, [isMobileMenuOpen])
 
     return (
         <>

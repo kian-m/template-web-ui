@@ -1,25 +1,28 @@
 'use client'
-import { X } from 'lucide-react'
+
+import Button from './ui/Button'
 
 interface CalModalProps {
+  url: string
   onClose: () => void
 }
 
-export default function CalModal({ onClose }: CalModalProps) {
+export default function CalModal ({ url, onClose }: CalModalProps) {
   return (
     <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/60 backdrop-blur-md p-4">
-      <div className="w-full max-w-3xl h-[80vh] bg-white rounded-lg overflow-hidden relative">
-        <button
+      <div className="w-full max-w-5xl h-[90vh] bg-white rounded-lg overflow-hidden relative">
+        <Button
           onClick={onClose}
-          className="absolute top-3 right-3 text-gray-600 hover:text-gray-800"
-          aria-label="Close schedule modal"
+          variant="secondary"
+          size="sm"
+          className="absolute top-4 right-4 z-10"
         >
-          <X className="w-6 h-6" />
-        </button>
+          Close
+        </Button>
         <iframe
-          src="https://cal.com/thebayarea/consultation?embed=1"
+          src={url}
           className="w-full h-full border-0"
-          title="Schedule consultation"
+          title="Schedule"
         />
       </div>
     </div>
