@@ -101,34 +101,15 @@ export default function Footer () {
                     </div>
                 </div>
 
-                {/* Quick Actions Bar */}
-                <div className="border-t border-academic-medium-blue/30 py-8">
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-                        <div className="text-center sm:text-left">
-                            <h4 className="text-lg font-semibold mb-2 title-font">Start Your Academic Success Today</h4>
-                            <p className="text-academic-medium-blue dark:text-academic-off-white text-sm">Get the best tutoring support in the Bay Area</p>
-                        </div>
-                        <div className="flex flex-col sm:flex-row items-center gap-4">
-                            <button
-                                onClick={() => scrollToSection('contact')}
-                                className="academic-button px-6 py-3 font-semibold rounded-lg flex items-center space-x-2"
-                            >
-                                <Calendar className="w-4 h-4" />
-                                <span>Schedule Now</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
 
-                <p className="text-center text-xs text-academic-medium-blue dark:text-academic-off-white mt-4">*In-person sessions may include additional travel fees.</p>
 
                 {/* Bottom Bar */}
                 <div className="border-t border-academic-medium-blue/30 py-6">
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                         <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-academic-medium-blue dark:text-academic-off-white">
-                            <span>&copy; {new Date().getFullYear()} Bay Area Academic Tutor. All rights reserved.</span>
+                            <span>&copy; {new Date().getFullYear()} The Bay Area Tutor. All rights reserved.</span>
                             <span className="hidden sm:block">•</span>
-                            <span>UC Berkeley Graduate • 15+ Years Experience • Bay Area Expert</span>
+                            <span>UC Berkeley Graduate • 15+ Years Local Experience • Bay Area Expert</span>
                         </div>
 
                         <button

@@ -38,13 +38,13 @@ export default function Hero () {
 
                     {/* Main Heading */}
                     <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 animate-slide-up title-font">
-                        <span className="block text-foreground dark:text-white leading-tight">Bay Area's</span>
-                        <span className="block text-academic-gold dark:text-gradient leading-tight">Premier Tutor</span>
+                        <span className="block text-foreground dark:text-white leading-tight">Your Local</span>
+                        <span className="block text-academic-gold dark:text-gradient leading-tight">Bay Area Premier Tutor</span>
                     </h1>
 
                     {/* Subheading */}
                     <p className="text-lg sm:text-xl lg:text-2xl text-academic-medium-blue dark:text-academic-off-white mb-8 max-w-4xl mx-auto animate-slide-up delay-200 leading-relaxed">
-                        You deserve the best academic support. I provide expert tutoring for SAT, ACT, SAT Subject Tests,
+                        Offering the best academic support. I provide expert tutoring for SAT, ACT, SAT Subject Tests,
                         and comprehensive school support. Familiar with Bay Area curricula and teachers.
                     </p>
 
@@ -93,6 +93,8 @@ export default function Hero () {
                             <div className="text-sm text-academic-medium-blue dark:text-academic-off-white">& Attention</div>
                         </div>
                     </div>
+                    <p className="text-center text-xs text-academic-medium-blue dark:text-academic-off-white mt-4">*In-person session prices vary based on time and distance</p>
+
                 </div>
             </div>
         </section>

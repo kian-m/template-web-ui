@@ -98,7 +98,7 @@ export default function Services () {
                 </div>
 
                 {/* Test Types & Academic Support */}
-                <div className="bg-blue-100 dark:bg-academic-medium-blue/50 backdrop-blur-sm rounded-2xl p-8 lg:p-12 mb-20">
+                <div className="bg-zinc-200 dark:bg-academic-medium-blue/50 backdrop-blur-sm rounded-2xl p-8 lg:p-12 mb-20">
                     <div className="text-center mb-12">
                         <h3 className="text-2xl lg:text-3xl font-bold text-foreground dark:text-white mb-4 title-font">
                             Complete Test Prep & Academic Support
@@ -110,7 +110,7 @@ export default function Services () {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {testTypes.map((test, index) => (
-                            <div key={index} className="bg-blue-200 dark:bg-academic-dark-blue rounded-xl p-6 border border-academic-gold/20 hover:border-academic-gold/40 transition-all duration-300">
+                            <div key={index} className="bg-zinc-300 dark:bg-academic-dark-blue rounded-xl p-6 border border-academic-gold/20 hover:border-academic-gold/40 transition-all duration-300">
                                 <div className="text-academic-gold mb-4">
                                     {test.icon}
                                 </div>

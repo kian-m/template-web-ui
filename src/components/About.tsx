@@ -122,7 +122,7 @@ export default function About () {
                     </div>
 
                     {/* Experience Section */}
-                    <div className="bg-blue-100 dark:bg-academic-medium-blue/50 backdrop-blur-sm rounded-2xl p-8 lg:p-12 mb-16">
+                    <div className="bg-zinc-200 dark:bg-academic-medium-blue/50 backdrop-blur-sm rounded-2xl p-8 lg:p-12 mb-16">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                             <div>
                                 <h3 className="text-2xl lg:text-3xl font-bold text-foreground dark:text-white mb-6 title-font flex items-center">
