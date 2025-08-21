@@ -102,8 +102,8 @@ export const siteContent: SiteContent = {
                     "Preparation for college-level mathematics"
                 ]
             }
+        
         ],
-        note: "*In-person sessions may include additional travel fees."
     },
     locations: {
         heading: "Tutoring Locations",

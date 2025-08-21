@@ -9,10 +9,10 @@ export default function Pricing () {
     <section id="pricing" className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-navy-800 mb-3">
+          <h2 className="text-3xl md:text-4xl font-bold text-academic-navy mb-3">
             {heading}
           </h2>
-          <p className="text-xl text-navy-600 max-w-3xl mx-auto">{subheading}</p>
+          <p className="text-xl text-academic-dark-blue max-w-3xl mx-auto">{subheading}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {plans.map((plan) => (
