@@ -57,7 +57,7 @@ export default function Hero () {
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-slide-up delay-400">
                         <button
-                            onClick={open}
+                            onClick={() => open()}
                             className="schedule-trigger academic-button px-8 py-4 text-lg font-semibold rounded-lg flex items-center space-x-2 w-full sm:w-auto"
                         >
                             <span>Schedule Free Consultation</span>

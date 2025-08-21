@@ -36,7 +36,7 @@ const PricingCard = ({ plan }: PricingCardProps) => {
                 <Button
                     variant={plan.popular ? 'primary' : 'outline'}
                     fullWidth
-                    onClick={open}
+                    onClick={() => open('https://cal.com/thebayarea/1-hour-session?embed=1')}
                     className="schedule-trigger"
                 >
                     {plan.cta}
