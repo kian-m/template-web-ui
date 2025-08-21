@@ -25,7 +25,7 @@ const PricingCard = ({ plan }: PricingCardProps) => {
                     <span className="text-academic-medium-blue dark:text-academic-off-white ml-1">{plan.unit}</span>
                 </div>
 
-                <ul className="space-y-3 mb-8 flex-grow">
+                <ul className="space-y-3 mb-6 flex-grow">
                     {plan.features.map((feature, index) => (
                         <li key={index} className="flex items-center">
                             <Check className="w-5 h-5 text-academic-gold mr-2 flex-shrink-0" />
@@ -33,6 +33,19 @@ const PricingCard = ({ plan }: PricingCardProps) => {
                         </li>
                     ))}
                 </ul>
+
+                {plan.sessions && plan.sessions > 1 && (
+                    <div className="mb-6 text-center">
+                        <p className="text-lg font-semibold text-foreground dark:text-white">
+                            Total: ${plan.price * plan.sessions}
+                        </p>
+                        {plan.savings && (
+                            <p className="text-academic-medium-blue dark:text-academic-off-white text-sm">
+                                You save ${plan.savings}
+                            </p>
+                        )}
+                    </div>
+                )}
 
                 <Button
                     variant={plan.popular ? 'primary' : 'outline'}
