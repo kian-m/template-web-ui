@@ -186,7 +186,7 @@ export default function BerkeleyTutorWebsite () {
                     <div className="grid md:grid-cols-2 gap-12">
                         {/* In-Person Tutoring */}
                         <div className="bg-gray-50 rounded-xl p-8 shadow-lg">
-                            <h3 className="text-2xl font-semibold text-blue-900 mb-6 text-center">In-Person Tutoring</h3>
+                            <h3 className="text-2xl font-semibold text-blue-900 mb-6 text-center">In-Person Tutoring*</h3>
                             <p className="text-gray-700 mb-8 text-center">Face-to-face sessions at various libraries throughout the Bay Area.</p>
                             <ul className="space-y-4 mb-8">
                                 <li className="flex items-start">

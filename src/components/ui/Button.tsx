@@ -35,10 +35,10 @@ const Button = ({
 
     // Variant classes
     const variantClasses = {
-        primary: 'bg-yellow-600 hover:bg-yellow-700 text-white focus:ring-yellow-500',
-        secondary: 'bg-navy-800 hover:bg-navy-900 text-white focus:ring-navy-700',
-        outline: 'bg-transparent border border-yellow-600 text-yellow-600 hover:bg-yellow-50 focus:ring-yellow-500',
-        text: 'bg-transparent text-navy-800 hover:text-navy-900 underline focus:ring-navy-500',
+        primary: 'bg-academic-gold hover:bg-academic-light-gold text-academic-navy focus:ring-academic-gold',
+        secondary: 'bg-academic-navy hover:bg-academic-dark-blue text-white focus:ring-academic-navy',
+        outline: 'bg-transparent border border-academic-gold text-academic-gold hover:bg-academic-gold/10 focus:ring-academic-gold',
+        text: 'bg-transparent text-academic-navy hover:text-academic-dark-blue underline focus:ring-academic-navy',
     };
 
     // Combined classes

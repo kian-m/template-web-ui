@@ -56,7 +56,7 @@ export const siteContent: SiteContent = {
         items: [
             {
                 id: "in-person",
-                title: "In-Person Tutoring",
+                title: "In-Person Tutoring*",
                 description: "Face-to-face sessions at the best libraries throughout Lafayette, Orinda, Dublin, Walnut Creek, and Berkeley.",
                 icon: "location-pin",
                 benefits: [
@@ -102,7 +102,8 @@ export const siteContent: SiteContent = {
                     "Preparation for college-level mathematics"
                 ]
             }
-        ]
+        
+        ],
     },
     locations: {
         heading: "Tutoring Locations",
