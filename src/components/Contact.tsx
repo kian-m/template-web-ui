@@ -50,7 +50,7 @@ export default function Contact () {
                                         <Mail className="w-6 h-6 text-academic-gold mt-1 flex-shrink-0" />
                                         <div>
                                             <div className="text-foreground dark:text-white font-semibold mb-1">Email</div>
-                                            <div className="text-academic-medium-blue dark:text-academic-off-white">tutor@thebayareatutor.com</div>
+                                            <div className="text-academic-medium-blue dark:text-academic-off-white">amir@thebayareatutor.com</div>
                                             <div className="text-sm text-academic-medium-blue dark:text-academic-off-white mt-1">I respond within 24 hours</div>
                                         </div>
                                     </div>
