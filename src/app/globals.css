@@ -15,10 +15,11 @@
     --academic-gold: #D4AF37;
     --academic-light-gold: #E6C757;
     --academic-dark-gold: #B8941F;
-    --academic-off-white: #F8F9FA;
+    --academic-off-white: #F5F1E6;
     --background: var(--academic-off-white);
     --foreground: var(--academic-navy);
-    --muted: #6C757D;
+    --title: var(--academic-dark-blue);
+    --muted: var(--academic-light-blue);
     --card-bg: rgba(255, 255, 255, 0.9);
     --card-border: rgba(11, 20, 38, 0.1);
     --card-hover-bg: rgba(255, 255, 255, 1);
@@ -28,7 +29,8 @@
 .dark {
     --background: var(--academic-navy);
     --foreground: var(--academic-off-white);
-    --muted: #9CA3AF;
+    --title: var(--academic-off-white);
+    --muted: #A3B8CC;
     --card-bg: rgba(11, 20, 38, 0.9);
     --card-border: rgba(248, 249, 250, 0.1);
     --card-hover-bg: rgba(11, 20, 38, 1);
@@ -136,6 +138,7 @@ body {
 
 .title-font {
     font-family: 'Playfair Display', serif;
+    color: var(--title);
 }
 
 .logo-font {

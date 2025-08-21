@@ -18,7 +18,7 @@ module.exports = {
                     'light-gold': '#E6C757',
                     'dark-gold': '#B8941F',
                     white: '#FFFFFF',
-                    'off-white': '#F8F9FA',
+                    'off-white': '#F5F1E6',
                     gray: '#6C757D',
                 },
                 background: 'var(--background)',
