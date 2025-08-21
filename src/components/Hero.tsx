@@ -37,7 +37,7 @@ const schoolLogos = [
         phone: '925-280-3930'
     },
     {
-        src: 'https://www.carondeleths.org/logo.png',
+        src: '/carondelet.svg',
         alt: 'Carondelet High School logo',
         name: 'Carondelet High School',
         phone: '925-686-5353'
