@@ -14,10 +14,10 @@ export default function Hero () {
     const { open } = useCal()
 
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background dark:bg-academic-navy">
             {/* Academic-style gradient background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-academic-navy via-academic-dark-blue to-academic-navy">
-                <div className="absolute inset-0 bg-gradient-to-r from-academic-gold/10 via-transparent to-academic-gold/5"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-academic-off-white via-academic-light-blue/20 to-academic-off-white dark:from-academic-navy dark:via-academic-dark-blue dark:to-academic-navy">
+                <div className="absolute inset-0 dark:bg-gradient-to-r dark:from-academic-gold/10 dark:via-transparent dark:to-academic-gold/5"></div>
             </div>
 
             {/* Subtle background elements */}
@@ -33,25 +33,25 @@ export default function Hero () {
                     {/* Badge */}
                     <div className="inline-flex items-center space-x-2 bg-academic-gold/20 backdrop-blur-sm border border-academic-gold/30 rounded-full px-4 py-2 mb-8 animate-fade-in">
                         <AcademicIcon />
-                        <span className="text-sm font-medium text-white">UC Berkeley Graduate • 15+ Years Experience</span>
+                        <span className="text-sm font-medium text-foreground dark:text-white">UC Berkeley Graduate • 15+ Years Experience</span>
                     </div>
 
                     {/* Main Heading */}
                     <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 animate-slide-up title-font">
-                        <span className="block text-white leading-tight">Bay Area's</span>
-                        <span className="block text-gradient leading-tight">Premier Tutor</span>
+                        <span className="block text-foreground dark:text-white leading-tight">Bay Area's</span>
+                        <span className="block text-academic-gold dark:text-gradient leading-tight">Premier Tutor</span>
                     </h1>
 
                     {/* Subheading */}
-                    <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto animate-slide-up delay-200 leading-relaxed">
+                    <p className="text-lg sm:text-xl lg:text-2xl text-muted mb-8 max-w-4xl mx-auto animate-slide-up delay-200 leading-relaxed">
                         You deserve the best academic support. I provide expert tutoring for SAT, ACT, SAT Subject Tests,
                         and comprehensive school support. Familiar with Bay Area curricula and teachers.
                     </p>
 
                     {/* Location Badge */}
-                    <div className="inline-flex items-center space-x-2 bg-academic-medium-blue/50 backdrop-blur-sm border border-academic-gold/20 rounded-full px-4 py-2 mb-8 animate-slide-up delay-300">
+                    <div className="inline-flex items-center space-x-2 bg-academic-light-blue/20 dark:bg-academic-medium-blue/50 backdrop-blur-sm border border-academic-gold/20 rounded-full px-4 py-2 mb-8 animate-slide-up delay-300">
                         <MapPin className="w-4 h-4 text-academic-gold" />
-                        <span className="text-sm text-white">In-Person* & Online • Bay Area Libraries & Your Home</span>
+                        <span className="text-sm text-foreground dark:text-white">In-Person* & Online • Bay Area Libraries & Your Home</span>
                     </div>
 
                     {/* CTA Buttons */}
@@ -68,7 +68,7 @@ export default function Hero () {
                                 const element = document.getElementById('services')
                                 if (element) element.scrollIntoView({ behavior: 'smooth' })
                             }}
-                            className="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-white/20 hover:border-academic-gold/50 text-white hover:bg-academic-gold/10 transition-all duration-300 w-full sm:w-auto"
+                            className="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-academic-navy/20 dark:border-white/20 text-foreground dark:text-white hover:border-academic-gold/50 hover:bg-academic-gold/10 transition-all duration-300 w-full sm:w-auto"
                         >
                             View Services
                         </button>
@@ -78,19 +78,19 @@ export default function Hero () {
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto animate-slide-up delay-500">
                         <div className="text-center">
                             <div className="text-2xl sm:text-3xl font-bold text-academic-gold mb-1 title-font">15+</div>
-                            <div className="text-sm text-gray-400">Years Experience</div>
+                            <div className="text-sm text-muted">Years Experience</div>
                         </div>
                         <div className="text-center">
                             <div className="text-2xl sm:text-3xl font-bold text-academic-gold mb-1 title-font">All</div>
-                            <div className="text-sm text-gray-400">Test Types</div>
+                            <div className="text-sm text-muted">Test Types</div>
                         </div>
                         <div className="text-center">
                             <div className="text-2xl sm:text-3xl font-bold text-academic-gold mb-1 title-font">Local</div>
-                            <div className="text-sm text-gray-400">Schools Known</div>
+                            <div className="text-sm text-muted">Schools Known</div>
                         </div>
                         <div className="text-center">
                             <div className="text-2xl sm:text-3xl font-bold text-academic-gold mb-1 title-font">Care</div>
-                            <div className="text-sm text-gray-400">& Attention</div>
+                            <div className="text-sm text-muted">& Attention</div>
                         </div>
                     </div>
                 </div>

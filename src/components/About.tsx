@@ -37,15 +37,15 @@ export default function About () {
     ]
 
     return (
-        <section id="about" className="py-20 lg:py-32 bg-academic-navy">
+        <section id="about" className="py-20 lg:py-32 bg-background dark:bg-academic-navy">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 title-font">
-                            <span className="text-white">About Your</span>
-                            <span className="block text-gradient">Dedicated Tutor</span>
+                            <span className="text-foreground dark:text-white">About Your</span>
+                            <span className="block text-academic-gold dark:text-gradient">Dedicated Tutor</span>
                         </h2>
-                        <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
+                        <p className="text-lg sm:text-xl text-muted max-w-3xl mx-auto">
                             You deserve a tutor who understands both the material and the local academic environment.
                             I combine UC Berkeley education with deep Bay Area teaching experience.
                         </p>
@@ -57,21 +57,21 @@ export default function About () {
                             <div className="academic-card p-8">
                                 <div className="flex items-center mb-6">
                                     <TeachingIcon />
-                                    <h3 className="text-2xl font-bold text-white ml-4 title-font">My Teaching Approach</h3>
+                                    <h3 className="text-2xl font-bold text-foreground dark:text-white ml-4 title-font">My Teaching Approach</h3>
                                 </div>
-                                <p className="text-gray-300 leading-relaxed mb-6">
+                                <p className="text-muted leading-relaxed mb-6">
                                     You get more than just test prep. I work as your private tutor and academic coach,
                                     providing support that directly connects to your classroom experience.
                                     I've worked at tutoring centers and as a private tutor throughout the Bay Area.
                                 </p>
-                                <p className="text-gray-300 leading-relaxed">
+                                <p className="text-muted leading-relaxed">
                                     Your success comes from understanding concepts deeply and building confidence.
                                     I create personalized strategies that work with your learning style and academic goals.
                                 </p>
                             </div>
 
                             <div className="academic-card p-8">
-                                <h3 className="text-xl font-bold text-white mb-4 flex items-center title-font">
+                                <h3 className="text-xl font-bold text-foreground dark:text-white mb-4 flex items-center title-font">
                                     <Award className="w-6 h-6 text-academic-gold mr-3" />
                                     Areas of Expertise
                                 </h3>
@@ -79,7 +79,7 @@ export default function About () {
                                     {expertise.map((area, index) => (
                                         <div key={index} className="flex items-start">
                                             <div className="w-2 h-2 bg-academic-gold rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                            <span className="text-gray-300 text-sm">{area}</span>
+                                            <span className="text-muted text-sm">{area}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -94,10 +94,10 @@ export default function About () {
                                         <div className="text-academic-gold mb-4 flex justify-center">
                                             {achievement.icon}
                                         </div>
-                                        <div className="text-2xl lg:text-3xl font-bold text-white mb-2 title-font">
+                                        <div className="text-2xl lg:text-3xl font-bold text-foreground dark:text-white mb-2 title-font">
                                             {achievement.stat}
                                         </div>
-                                        <div className="text-sm text-gray-400">
+                                        <div className="text-sm text-muted">
                                             {achievement.label}
                                         </div>
                                     </div>
@@ -105,7 +105,7 @@ export default function About () {
                             </div>
 
                             <div className="academic-card p-8">
-                                <h3 className="text-xl font-bold text-white mb-6 flex items-center title-font">
+                                <h3 className="text-xl font-bold text-foreground dark:text-white mb-6 flex items-center title-font">
                                     <MapPin className="w-6 h-6 text-academic-gold mr-3" />
                                     Bay Area Advantage
                                 </h3>
@@ -113,7 +113,7 @@ export default function About () {
                                     {bayAreaExperience.map((point, index) => (
                                         <div key={index} className="flex items-start">
                                             <div className="w-2 h-2 bg-academic-gold rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                            <div className="text-gray-300 text-sm">{point}</div>
+                                            <div className="text-muted text-sm">{point}</div>
                                         </div>
                                     ))}
                                 </div>
@@ -122,18 +122,18 @@ export default function About () {
                     </div>
 
                     {/* Experience Section */}
-                    <div className="bg-academic-medium-blue/50 backdrop-blur-sm rounded-2xl p-8 lg:p-12 mb-16">
+                    <div className="bg-academic-light-blue/20 dark:bg-academic-medium-blue/50 backdrop-blur-sm rounded-2xl p-8 lg:p-12 mb-16">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                             <div>
-                                <h3 className="text-2xl lg:text-3xl font-bold text-white mb-6 title-font flex items-center">
+                                <h3 className="text-2xl lg:text-3xl font-bold text-foreground dark:text-white mb-6 title-font flex items-center">
                                     <ExperienceIcon />
                                     <span className="ml-4">Professional Experience</span>
                                 </h3>
-                                <p className="text-gray-300 leading-relaxed mb-6">
+                                <p className="text-muted leading-relaxed mb-6">
                                     I've worked as a private tutor and at established tutoring locations throughout the Bay Area.
                                     This experience gives me deep insight into local academic standards and teaching methods.
                                 </p>
-                                <p className="text-gray-300 leading-relaxed">
+                                <p className="text-muted leading-relaxed">
                                     You benefit from my familiarity with Bay Area high schools, teachers, and curricula.
                                     I know what works and what doesn't in this specific academic environment.
                                 </p>
@@ -142,22 +142,22 @@ export default function About () {
                                 <div className="flex items-start space-x-4">
                                     <div className="w-2 h-2 bg-academic-gold rounded-full mt-1 flex-shrink-0"></div>
                                     <div>
-                                        <div className="text-white font-semibold mb-1">Private Tutoring</div>
-                                        <div className="text-gray-400 text-sm">One-on-one academic support in homes and libraries</div>
+                                        <div className="text-foreground dark:text-white font-semibold mb-1">Private Tutoring</div>
+                                        <div className="text-muted text-sm">One-on-one academic support in homes and libraries</div>
                                     </div>
                                 </div>
                                 <div className="flex items-start space-x-4">
                                     <div className="w-2 h-2 bg-academic-gold rounded-full mt-1 flex-shrink-0"></div>
                                     <div>
-                                        <div className="text-white font-semibold mb-1">Tutoring Centers</div>
-                                        <div className="text-gray-400 text-sm">Professional tutoring experience at established locations</div>
+                                        <div className="text-foreground dark:text-white font-semibold mb-1">Tutoring Centers</div>
+                                        <div className="text-muted text-sm">Professional tutoring experience at established locations</div>
                                     </div>
                                 </div>
                                 <div className="flex items-start space-x-4">
                                     <div className="w-2 h-2 bg-academic-gold rounded-full mt-1 flex-shrink-0"></div>
                                     <div>
-                                        <div className="text-white font-semibold mb-1">Curriculum Expertise</div>
-                                        <div className="text-gray-400 text-sm">Deep knowledge of Bay Area school programs and standards</div>
+                                        <div className="text-foreground dark:text-white font-semibold mb-1">Curriculum Expertise</div>
+                                        <div className="text-muted text-sm">Deep knowledge of Bay Area school programs and standards</div>
                                     </div>
                                 </div>
                             </div>
@@ -167,8 +167,8 @@ export default function About () {
                     {/* Call to action */}
                     <div className="text-center">
                         <div className="inline-block academic-card p-8 max-w-2xl">
-                            <h3 className="text-2xl font-bold text-white mb-4 title-font">Ready to Excel Academically?</h3>
-                            <p className="text-gray-300 mb-6">
+                            <h3 className="text-2xl font-bold text-foreground dark:text-white mb-4 title-font">Ready to Excel Academically?</h3>
+                            <p className="text-muted mb-6">
                                 You get the best tutoring support in the Bay Area. Let's discuss your goals and create a plan for your academic success.
                             </p>
                             <button

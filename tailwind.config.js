@@ -20,7 +20,10 @@ module.exports = {
                     white: '#FFFFFF',
                     'off-white': '#F8F9FA',
                     gray: '#6C757D',
-                }
+                },
+                background: 'var(--background)',
+                foreground: 'var(--foreground)',
+                muted: 'var(--muted)',
             },
             fontFamily: {
                 'title': ['Playfair Display', 'serif'],

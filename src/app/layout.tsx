@@ -81,7 +81,7 @@ export default function RootLayout ({
                 }}
             />
         </head>
-        <body className="antialiased">
+        <body className="antialiased bg-background text-foreground">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
             <CalProvider>
                 {children}

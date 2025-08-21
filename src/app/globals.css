@@ -18,11 +18,21 @@
     --academic-off-white: #F8F9FA;
     --background: var(--academic-off-white);
     --foreground: var(--academic-navy);
+    --muted: #6C757D;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --card-border: rgba(11, 20, 38, 0.1);
+    --card-hover-bg: rgba(255, 255, 255, 1);
+    --card-hover-border: rgba(11, 20, 38, 0.3);
 }
 
 .dark {
     --background: var(--academic-navy);
     --foreground: var(--academic-off-white);
+    --muted: #9CA3AF;
+    --card-bg: rgba(11, 20, 38, 0.9);
+    --card-border: rgba(248, 249, 250, 0.1);
+    --card-hover-bg: rgba(11, 20, 38, 1);
+    --card-hover-border: rgba(248, 249, 250, 0.3);
 }
 
 * {
@@ -103,16 +113,16 @@ body {
 }
 
 .academic-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--card-bg);
     border-radius: 12px;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(11, 20, 38, 0.1);
+    border: 1px solid var(--card-border);
     transition: all 0.3s ease;
 }
 
 .academic-card:hover {
-    background: rgba(255, 255, 255, 1);
-    border-color: rgba(11, 20, 38, 0.3);
+    background: var(--card-hover-bg);
+    border-color: var(--card-hover-border);
     transform: translateY(-4px);
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
 }
