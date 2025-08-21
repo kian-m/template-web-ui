@@ -16,6 +16,13 @@
     --academic-light-gold: #E6C757;
     --academic-dark-gold: #B8941F;
     --academic-off-white: #F8F9FA;
+    --background: var(--academic-off-white);
+    --foreground: var(--academic-navy);
+}
+
+.dark {
+    --background: var(--academic-navy);
+    --foreground: var(--academic-off-white);
 }
 
 * {
@@ -29,8 +36,8 @@ html {
 }
 
 body {
-    color: var(--academic-navy);
-    background: var(--academic-off-white);
+    color: var(--foreground);
+    background: var(--background);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;

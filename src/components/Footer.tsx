@@ -15,7 +15,7 @@ export default function Footer () {
     }
 
     return (
-        <footer className="bg-academic-navy border-t border-academic-medium-blue/30">
+        <footer className="bg-academic-off-white dark:bg-academic-navy border-t border-academic-medium-blue/30 text-academic-navy dark:text-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Main Footer Content */}
                 <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -32,26 +32,26 @@ export default function Footer () {
                         <div className="space-y-3">
                             <div className="flex items-center space-x-3">
                                 <Phone className="w-5 h-5 text-academic-gold" />
-                                <a href="tel:(925)237-1327" className="text-white hover:text-academic-gold transition-colors font-medium">
+                <a href="tel:(925)237-1327" className="hover:text-academic-gold transition-colors font-medium">
                                     (925) 237-1327
                                 </a>
                             </div>
                             <div className="flex items-center space-x-3">
                                 <Mail className="w-5 h-5 text-academic-gold" />
-                                <a href="mailto:tutor@thebayareatutor.com" className="text-white hover:text-academic-gold transition-colors font-medium">
+                                <a href="mailto:tutor@thebayareatutor.com" className="hover:text-academic-gold transition-colors font-medium">
                                     tutor@thebayareatutor.com
                                 </a>
                             </div>
                             <div className="flex items-center space-x-3">
                                 <MapPin className="w-5 h-5 text-academic-gold" />
-                                <span className="text-white font-medium">Bay Area • In-Person* & Online</span>
+                                <span className="font-medium">Bay Area • In-Person* & Online</span>
                             </div>
                         </div>
                     </div>
 
                     {/* Services */}
                     <div>
-                        <h4 className="text-lg font-semibold text-white mb-6 title-font">Tutoring Services</h4>
+                        <h4 className="text-lg font-semibold mb-6 title-font">Tutoring Services</h4>
                         <ul className="space-y-3">
                             <li>
                                 <button
@@ -90,7 +90,7 @@ export default function Footer () {
 
                     {/* Test Types */}
                     <div>
-                        <h4 className="text-lg font-semibold text-white mb-6 title-font">Test Types</h4>
+                        <h4 className="text-lg font-semibold mb-6 title-font">Test Types</h4>
                         <ul className="space-y-3">
                             <li className="text-gray-400 text-sm">SAT Prep</li>
                             <li className="text-gray-400 text-sm">ACT Prep</li>
@@ -105,7 +105,7 @@ export default function Footer () {
                 <div className="border-t border-academic-medium-blue/30 py-8">
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
                         <div className="text-center sm:text-left">
-                            <h4 className="text-lg font-semibold text-white mb-2 title-font">Start Your Academic Success Today</h4>
+                            <h4 className="text-lg font-semibold mb-2 title-font">Start Your Academic Success Today</h4>
                             <p className="text-gray-400 text-sm">Get the best tutoring support in the Bay Area</p>
                         </div>
                         <div className="flex flex-col sm:flex-row items-center gap-4">
