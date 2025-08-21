@@ -15,6 +15,7 @@
     --academic-gold: #D4AF37;
     --academic-light-gold: #E6C757;
     --academic-dark-gold: #B8941F;
+    --academic-off-white: #F8F9FA;
 }
 
 * {
@@ -28,8 +29,8 @@ html {
 }
 
 body {
-    color: white;
-    background: var(--academic-navy);
+    color: var(--academic-navy);
+    background: var(--academic-off-white);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -95,18 +96,18 @@ body {
 }
 
 .academic-card {
-    background: rgba(42, 52, 65, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 12px;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(11, 20, 38, 0.1);
     transition: all 0.3s ease;
 }
 
 .academic-card:hover {
-    background: rgba(42, 52, 65, 0.9);
-    border-color: rgba(212, 175, 55, 0.3);
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(11, 20, 38, 0.3);
     transform: translateY(-4px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
 }
 
 .text-gradient {
@@ -148,7 +149,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--academic-dark-blue);
+    background: var(--academic-off-white);
 }
 
 ::-webkit-scrollbar-thumb {

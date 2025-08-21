@@ -9,8 +9,8 @@ interface CalModalProps {
 
 export default function CalModal ({ url, onClose }: CalModalProps) {
   return (
-    <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/60 backdrop-blur-md p-4">
-      <div className="w-full max-w-5xl h-[90vh] bg-white rounded-lg overflow-hidden relative">
+    <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/60 backdrop-blur-md p-4 md:p-0">
+      <div className="w-full h-full md:h-[90vh] bg-white rounded-lg md:rounded-none overflow-hidden relative">
         <Button
           onClick={onClose}
           variant="secondary"
