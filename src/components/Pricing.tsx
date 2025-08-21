@@ -3,7 +3,7 @@
 import { Calendar } from 'lucide-react'
 import { siteContent } from '@/data/siteContent'
 
-export default function Pricing() {
+export default function Pricing () {
     const { subheading, plans } = siteContent.pricing
 
     const scrollToContact = () => {
@@ -26,7 +26,15 @@ export default function Pricing() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {plans.map(plan => (
-                        <div key={plan.id} className="academic-card p-8 text-center academic-hover">
+                        <div
+                            key={plan.id}
+                            className={`academic-card p-8 text-center academic-hover relative ${plan.popular ? 'border-2 border-academic-gold' : ''}`}
+                        >
+                            {plan.popular && (
+                                <span className="absolute top-4 right-4 bg-academic-gold text-academic-navy text-xs font-semibold px-3 py-1 rounded-full">
+                                    Most Popular
+                                </span>
+                            )}
                             <h3 className="text-xl font-bold text-white mb-4 title-font">{plan.name}</h3>
                             <div className="text-4xl font-bold text-academic-gold mb-4">
                                 ${plan.price}

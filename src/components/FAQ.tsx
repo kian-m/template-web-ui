@@ -17,8 +17,8 @@ interface FAQItem {
     answer: string
 }
 
-export default function FAQ() {
-    const [openItem, setOpenItem] = useState<number | null>(null)
+export default function FAQ () {
+    const [ openItem, setOpenItem ] = useState<number | null>(null)
 
     const toggleItem = (index: number) => {
         setOpenItem(openItem === index ? null : index)
