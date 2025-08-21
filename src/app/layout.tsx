@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { CalProvider } from '@/components/CalProvider'
+import { ThemeProvider } from 'next-themes'
 
 export const metadata: Metadata = {
     title: 'Bay Area Academic Tutoring | SAT, ACT & School Support | Expert Private Tutor',
@@ -29,7 +30,6 @@ export const metadata: Metadata = {
         description: 'UC Berkeley graduate providing expert tutoring for SAT, ACT, and academic support',
         images: ['/og-image.jpg'],
     },
-    viewport: 'width=device-width, initial-scale=1',
     robots: {
         index: true,
         follow: true,
@@ -49,7 +49,7 @@ export default function RootLayout ({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en" className="scroll-smooth">
+        <html lang="en" className="scroll-smooth" suppressHydrationWarning>
         <head>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -80,10 +80,12 @@ export default function RootLayout ({
                 }}
             />
         </head>
-        <body className="bg-academic-navy text-white antialiased">
-        <CalProvider>
-            {children}
-        </CalProvider>
+        <body className="antialiased bg-background text-foreground">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <CalProvider>
+                {children}
+            </CalProvider>
+        </ThemeProvider>
         </body>
         </html>
     )
