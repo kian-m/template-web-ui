@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    darkMode: 'class',
     content: [
         './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
         './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -17,9 +18,12 @@ module.exports = {
                     'light-gold': '#E6C757',
                     'dark-gold': '#B8941F',
                     white: '#FFFFFF',
-                    'off-white': '#F8F9FA',
+                    'off-white': '#F5F1E6',
                     gray: '#6C757D',
-                }
+                },
+                background: 'var(--background)',
+                foreground: 'var(--foreground)',
+                muted: 'var(--muted)',
             },
             fontFamily: {
                 'title': ['Playfair Display', 'serif'],

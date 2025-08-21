@@ -14,7 +14,7 @@ export default function Contact () {
     const { open } = useCal()
 
     return (
-        <section id="contact" className="py-20 lg:py-32 bg-academic-navy">
+        <section id="contact" className="py-20 lg:py-32 bg-background dark:bg-academic-navy">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-16">
@@ -22,10 +22,10 @@ export default function Contact () {
                             <ContactIcon />
                         </div>
                         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 title-font">
-                            <span className="text-white">Schedule Your</span>
-                            <span className="block text-gradient">Academic Success</span>
+                            <span className="text-foreground dark:text-white">Schedule Your</span>
+                            <span className="block text-academic-gold dark:text-gradient">Academic Success</span>
                         </h2>
-                        <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
+                        <p className="text-lg sm:text-xl text-academic-medium-blue dark:text-academic-off-white max-w-3xl mx-auto">
                             Take the first step toward academic excellence. Contact me to discuss your goals and start your journey to better grades and test scores.
                         </p>
                     </div>
@@ -34,66 +34,66 @@ export default function Contact () {
                         {/* Contact Information */}
                         <div className="space-y-8">
                             <div className="academic-card p-8">
-                                <h3 className="text-2xl font-bold text-white mb-6 title-font">Contact Information</h3>
+                                <h3 className="text-2xl font-bold text-foreground dark:text-white mb-6 title-font">Contact Information</h3>
 
                                 <div className="space-y-6">
                                     <div className="flex items-start space-x-4">
                                         <Phone className="w-6 h-6 text-academic-gold mt-1 flex-shrink-0" />
                                         <div>
-                                            <div className="text-white font-semibold mb-1">Phone</div>
-                                            <div className="text-gray-300">(925) 237-1327</div>
-                                            <div className="text-sm text-gray-400 mt-1">Call or text for quick responses</div>
+                                            <div className="text-foreground dark:text-white font-semibold mb-1">Phone</div>
+                                            <div className="text-academic-medium-blue dark:text-academic-off-white">(925) 237-1327</div>
+                                            <div className="text-sm text-academic-medium-blue dark:text-academic-off-white mt-1">Call or text for quick responses</div>
                                         </div>
                                     </div>
 
                                     <div className="flex items-start space-x-4">
                                         <Mail className="w-6 h-6 text-academic-gold mt-1 flex-shrink-0" />
                                         <div>
-                                            <div className="text-white font-semibold mb-1">Email</div>
-                                            <div className="text-gray-300">tutor@thebayareatutor.com</div>
-                                            <div className="text-sm text-gray-400 mt-1">I respond within 24 hours</div>
+                                            <div className="text-foreground dark:text-white font-semibold mb-1">Email</div>
+                                            <div className="text-academic-medium-blue dark:text-academic-off-white">tutor@thebayareatutor.com</div>
+                                            <div className="text-sm text-academic-medium-blue dark:text-academic-off-white mt-1">I respond within 24 hours</div>
                                         </div>
                                     </div>
 
                                     <div className="flex items-start space-x-4">
                                         <Clock className="w-6 h-6 text-academic-gold mt-1 flex-shrink-0" />
                                         <div>
-                                            <div className="text-white font-semibold mb-1">Availability</div>
-                                            <div className="text-gray-300">Flexible scheduling</div>
-                                            <div className="text-sm text-gray-400 mt-1">Evenings, weekends, and online sessions</div>
+                                            <div className="text-foreground dark:text-white font-semibold mb-1">Availability</div>
+                                            <div className="text-academic-medium-blue dark:text-academic-off-white">Flexible scheduling</div>
+                                            <div className="text-sm text-academic-medium-blue dark:text-academic-off-white mt-1">Evenings, weekends, and online sessions</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="academic-card p-8">
-                                <h3 className="text-xl font-bold text-white mb-4 flex items-center title-font">
+                                <h3 className="text-xl font-bold text-foreground dark:text-white mb-4 flex items-center title-font">
                                     <User className="w-6 h-6 text-academic-gold mr-3" />
                                     What You Get
                                 </h3>
                                 <div className="space-y-4">
                                     <div className="flex items-start">
                                         <div className="w-2 h-2 bg-academic-gold rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                        <div className="text-gray-300 text-sm">
-                                            <span className="text-white font-medium">Free 30-minute consultation</span> to discuss your goals and challenges
+                                        <div className="text-academic-medium-blue dark:text-academic-off-white text-sm">
+                                            <span className="text-foreground dark:text-white font-medium">Free 30-minute consultation</span> to discuss your goals and challenges
                                         </div>
                                     </div>
                                     <div className="flex items-start">
                                         <div className="w-2 h-2 bg-academic-gold rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                        <div className="text-gray-300 text-sm">
-                                            <span className="text-white font-medium">Personalized learning plan</span> that works with your school curriculum
+                                        <div className="text-academic-medium-blue dark:text-academic-off-white text-sm">
+                                            <span className="text-foreground dark:text-white font-medium">Personalized learning plan</span> that works with your school curriculum
                                         </div>
                                     </div>
                                     <div className="flex items-start">
                                         <div className="w-2 h-2 bg-academic-gold rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                        <div className="text-gray-300 text-sm">
-                                            <span className="text-white font-medium">Flexible scheduling</span> for your busy lifestyle
+                                        <div className="text-academic-medium-blue dark:text-academic-off-white text-sm">
+                                            <span className="text-foreground dark:text-white font-medium">Flexible scheduling</span> for your busy lifestyle
                                         </div>
                                     </div>
                                     <div className="flex items-start">
                                         <div className="w-2 h-2 bg-academic-gold rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                        <div className="text-gray-300 text-sm">
-                                            <span className="text-white font-medium">Ongoing support</span> between sessions via email
+                                        <div className="text-academic-medium-blue dark:text-academic-off-white text-sm">
+                                            <span className="text-foreground dark:text-white font-medium">Ongoing support</span> between sessions via email
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@ export default function Contact () {
 
                         {/* Scheduling Section */}
                         <div className="academic-card p-8 flex flex-col justify-center text-center">
-                            <p className="text-gray-300 mb-6">
+                            <p className="text-academic-medium-blue dark:text-academic-off-white mb-6">
                                 Ready to get started? Schedule a free consultation to discuss your goals.
                             </p>
                             <button

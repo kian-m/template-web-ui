@@ -30,7 +30,7 @@ export default function FAQ () {
     }))
 
     return (
-        <section id="faq" className="py-20 lg:py-32 bg-academic-dark-blue">
+        <section id="faq" className="py-20 lg:py-32 bg-background dark:bg-academic-dark-blue">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-16">
@@ -38,10 +38,10 @@ export default function FAQ () {
                             <FAQIcon />
                         </div>
                         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 title-font">
-                            <span className="text-white">Frequently Asked</span>
-                            <span className="block text-gradient">Questions</span>
+                            <span className="text-foreground dark:text-white">Frequently Asked</span>
+                            <span className="block text-academic-gold dark:text-gradient">Questions</span>
                         </h2>
-                        <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto">
+                        <p className="text-lg sm:text-xl text-academic-medium-blue dark:text-academic-off-white max-w-2xl mx-auto">
                             Get answers to common questions about my tutoring services and approach
                         </p>
                     </div>
@@ -53,7 +53,7 @@ export default function FAQ () {
                                     onClick={() => toggleItem(index)}
                                     className="w-full p-6 text-left flex items-center justify-between focus:outline-none"
                                 >
-                                    <h3 className="text-lg font-semibold text-white pr-4 title-font">
+                                    <h3 className="text-lg font-semibold text-foreground dark:text-white pr-4 title-font">
                                         {faq.question}
                                     </h3>
                                     <div className="text-academic-gold flex-shrink-0">
@@ -67,7 +67,7 @@ export default function FAQ () {
 
                                 <div className={`faq-content ${openItem === index ? 'open' : ''}`}>
                                     <div className="px-6 pb-6">
-                                        <p className="text-gray-300 leading-relaxed">
+                                        <p className="text-academic-medium-blue dark:text-academic-off-white leading-relaxed">
                                             {faq.answer}
                                         </p>
                                     </div>
@@ -78,8 +78,8 @@ export default function FAQ () {
 
                     <div className="mt-12 text-center">
                         <div className="inline-block academic-card p-6">
-                            <h3 className="text-xl font-bold text-white mb-3 title-font">Still have questions?</h3>
-                            <p className="text-gray-300 mb-4">
+                            <h3 className="text-xl font-bold text-foreground dark:text-white mb-3 title-font">Still have questions?</h3>
+                            <p className="text-academic-medium-blue dark:text-academic-off-white mb-4">
                                 Contact me directly to discuss your specific needs and goals
                             </p>
                             <button

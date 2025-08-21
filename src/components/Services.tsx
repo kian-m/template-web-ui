@@ -60,14 +60,14 @@ export default function Services () {
     ]
 
     return (
-        <section id="services" className="py-20 lg:py-32 bg-academic-dark-blue">
+        <section id="services" className="py-20 lg:py-32 bg-background dark:bg-academic-dark-blue">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 title-font">
-                        <span className="text-white">Comprehensive Tutoring</span>
-                        <span className="block text-gradient">Services</span>
+                        <span className="text-foreground dark:text-white">Comprehensive Tutoring</span>
+                        <span className="block text-academic-gold dark:text-gradient">Services</span>
                     </h2>
-                    <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
+                    <p className="text-lg sm:text-xl text-academic-medium-blue dark:text-academic-off-white max-w-3xl mx-auto">
                         You get expert support for standardized tests and academic success. I provide personalized tutoring that works with your schedule and learning style.
                     </p>
                 </div>
@@ -79,15 +79,15 @@ export default function Services () {
                             <div className="text-academic-gold mb-6">
                                 {service.icon}
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-4 title-font">
+                            <h3 className="text-xl font-bold text-foreground dark:text-white mb-4 title-font">
                                 {service.title}
                             </h3>
-                            <p className="text-gray-300 mb-6 leading-relaxed">
+                            <p className="text-academic-medium-blue dark:text-academic-off-white mb-6 leading-relaxed">
                                 {service.description}
                             </p>
                             <ul className="space-y-2">
                                 {service.features.map((feature, idx) => (
-                                    <li key={idx} className="text-sm text-gray-400 flex items-start">
+                                    <li key={idx} className="text-sm text-academic-medium-blue dark:text-academic-off-white flex items-start">
                                         <div className="w-2 h-2 bg-academic-gold rounded-full mt-1 mr-3 flex-shrink-0"></div>
                                         {feature}
                                     </li>
@@ -98,26 +98,26 @@ export default function Services () {
                 </div>
 
                 {/* Test Types & Academic Support */}
-                <div className="bg-academic-medium-blue/50 backdrop-blur-sm rounded-2xl p-8 lg:p-12 mb-20">
+                <div className="bg-blue-100 dark:bg-academic-medium-blue/50 backdrop-blur-sm rounded-2xl p-8 lg:p-12 mb-20">
                     <div className="text-center mb-12">
-                        <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 title-font">
+                        <h3 className="text-2xl lg:text-3xl font-bold text-foreground dark:text-white mb-4 title-font">
                             Complete Test Prep & Academic Support
                         </h3>
-                        <p className="text-lg text-gray-300">
+                        <p className="text-lg text-academic-medium-blue dark:text-academic-off-white">
                             You'll master every test type and subject with expert guidance
                         </p>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {testTypes.map((test, index) => (
-                            <div key={index} className="bg-academic-navy/30 rounded-xl p-6 border border-academic-gold/20 hover:border-academic-gold/40 transition-all duration-300">
+                            <div key={index} className="bg-blue-200 dark:bg-academic-dark-blue rounded-xl p-6 border border-academic-gold/20 hover:border-academic-gold/40 transition-all duration-300">
                                 <div className="text-academic-gold mb-4">
                                     {test.icon}
                                 </div>
-                                <h4 className="text-lg font-semibold text-white mb-2 title-font">
+                                <h4 className="text-lg font-semibold text-foreground dark:text-white mb-2 title-font">
                                     {test.name}
                                 </h4>
-                                <p className="text-sm text-gray-400">
+                                <p className="text-sm text-academic-medium-blue dark:text-academic-off-white">
                                     {test.topics}
                                 </p>
                             </div>
@@ -127,10 +127,10 @@ export default function Services () {
 
                 {/* Tutoring Locations */}
                 <div className="text-center mb-12">
-                    <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 title-font">
+                    <h3 className="text-2xl lg:text-3xl font-bold text-foreground dark:text-white mb-4 title-font">
                         Flexible Learning Locations
                     </h3>
-                    <p className="text-lg text-gray-300">
+                    <p className="text-lg text-academic-medium-blue dark:text-academic-off-white">
                         Choose the environment that works best for you
                     </p>
                 </div>
@@ -149,23 +149,23 @@ export default function Services () {
                             <div className="text-academic-gold mb-4 flex justify-center">
                                 {location.icon}
                             </div>
-                            <h4 className="text-lg font-semibold text-white mb-2 title-font">
+                            <h4 className="text-lg font-semibold text-foreground dark:text-white mb-2 title-font">
                                 {location.name}
                             </h4>
-                            <p className="text-sm text-gray-400">
+                            <p className="text-sm text-academic-medium-blue dark:text-academic-off-white">
                                 {location.description}
                             </p>
                         </div>
                     ))}
                 </div>
-                <p className="mt-6 text-center text-xs text-gray-400">
+                <p className="mt-6 text-center text-xs text-academic-medium-blue dark:text-academic-off-white">
                     *In-person sessions may include additional travel fees.
                 </p>
 
                 <div className="mt-12 text-center">
                     <div className="inline-flex items-center space-x-2 bg-academic-gold/20 backdrop-blur-sm border border-academic-gold/30 rounded-full px-6 py-3">
                         <Globe className="w-5 h-5 text-academic-gold" />
-                        <span className="text-white font-medium">Serving the entire Bay Area and beyond</span>
+                        <span className="text-foreground dark:text-white font-medium">Serving the entire Bay Area and beyond</span>
                     </div>
                 </div>
             </div>
