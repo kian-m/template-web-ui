@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { AnalyticsProvider } from '../../analytics/tracking.hooks'
 import { CalProvider } from '@/components/CalProvider'
 import { ThemeProvider } from 'next-themes'
 
@@ -82,6 +83,7 @@ export default function RootLayout ({
         </head>
         <body className="antialiased bg-background text-foreground">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <AnalyticsProvider />
             <CalProvider>
                 {children}
             </CalProvider>
