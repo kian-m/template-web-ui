@@ -34,16 +34,9 @@ const PricingCard = ({ plan }: PricingCardProps) => {
                     ))}
                 </ul>
 
-                {plan.sessions && plan.sessions > 1 && (
-                    <div className="mb-6 text-center">
-                        <p className="text-lg font-semibold text-foreground dark:text-white">
-                            Total: ${plan.price * plan.sessions}
-                        </p>
-                        {plan.savings && (
-                            <p className="text-academic-medium-blue dark:text-academic-off-white text-sm">
-                                You save ${plan.savings}
-                            </p>
-                        )}
+                {plan.sessions && plan.sessions > 1 && plan.savings && (
+                    <div className="mb-6 text-center bg-academic-gold text-academic-navy font-semibold py-2 rounded">
+                        You save ${plan.savings}
                     </div>
                 )}
 
