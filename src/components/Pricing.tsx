@@ -3,9 +3,11 @@
 import PricingCard from './ui/PricingCard'
 import { siteContent } from '@/data/siteContent'
 import Button from './ui/Button'
+import { useCal } from './CalProvider'
 
 export default function Pricing () {
   const { heading, subheading, plans } = siteContent.pricing
+  const { open } = useCal()
   return (
     <section id="pricing" className="py-16 bg-background dark:bg-academic-navy">
       <div className="container mx-auto px-4">
@@ -25,7 +27,13 @@ export default function Pricing () {
         <p className="text-academic-medium-blue dark:text-academic-off-white mb-4">
           In-person pricing is determined on a case-by-case basis. Schedule a consultation to discuss options.
         </p>
-        <Button href="#schedule" variant="primary">Schedule Consultation</Button>
+        <Button
+          onClick={() => open('https://cal.com/thebayarea/consultation?embed=1')}
+          variant="primary"
+          className="schedule-trigger"
+        >
+          Schedule Now
+        </Button>
       </div>
     </section>
   )
