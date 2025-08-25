@@ -89,13 +89,15 @@ export default function Header () {
                             >
                                 FAQ
                             </button>
-                            <button
-                                onClick={handleScheduleClick}
+                            <a
+                                href="https://cal.com/thebayarea"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="schedule-trigger academic-button px-6 py-2 text-sm font-semibold rounded-md flex items-center space-x-2"
                             >
                                 <Calendar className="w-4 h-4" />
                                 <span>Schedule Now</span>
-                            </button>
+                            </a>
                             <ThemeToggle />
                         </div>
 
@@ -146,13 +148,15 @@ export default function Header () {
 
             {/* Floating Schedule Button */}
             {showFloating && (
-                <button
-                    onClick={handleScheduleClick}
+                <a
+                    href="https://cal.com/thebayarea"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="schedule-button academic-button px-4 py-3 rounded-full flex items-center justify-center space-x-2 animate-academic-glow"
                 >
                     <Calendar className="w-5 h-5" />
                     <span className="font-semibold">Schedule Now</span>
-                </button>
+                </a>
             )}
         </>
     )
