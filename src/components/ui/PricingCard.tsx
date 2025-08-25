@@ -35,7 +35,7 @@ const PricingCard = ({ plan }: PricingCardProps) => {
                 </ul>
 
                 {plan.sessions && plan.sessions > 1 && plan.savings && (
-                    <div className="mb-6 text-center bg-academic-gold text-academic-navy font-semibold py-2 rounded">
+                    <div className="mb-6 text-center bg-academic-navy text-academic-gold font-semibold py-2 rounded-md shadow-md">
                         You save ${plan.savings}
                     </div>
                 )}
