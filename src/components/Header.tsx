@@ -93,6 +93,11 @@ export default function Header () {
                                 href="https://cal.com/thebayarea"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                onClick={e => {
+                                    e.preventDefault()
+                                    handleScheduleClick()
+                                }}
+                                data-action="schedule_now"
                                 className="schedule-trigger academic-button px-6 py-2 text-sm font-semibold rounded-md flex items-center space-x-2"
                             >
                                 <Calendar className="w-4 h-4" />
@@ -133,6 +138,7 @@ export default function Header () {
                             </button>
                             <button
                                 onClick={handleScheduleClick}
+                                data-action="schedule_now"
                                 className="schedule-trigger academic-button w-full px-4 py-2 text-sm font-semibold rounded-md flex items-center justify-center space-x-2"
                             >
                                 <Calendar className="w-4 h-4" />
