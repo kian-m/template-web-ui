@@ -2,6 +2,7 @@
 
 import PricingCard from './ui/PricingCard'
 import { siteContent } from '@/data/siteContent'
+import Button from './ui/Button'
 
 export default function Pricing () {
   const { heading, subheading, plans } = siteContent.pricing
@@ -20,7 +21,12 @@ export default function Pricing () {
           ))}
         </div>
       </div>
-        <p className="pt-3 text-center text-lg text-academic-medium-blue dark:text-academic-off-white mt-4">*In-person price adjustments are applied based on distance</p>
+      <div className="pt-3 text-center text-lg mt-4">
+        <p className="text-academic-medium-blue dark:text-academic-off-white mb-4">
+          In-person pricing is determined on a case-by-case basis. Schedule a consultation to discuss options.
+        </p>
+        <Button href="#schedule" variant="primary">Schedule Consultation</Button>
+      </div>
     </section>
   )
 }
