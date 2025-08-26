@@ -55,8 +55,8 @@ export default function Services () {
 
     const locations = [
         { icon: <Home className="w-6 h-6" />, name: "Your Home*", description: "Comfortable, familiar environment" },
-        { icon: <Building2 className="w-6 h-6" />, name: "Bay Area Libraries*", description: "Quiet, professional settings" },
-        { icon: <Monitor className="w-6 h-6" />, name: "Online Sessions", description: "Flexible, worldwide availability", popular: true }
+        { icon: <Monitor className="w-6 h-6" />, name: "Online Sessions", description: "Flexible, worldwide availability", popular: true },
+        { icon: <Building2 className="w-6 h-6" />, name: "Bay Area Libraries*", description: "Quiet, professional settings" }
     ]
 
     return (
