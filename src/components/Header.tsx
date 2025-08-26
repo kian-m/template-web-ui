@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, MouseEvent } from 'react'
 import { Menu, X, Calendar } from 'lucide-react'
 import { useCal } from './CalProvider'
 import ThemeToggle from './ThemeToggle'
@@ -28,8 +28,8 @@ export default function Header () {
 
     const { open } = useCal()
 
-    const handleScheduleClick = () => {
-        open()
+    const handleScheduleClick = (url?: string | MouseEvent<HTMLButtonElement>) => {
+        open(typeof url === 'string' ? url : 'https://cal.com/thebayarea?embed=1')
         setIsMobileMenuOpen(false)
     }
 
@@ -89,20 +89,14 @@ export default function Header () {
                             >
                                 FAQ
                             </button>
-                            <a
-                                href="https://cal.com/thebayarea"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={e => {
-                                    e.preventDefault()
-                                    handleScheduleClick()
-                                }}
+                            <button
+                                onClick={() => handleScheduleClick()}
                                 data-action="schedule_now"
                                 className="schedule-trigger academic-button px-6 py-2 text-sm font-semibold rounded-md flex items-center space-x-2"
                             >
                                 <Calendar className="w-4 h-4" />
                                 <span>Schedule Now</span>
-                            </a>
+                            </button>
                             <ThemeToggle />
                         </div>
 
@@ -154,15 +148,13 @@ export default function Header () {
 
             {/* Floating Schedule Button */}
             {showFloating && (
-                <a
-                    href="https://cal.com/thebayarea"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <button
+                    onClick={() => handleScheduleClick()}
                     className="schedule-button academic-button px-4 py-3 rounded-full flex items-center justify-center space-x-2 animate-academic-glow"
                 >
                     <Calendar className="w-5 h-5" />
                     <span className="font-semibold">Schedule Now</span>
-                </a>
+                </button>
             )}
         </>
     )
