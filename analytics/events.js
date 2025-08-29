@@ -18,6 +18,7 @@ export const EVENTS = {
     BOOK_NOW: 'book_now_click',
     CONTACT_CLICK: 'contact_click',
     FAQ_INTERACTION: 'faq_interaction',
+    NOT_FOUND_REDIRECT: 'not_found_redirect',
 }
 
 export function trackPageView (props) {
@@ -86,4 +87,8 @@ export function trackContactClick (props) {
 
 export function trackFaqInteraction (props) {
     captureEvent(EVENTS.FAQ_INTERACTION, props)
+}
+
+export function trackNotFoundRedirect (props) {
+    captureEvent(EVENTS.NOT_FOUND_REDIRECT, props)
 }
