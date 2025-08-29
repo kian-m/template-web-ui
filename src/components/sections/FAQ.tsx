@@ -30,6 +30,7 @@ const FAQSection = ({ heading, subheading, faqs }: FAQProps) => {
                     <a
                         href="#schedule"
                         className="inline-block py-2 px-6 text-navy-800 border border-navy-800 rounded-md font-medium hover:bg-navy-800 hover:text-white transition-colors"
+                        data-ph-event="faq_contact_direct_click"
                     >
                         Contact me directly
                     </a>

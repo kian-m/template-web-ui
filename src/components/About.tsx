@@ -174,6 +174,7 @@ export default function About () {
                             <button
                                 onClick={() => open()}
                                 className="schedule-trigger academic-button px-8 py-3 text-lg font-semibold rounded-lg"
+                                data-ph-event="about_schedule_free_consultation_click"
                             >
                                 Schedule Your Free Consultation
                             </button>
