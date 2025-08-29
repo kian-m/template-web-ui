@@ -57,6 +57,7 @@ export default function Footer () {
                                 <button
                                     onClick={() => scrollToSection('services')}
                                     className="text-academic-medium-blue dark:text-academic-off-white hover:text-academic-gold transition-colors text-sm"
+                                    data-ph-event="footer_test_preparation_click"
                                 >
                                     Test Preparation
                                 </button>
@@ -65,6 +66,7 @@ export default function Footer () {
                                 <button
                                     onClick={() => scrollToSection('services')}
                                     className="text-academic-medium-blue dark:text-academic-off-white hover:text-academic-gold transition-colors text-sm"
+                                    data-ph-event="footer_academic_support_click"
                                 >
                                     Academic Support
                                 </button>
@@ -73,6 +75,7 @@ export default function Footer () {
                                 <button
                                     onClick={() => scrollToSection('services')}
                                     className="text-academic-medium-blue dark:text-academic-off-white hover:text-academic-gold transition-colors text-sm"
+                                    data-ph-event="footer_personalized_learning_click"
                                 >
                                     Personalized Learning
                                 </button>
@@ -81,6 +84,7 @@ export default function Footer () {
                                 <button
                                     onClick={() => scrollToSection('contact')}
                                     className="text-academic-medium-blue dark:text-academic-off-white hover:text-academic-gold transition-colors text-sm"
+                                    data-ph-event="footer_free_consultation_click"
                                 >
                                     Free Consultation
                                 </button>
@@ -115,6 +119,7 @@ export default function Footer () {
                         <button
                             onClick={scrollToTop}
                             className="flex items-center space-x-2 text-academic-medium-blue dark:text-academic-off-white hover:text-academic-gold transition-colors text-sm"
+                            data-ph-event="footer_back_to_top_click"
                         >
                             <span>Back to Top</span>
                             <ArrowUp className="w-4 h-4" />

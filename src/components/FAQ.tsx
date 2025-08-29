@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react'
 import { siteContent } from '@/data/siteContent'
+import { createSlug } from '@/utils/formatters'
+import { captureEvent } from '../../analytics/utils'
 
 // FAQ SVG Icon
 const FAQIcon = () => (
@@ -21,7 +23,14 @@ export default function FAQ () {
     const [ openItem, setOpenItem ] = useState<number | null>(null)
 
     const toggleItem = (index: number) => {
-        setOpenItem(openItem === index ? null : index)
+        const isOpening = openItem !== index
+        setOpenItem(isOpening ? index : null)
+        const faq = faqs[index]
+        captureEvent(`faq_toggle_${createSlug(faq.question)}` , {
+            faq_id: createSlug(faq.question),
+            question: faq.question,
+            state: isOpening ? 'open' : 'close',
+        })
     }
 
     const faqs: FAQItem[] = siteContent.faq.items.map(item => ({
@@ -88,6 +97,7 @@ export default function FAQ () {
                                     if (element) element.scrollIntoView({ behavior: 'smooth' })
                                 }}
                                 className="academic-button px-6 py-3 font-semibold rounded-lg"
+                                data-ph-event="faq_ask_question_click"
                             >
                                 Ask Your Question
                             </button>
