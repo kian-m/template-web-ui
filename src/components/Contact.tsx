@@ -108,6 +108,7 @@ export default function Contact () {
                             <button
                                 onClick={() => open()}
                                 className="schedule-trigger academic-button px-6 py-4 text-lg font-semibold rounded-lg flex items-center justify-center space-x-2 mx-auto"
+                                data-ph-event="contact_schedule_now_click"
                             >
                                 <Calendar className="w-5 h-5" />
                                 <span>Schedule Now</span>

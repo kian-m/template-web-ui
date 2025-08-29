@@ -31,6 +31,7 @@ export default function Pricing () {
           onClick={() => open('https://cal.com/thebayarea/consultation?embed=1')}
           variant="primary"
           className="schedule-trigger"
+          phEvent="pricing_schedule_now_click"
         >
           Schedule Now
         </Button>
