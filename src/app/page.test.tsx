@@ -3,6 +3,10 @@ import Page from '../app/page'
 import { CalProvider } from '@/components/CalProvider'
 import { ThemeProvider } from 'next-themes'
 
+jest.mock('lucide-react', () => new Proxy({}, {
+    get: () => () => null,
+}))
+
 beforeAll(() => {
     class MockIntersectionObserver {
         observe () {}

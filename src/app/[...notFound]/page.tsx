@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { trackNotFoundRedirect } from '@/analytics/events'
+import { trackNotFoundRedirect } from '../../../analytics/events'
 
 export default function NotFoundRedirectPage () {
     const router = useRouter()
