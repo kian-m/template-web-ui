@@ -4,3 +4,14 @@
 // Used for __tests__/testing-library.js
 // Learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom'
+
+// Polyfill required browser APIs for JSDOM
+class IntersectionObserverMock {
+  constructor () {}
+  observe () {}
+  unobserve () {}
+  disconnect () {}
+}
+
+// @ts-ignore
+window.IntersectionObserver = IntersectionObserverMock

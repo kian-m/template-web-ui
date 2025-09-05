@@ -45,6 +45,8 @@ const PricingCard = ({ plan }: PricingCardProps) => {
                     fullWidth
                     onClick={() => open('https://cal.com/thebayarea/1-hour-session?embed=1')}
                     className="schedule-trigger"
+                    phEvent={`pricing_plan_${plan.id}_select`}
+                    phLabel={plan.name}
                 >
                     {plan.cta}
                 </Button>

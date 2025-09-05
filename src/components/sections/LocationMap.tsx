@@ -154,6 +154,7 @@ const LocationMap = ({
                                 <a
                                     href="#schedule"
                                     className="inline-block w-full text-center py-2 bg-yellow-600 text-white rounded-md font-medium hover:bg-yellow-700 transition-colors"
+                                    data-ph-event="location_schedule_here_click"
                                 >
                                     Schedule Here
                                 </a>
@@ -165,6 +166,7 @@ const LocationMap = ({
                         <p className="text-navy-600 mb-4">Can't find a convenient location? I'm flexible and may be able to meet at other libraries or quiet study spaces in the Bay Area.</p>
                         <button
                             className="bg-navy-700 hover:bg-navy-800 text-white font-medium py-3 px-6 rounded-md transition-colors"
+                            data-ph-event="location_cta_click"
                         >
                             {ctaText}
                         </button>
