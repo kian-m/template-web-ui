@@ -19,9 +19,10 @@ export function initPostHog () {
     try {
         posthog.init(POSTHOG_KEY, {
             api_host: POSTHOG_HOST,
-            capture_pageview: false,
-            autocapture: false,
+            capture_pageview: true,
+            autocapture: true,
             session_recording: {
+                enabled: true,
                 maskAllInputs: false,
             },
             debug: !isProd,

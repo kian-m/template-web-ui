@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { FAQ } from '@/types';
+import { createSlug } from '@/utils/formatters';
+import { captureEvent } from '../../../analytics/utils';
 
 interface FAQItemProps {
     faq: FAQ;
@@ -14,7 +16,15 @@ const FAQItem = ({ faq }: FAQItemProps) => {
         <div className="border-b border-gray-200 last:border-b-0">
             <button
                 className="flex justify-between items-center w-full py-4 text-left"
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => {
+                    const opening = !isOpen;
+                    setIsOpen(opening);
+                    captureEvent(`faq_toggle_${createSlug(faq.question)}`, {
+                        faq_id: faq.id,
+                        question: faq.question,
+                        state: opening ? 'open' : 'close',
+                    });
+                }}
                 aria-expanded={isOpen}
             >
                 <h3 className="text-lg font-medium text-navy-800">{faq.question}</h3>

@@ -16,7 +16,7 @@ import {
     trackContactClick,
     trackFaqInteraction,
 } from './events.js'
-import { identifyUser, setupErrorTracking, timeOnPage, resetTimer, trackPerformance } from './utils.js'
+import { identifyUser, setupErrorTracking, timeOnPage, resetTimer, trackPerformance, captureEvent } from './utils.js'
 
 export function useAnalytics (userId) {
     useEffect(() => {
@@ -45,6 +45,8 @@ export function useAnalytics (userId) {
             const action = target.dataset.action
             if (action === 'schedule_now') {
                 trackScheduleNow({ page_location, timestamp })
+                const custom = target.dataset.phEvent
+                if (custom) captureEvent(custom, { page_location, timestamp, label: target.dataset.phLabel || target.textContent })
                 return
             }
 
@@ -55,6 +57,14 @@ export function useAnalytics (userId) {
                     group: target.dataset.group,
                     timestamp,
                 })
+                const custom = target.dataset.phEvent
+                if (custom) captureEvent(custom, { page_location, timestamp, label: target.dataset.phLabel || target.textContent })
+                return
+            }
+
+            const customEvent = target.dataset.phEvent
+            if (customEvent) {
+                captureEvent(customEvent, { page_location, timestamp, label: target.dataset.phLabel || target.textContent || target.href })
                 return
             }
 

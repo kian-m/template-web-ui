@@ -239,6 +239,7 @@ const ContactCTA = ({ heading, subheading, email, phone, availability, ctaText }
                                                     type="submit"
                                                     className="w-full py-3 px-6 bg-yellow-600 hover:bg-yellow-700 text-white font-medium rounded-md transition-colors disabled:opacity-75"
                                                     disabled={isSubmitting}
+                                                    data-ph-event="contact_form_submit"
                                                 >
                                                     {isSubmitting ? 'Submitting...' : ctaText}
                                                 </button>

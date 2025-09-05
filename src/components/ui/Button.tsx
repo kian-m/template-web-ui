@@ -10,6 +10,8 @@ interface ButtonProps {
     type?: 'button' | 'submit' | 'reset';
     disabled?: boolean;
     className?: string;
+    phEvent?: string;
+    phLabel?: string;
 }
 
 const Button = ({
@@ -22,6 +24,8 @@ const Button = ({
                     type = 'button',
                     disabled = false,
                     className = '',
+                    phEvent,
+                    phLabel,
                 }: ButtonProps) => {
     // Base classes
     const baseClasses = 'font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
@@ -58,6 +62,8 @@ const Button = ({
                 href={href}
                 className={combinedClasses}
                 onClick={onClick}
+                data-ph-event={phEvent}
+                data-ph-label={phLabel}
             >
                 {children}
             </a>
@@ -71,6 +77,8 @@ const Button = ({
             className={combinedClasses}
             onClick={onClick}
             disabled={disabled}
+            data-ph-event={phEvent}
+            data-ph-label={phLabel}
         >
             {children}
         </button>

@@ -110,6 +110,7 @@ export default function Hero () {
                         <button
                             onClick={() => open()}
                             className="schedule-trigger academic-button px-8 py-4 text-lg font-semibold rounded-lg flex items-center space-x-2 w-full sm:w-auto"
+                            data-ph-event="hero_schedule_free_consultation_click"
                         >
                             <span>Schedule Free Consultation</span>
                             <ArrowRight className="w-5 h-5" />
@@ -120,6 +121,7 @@ export default function Hero () {
                                 if (element) element.scrollIntoView({ behavior: 'smooth' })
                             }}
                             className="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-academic-navy/20 dark:border-white/20 text-foreground dark:text-white hover:border-academic-gold/50 hover:bg-academic-gold/10 transition-all duration-300 w-full sm:w-auto"
+                            data-ph-event="hero_view_services_click"
                         >
                             View Services
                         </button>
