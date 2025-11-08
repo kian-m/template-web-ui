@@ -15,8 +15,8 @@ export const siteContent: SiteContent = {
         acceptanceRate: 87 // % of students accepted to target schools
     },
     about: {
-        heading: "Your Child's Success is My Priority",
-        bio: "I'm a UC Berkeley graduate with over 15 years of experience tutoring students in mathematics and physics. My approach focuses on building strong foundations while developing critical thinking skills that extend beyond the classroom.",
+        heading: "Meet the Tutor Behind the Results",
+        bio: "Hi, I'm Amir—a UC Berkeley bioengineering graduate and lifelong tutor who grew up surrounded by siblings and cousins who trusted me to make school make sense. That early love of teaching carried me from community college learning centers in Florida to California before I ultimately settled in the Bay Area. For more than a decade, I've partnered with local tutoring centers and families to deliver upbeat, practical coaching that helps students feel seen, prepared, and proud of their progress.",
         expertise: [
             "Algebra & Geometry",
             "Trigonometry",
@@ -29,23 +29,23 @@ export const siteContent: SiteContent = {
         ],
         approach: {
             heading: "My Teaching Approach",
-            description: "I believe that every student has unique learning needs. My tutoring philosophy centers around:",
+            description: "Years of tutoring in community colleges, Bay Area learning centers, and family homes taught me that every breakthrough starts with trust, curiosity, and a genuine partnership between coach and student.",
             points: [
                 {
-                    title: "Building Strong Foundations",
-                    description: "Ensuring students thoroughly understand core concepts before advancing to more complex topics."
+                    title: "Diagnose & Align",
+                    description: "I listen first, learn your classroom expectations, and set clear goals that make sense for the student and family."
                 },
                 {
-                    title: "Developing Problem-Solving Skills",
-                    description: "Teaching strategies to approach new problems independently and with confidence."
+                    title: "Rebuild Foundations",
+                    description: "We identify gaps and rebuild understanding layer by layer so advanced topics feel approachable."
                 },
                 {
-                    title: "Customized Learning Plans",
-                    description: "Creating personalized study plans based on individual strengths, weaknesses, and goals."
+                    title: "Make Learning Engaging",
+                    description: "Sessions are collaborative, upbeat, and tailored to each student's learning style."
                 },
                 {
-                    title: "Regular Progress Assessment",
-                    description: "Continuous evaluation to ensure improvement and adjust strategies as needed."
+                    title: "Celebrate Growth",
+                    description: "We track wins, refine strategies, and keep momentum going all semester long."
                 }
             ]
         }
@@ -102,8 +102,149 @@ export const siteContent: SiteContent = {
                     "Preparation for college-level mathematics"
                 ]
             }
-        
+
         ],
+    },
+    testimonials: {
+        heading: "Families See the Difference",
+        subheading: "Hear from parents and students who have experienced measurable improvements",
+        items: [
+            {
+                name: "Logan F.",
+                role: "AP Calculus AB & Physics Student",
+                quote: "Amir made Calc AB and Physics enjoyable. Sessions flew by and built my confidence fast."
+            },
+            {
+                name: "Connor J.",
+                role: "AP Calculus BC & Physics Student",
+                quote: "Amir’s guidance helped me excel in Calc BC and Physics. Excited for another year working together."
+            },
+            {
+                name: "Diego R.",
+                role: "Precalculus, Calculus AB, and Honors Physics Student",
+                quote: "From Precalc to Physics, Amir made learning fun. I’ll truly miss his teaching."
+            },
+            {
+                name: "Milan T.",
+                role: "Former Student",
+                quote: "Amir pushed me to do my best. The sessions were always engaging and motivating."
+            },
+            {
+                name: "Clara K.",
+                role: "Former Student",
+                quote: "Our discussions challenged me to think deeper. Amir’s sessions brightened my day."
+            },
+            {
+                name: "Harper N.",
+                role: "Former Student",
+                quote: "Amir made math fun and meaningful all through high school. I couldn’t be more grateful."
+            },
+            {
+                name: "Noel P.",
+                role: "Math & Physics Student",
+                quote: "Amir helped me pass both math and physics when I thought it was impossible."
+            },
+            {
+                name: "Tessa L.",
+                role: "Calculus & Physics Student",
+                quote: "Amir turned calculus into something I looked forward to. His support carried me into physics."
+            },
+            {
+                name: "Kian D.",
+                role: "Honors Precalculus Student",
+                quote: "Amir’s humor and energy made every HPC session exciting. I can’t wait for next year."
+            },
+            {
+                name: "Miles O.",
+                role: "Physics Student",
+                quote: "Amir saved my physics grade and gave me confidence throughout the year."
+            },
+            {
+                name: "Leila V.",
+                role: "Physics Student",
+                quote: "Without Amir I would’ve failed physics. I’ll miss the jokes and encouragement."
+            },
+            {
+                name: "Theo M.",
+                role: "Former Student",
+                quote: "Amir was the physics teacher we all wished we had."
+            },
+            {
+                name: "Jaden C.",
+                role: "Physics & Algebra II Student",
+                quote: "Amir stood by me through physics and algebra. I’ll always value the support and memories."
+            },
+            {
+                name: "Hannah W.",
+                role: "Former Student",
+                quote: "Amir’s guidance gave me the clarity I needed to succeed."
+            },
+            {
+                name: "Maya E.",
+                role: "Calculus Student",
+                quote: "Amir helped me through math this year and I’ll rely on him for Calc next year."
+            },
+            {
+                name: "Sophie T.",
+                role: "Honors Precalculus Student",
+                quote: "Amir guided us through Precalc with patience and humor. Excited for Calc next year."
+            },
+            {
+                name: "Ava Z.",
+                role: "Physics Student",
+                quote: "Physics wasn’t my favorite, but Amir made it manageable and even a little fun."
+            },
+            {
+                name: "Ellie H.",
+                role: "Honors Precalculus & Physics Student",
+                quote: "Amir made HPC and Physics a highlight of my junior year. His wit kept learning fun."
+            },
+            {
+                name: "Zoe N.",
+                role: "Former Student",
+                quote: "Amir explained concepts better than my teachers and kept lessons lighthearted."
+            },
+            {
+                name: "Julia K.",
+                role: "Calculus & Physics Student",
+                quote: "Thanks to Amir, I succeeded in Calc and Physics and enjoyed both along the way."
+            },
+            {
+                name: "Lena S.",
+                role: "Calculus & Physics Student",
+                quote: "Amir made Physics and Calc fun and approachable. I wouldn’t have passed without him."
+            },
+            {
+                name: "Omar L.",
+                role: "Former Student",
+                quote: "Amir’s mix of humor and skill made every session a blast."
+            },
+            {
+                name: "Caleb G.",
+                role: "Physics Student",
+                quote: "Amir helped me understand physics when I needed it most."
+            },
+            {
+                name: "Isaac N.",
+                role: "Physics Student",
+                quote: "Amir’s tutoring kept me from failing physics. I’m incredibly thankful."
+            },
+            {
+                name: "Nina T.",
+                role: "Math & Physics Student",
+                quote: "Amir brought energy and laughter into every math and physics session."
+            },
+            {
+                name: "Clair F.",
+                role: "Physics Student",
+                quote: "Amir made physics click for me. I was never bored, only grateful."
+            },
+            {
+                name: "Lydia D.",
+                role: "Calculus & Physics Student",
+                quote: "Amir explains complex ideas simply and effectively. I always left understanding more."
+            }
+        ]
     },
     locations: {
         heading: "Tutoring Locations",

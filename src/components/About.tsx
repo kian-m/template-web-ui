@@ -1,6 +1,6 @@
 'use client'
 
-import { GraduationCap, Award, Users, TrendingUp, Clock, Target, School, MapPin } from 'lucide-react'
+import { GraduationCap, Award, Users, Clock, School, MapPin } from 'lucide-react'
 import { siteContent } from '@/data/siteContent'
 import { useCal } from './CalProvider'
 
@@ -24,9 +24,9 @@ export default function About () {
 
     const achievements = [
         { icon: <GraduationCap className="w-6 h-6" />, stat: "UC Berkeley", label: "Graduate" },
-        { icon: <Clock className="w-6 h-6" />, stat: "15+", label: "Years Teaching" },
+        { icon: <Clock className="w-6 h-6" />, stat: "10+ Years", label: "Bay Area Tutoring" },
         { icon: <Users className="w-6 h-6" />, stat: "500+", label: "Students Helped" },
-        { icon: <School className="w-6 h-6" />, stat: "Bay Area", label: "Expert" }
+        { icon: <School className="w-6 h-6" />, stat: "Local", label: "Curriculum Expert" }
     ]
 
     const bayAreaExperience = [
@@ -60,13 +60,10 @@ export default function About () {
                                     <h3 className="text-2xl font-bold text-foreground dark:text-white ml-4 title-font">My Teaching Approach</h3>
                                 </div>
                                 <p className="text-academic-medium-blue dark:text-academic-off-white leading-relaxed mb-6">
-                                    You get more than just test prep. I work as your private tutor and academic coach,
-                                    providing support that directly connects to your classroom experience.
-                                    I've worked at tutoring centers and as a private tutor throughout the Bay Area.
+                                    My tutoring style was shaped long before I stepped into a classroom. As the go-to cousin in a bustling family, I learned how to make tricky concepts approachable and fun. Those early kitchen-table lessons led me to community college learning centers in Florida and California, where I honed the art of listening closely and translating complicated ideas into clear steps.
                                 </p>
                                 <p className="text-academic-medium-blue dark:text-academic-off-white leading-relaxed">
-                                    Your success comes from understanding concepts deeply and building confidence.
-                                    I create personalized strategies that work with your learning style and academic goals.
+                                    After graduating from UC Berkeley, I chose to stay in the Bay Area because I love the curiosity and ambition I see in local students. For more than ten years, I’ve partnered with tutoring centers and families across the East Bay to build strong foundations, celebrate small victories, and make sure progress sticks long after the next quiz.
                                 </p>
                             </div>
 
@@ -130,12 +127,10 @@ export default function About () {
                                     <span className="ml-4">Professional Experience</span>
                                 </h3>
                                 <p className="text-academic-medium-blue dark:text-academic-off-white leading-relaxed mb-6">
-                                    I've worked as a private tutor and at established tutoring locations throughout the Bay Area.
-                                    This experience gives me deep insight into local academic standards and teaching methods.
+                                    I launched my professional journey by coaching in community college learning centers, collaborating with faculty, and building resources that helped students feel seen. Bringing that experience home to the Bay Area let me create the same welcoming environment in local tutoring centers and living rooms.
                                 </p>
                                 <p className="text-academic-medium-blue dark:text-academic-off-white leading-relaxed">
-                                    You benefit from my familiarity with Bay Area high schools, teachers, and curricula.
-                                    I know what works and what doesn't in this specific academic environment.
+                                    A decade of working with Bay Area families means I know the teachers, the pacing, and the pressure. I use that insight to anticipate classroom expectations, translate teacher styles, and guide students through rigorous coursework with a steady, encouraging presence.
                                 </p>
                             </div>
                             <div className="space-y-6">
@@ -143,21 +138,21 @@ export default function About () {
                                     <div className="w-2 h-2 bg-academic-gold rounded-full mt-1 flex-shrink-0"></div>
                                     <div>
                                         <div className="text-foreground dark:text-white font-semibold mb-1">Private Tutoring</div>
-                                        <div className="text-academic-medium-blue dark:text-academic-off-white text-sm">One-on-one academic support in homes and libraries</div>
+                                        <div className="text-academic-medium-blue dark:text-academic-off-white text-sm">Customized coaching in homes, libraries, and online with strategies tailored to each student</div>
                                     </div>
                                 </div>
                                 <div className="flex items-start space-x-4">
                                     <div className="w-2 h-2 bg-academic-gold rounded-full mt-1 flex-shrink-0"></div>
                                     <div>
                                         <div className="text-foreground dark:text-white font-semibold mb-1">Tutoring Centers</div>
-                                        <div className="text-academic-medium-blue dark:text-academic-off-white text-sm">Professional tutoring experience at established locations</div>
+                                        <div className="text-academic-medium-blue dark:text-academic-off-white text-sm">Leadership roles in community college learning centers collaborating with faculty and support teams</div>
                                     </div>
                                 </div>
                                 <div className="flex items-start space-x-4">
                                     <div className="w-2 h-2 bg-academic-gold rounded-full mt-1 flex-shrink-0"></div>
                                     <div>
                                         <div className="text-foreground dark:text-white font-semibold mb-1">Curriculum Expertise</div>
-                                        <div className="text-academic-medium-blue dark:text-academic-off-white text-sm">Deep knowledge of Bay Area school programs and standards</div>
+                                        <div className="text-academic-medium-blue dark:text-academic-off-white text-sm">Deep knowledge of Bay Area syllabi, pacing guides, and assessment styles</div>
                                     </div>
                                 </div>
                             </div>

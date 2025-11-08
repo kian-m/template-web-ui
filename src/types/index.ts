@@ -38,6 +38,12 @@ export interface FAQ {
     answer: string;
 }
 
+export interface Testimonial {
+    name: string;
+    role: string;
+    quote: string;
+}
+
 export interface StudentResult {
     id: string;
     beforeGrade: string;
@@ -79,6 +85,11 @@ export interface SiteContent {
         heading: string;
         subheading: string;
         items: Service[];
+    };
+    testimonials: {
+        heading: string;
+        subheading: string;
+        items: Testimonial[];
     };
     locations: {
         heading: string;
