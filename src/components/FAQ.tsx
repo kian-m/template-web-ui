@@ -56,33 +56,40 @@ export default function FAQ () {
                     </div>
 
                     <div className="space-y-4">
-                        {faqs.map((faq, index) => (
-                            <div key={index} className="academic-card academic-hover">
-                                <button
-                                    onClick={() => toggleItem(index)}
-                                    className="w-full p-6 text-left flex items-center justify-between focus:outline-none"
-                                >
-                                    <h3 className="text-lg font-semibold text-foreground dark:text-white pr-4 title-font">
-                                        {faq.question}
-                                    </h3>
-                                    <div className="text-academic-gold flex-shrink-0">
-                                        {openItem === index ? (
-                                            <ChevronUp className="w-6 h-6" />
-                                        ) : (
-                                            <ChevronDown className="w-6 h-6" />
-                                        )}
-                                    </div>
-                                </button>
+                        {faqs.map((faq, index) => {
+                            const faqId = createSlug(faq.question)
+                            const isOpen = openItem === index
+                            return (
+                                <div key={index} className="academic-card academic-hover">
+                                    <button
+                                        onClick={() => toggleItem(index)}
+                                        className="w-full p-6 text-left flex items-center justify-between focus:outline-none"
+                                        data-faq-id={faqId}
+                                        data-ph-event={`faq_toggle_${faqId}`}
+                                        data-ph-label={isOpen ? 'collapse' : 'expand'}
+                                    >
+                                        <h3 className="text-lg font-semibold text-foreground dark:text-white pr-4 title-font">
+                                            {faq.question}
+                                        </h3>
+                                        <div className="text-academic-gold flex-shrink-0">
+                                            {isOpen ? (
+                                                <ChevronUp className="w-6 h-6" />
+                                            ) : (
+                                                <ChevronDown className="w-6 h-6" />
+                                            )}
+                                        </div>
+                                    </button>
 
-                                <div className={`faq-content ${openItem === index ? 'open' : ''}`}>
-                                    <div className="px-6 pb-6">
-                                        <p className="text-academic-medium-blue dark:text-academic-off-white leading-relaxed">
-                                            {faq.answer}
-                                        </p>
+                                    <div className={`faq-content ${isOpen ? 'open' : ''}`}>
+                                        <div className="px-6 pb-6">
+                                            <p className="text-academic-medium-blue dark:text-academic-off-white leading-relaxed">
+                                                {faq.answer}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            )
+                        })}
                     </div>
 
                     <div className="mt-12 text-center">
@@ -98,6 +105,7 @@ export default function FAQ () {
                                 }}
                                 className="academic-button px-6 py-3 font-semibold rounded-lg"
                                 data-ph-event="faq_ask_question_click"
+                                data-ph-label="ask_question"
                             >
                                 Ask Your Question
                             </button>

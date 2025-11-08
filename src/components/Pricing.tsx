@@ -32,6 +32,7 @@ export default function Pricing () {
           variant="primary"
           className="schedule-trigger"
           phEvent="pricing_schedule_now_click"
+          phLabel="schedule_now"
         >
           Schedule Now
         </Button>

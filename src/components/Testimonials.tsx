@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react'
 
 import { siteContent } from '@/data/siteContent'
+import { captureEvent } from '../../analytics/utils'
 
 export default function Testimonials () {
     const { heading, subheading, items } = siteContent.testimonials
@@ -28,11 +29,32 @@ export default function Testimonials () {
     const currentTestimonial = items[currentIndex]
 
     const handlePrevious = () => {
-        setCurrentIndex((prev) => (prev - 1 + items.length) % items.length)
+        const nextIndex = (currentIndex - 1 + items.length) % items.length
+        captureEvent('testimonials_previous_click', {
+            current_index: currentIndex,
+            next_index: nextIndex,
+            testimonial_name: items[nextIndex]?.name,
+        })
+        setCurrentIndex(nextIndex)
     }
 
     const handleNext = () => {
-        setCurrentIndex((prev) => (prev + 1) % items.length)
+        const nextIndex = (currentIndex + 1) % items.length
+        captureEvent('testimonials_next_click', {
+            current_index: currentIndex,
+            next_index: nextIndex,
+            testimonial_name: items[nextIndex]?.name,
+        })
+        setCurrentIndex(nextIndex)
+    }
+
+    const handleSelect = (index: number) => {
+        captureEvent('testimonials_pagination_select', {
+            current_index: currentIndex,
+            next_index: index,
+            testimonial_name: items[index]?.name,
+        })
+        setCurrentIndex(index)
     }
 
     return (
@@ -67,6 +89,8 @@ export default function Testimonials () {
                                 onClick={handlePrevious}
                                 className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-academic-gold text-academic-gold hover:bg-academic-gold hover:text-academic-navy transition-colors"
                                 aria-label="Show previous testimonial"
+                                data-ph-event="testimonials_previous_click"
+                                data-ph-label={currentTestimonial.name}
                             >
                                 <ChevronLeft className="h-6 w-6" />
                             </button>
@@ -76,9 +100,11 @@ export default function Testimonials () {
                                         <button
                                             key={index}
                                             type="button"
-                                            onClick={() => setCurrentIndex(index)}
+                                            onClick={() => handleSelect(index)}
                                             className={`h-2.5 w-3 sm:w-4 rounded-full transition-all ${index === currentIndex ? 'bg-academic-gold' : 'bg-academic-gold/30'}`}
                                             aria-label={`Show testimonial ${index + 1}`}
+                                            data-ph-event="testimonials_pagination_click"
+                                            data-ph-label={items[index]?.name}
                                         />
                                     ))}
                                 </div>
@@ -88,6 +114,8 @@ export default function Testimonials () {
                                 onClick={handleNext}
                                 className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-academic-gold text-academic-gold hover:bg-academic-gold hover:text-academic-navy transition-colors"
                                 aria-label="Show next testimonial"
+                                data-ph-event="testimonials_next_click"
+                                data-ph-label={currentTestimonial.name}
                             >
                                 <ChevronRight className="h-6 w-6" />
                             </button>
