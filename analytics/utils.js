@@ -1,8 +1,16 @@
 import posthog from 'posthog-js'
 import { initPostHog } from './posthog.config.js'
+import { hasRecordingConsent, setRecordingConsent } from './consent.js'
 
-const CONSENT_KEY = 'ph_consent'
 let pageStart = Date.now()
+
+function ensureSessionRecording () {
+    if (typeof posthog?.sessionRecording?.startRecording === 'function') {
+        posthog.sessionRecording.startRecording()
+    } else if (typeof posthog?.startSessionRecording === 'function') {
+        posthog.startSessionRecording()
+    }
+}
 
 export function captureEvent (name, properties = {}) {
     try {
@@ -38,22 +46,26 @@ export function setupErrorTracking () {
 }
 
 export function grantConsent () {
-    localStorage.setItem(CONSENT_KEY, 'true')
+    setRecordingConsent(true)
     posthog.opt_in_capturing()
     initPostHog()
+    ensureSessionRecording()
+    captureEvent('posthog_consent_granted', { timestamp: Date.now() })
 }
 
 export function revokeConsent () {
-    localStorage.setItem(CONSENT_KEY, 'false')
+    captureEvent('posthog_consent_revoked', { timestamp: Date.now() })
+    setRecordingConsent(false)
     posthog.opt_out_capturing()
+    if (typeof posthog?.sessionRecording?.stopRecording === 'function') {
+        posthog.sessionRecording.stopRecording()
+    } else if (typeof posthog?.stopSessionRecording === 'function') {
+        posthog.stopSessionRecording()
+    }
 }
 
 export function hasConsent () {
-    try {
-        return localStorage.getItem(CONSENT_KEY) === 'true'
-    } catch {
-        return false
-    }
+    return hasRecordingConsent()
 }
 
 export function trackPerformance () {

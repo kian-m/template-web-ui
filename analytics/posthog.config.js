@@ -1,4 +1,5 @@
 import posthog from 'posthog-js'
+import { hasRecordingConsent } from './consent.js'
 
 const POSTHOG_KEY = 'phc_VZX1tioRIHsGxMdBVLlW7PEKGOw13antIazxQHTM7V0'
 const POSTHOG_HOST = 'https://us.posthog.com'
@@ -6,16 +7,16 @@ const POSTHOG_HOST = 'https://us.posthog.com'
 const isProd = process.env.NODE_ENV === 'production'
 let initialized = false
 
-function hasConsent () {
-    try {
-        return localStorage.getItem('ph_consent') === 'true'
-    } catch {
-        return false
+function ensureSessionRecording () {
+    if (typeof posthog?.sessionRecording?.startRecording === 'function') {
+        posthog.sessionRecording.startRecording()
+    } else if (typeof posthog?.startSessionRecording === 'function') {
+        posthog.startSessionRecording()
     }
 }
 
 export function initPostHog () {
-    if (typeof window === 'undefined' || initialized || !hasConsent()) return
+    if (typeof window === 'undefined' || initialized || !hasRecordingConsent()) return
     try {
         posthog.init(POSTHOG_KEY, {
             api_host: POSTHOG_HOST,
@@ -28,6 +29,7 @@ export function initPostHog () {
             },
             debug: !isProd,
         })
+        ensureSessionRecording()
         initialized = true
     } catch (error) {
         console.error('PostHog initialization failed', error)
