@@ -1,12 +1,14 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
+import React from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'My Health Portal',
-  description: 'Fitness, Nutrition & Sleep',
+  title: 'clkly | Effortless Link Shortening',
+  description: 'A modern, server-inspired landing for clkly link shortening.',
 };
+
 export default function RootLayout({
   children,
 }: {
@@ -14,7 +16,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
       <head>
         <meta property="og:image" content="/icon.jpg" />
         <link
@@ -39,6 +40,7 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
