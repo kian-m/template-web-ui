@@ -4,7 +4,7 @@ import React, { FormEvent, useEffect, useMemo, useState } from 'react';
 import posthog from 'posthog-js';
 
 const rainbow = ['#c85a1d', '#f2b25d', '#c46cc7'];
-const baseHost = 'https://clk.ly';
+const baseHost = process.env.NEXT_PUBLIC_SHORT_LINK_BASE_URL || 'https://clk.ly';
 let posthogInitialized = false;
 
 function initPosthog() {
@@ -34,11 +34,30 @@ type ShortLink = {
   createdAt: string;
 };
 
+type ApiLink = {
+  alias: string;
+  destinationUrl: string;
+  shortUrl: string;
+  createdAt: string;
+};
+
+function toShortLink(link: ApiLink): ShortLink {
+  return {
+    id: `${link.alias}-${link.createdAt}`,
+    alias: link.alias,
+    originalUrl: link.destinationUrl,
+    shortUrl: link.shortUrl,
+    createdAt: link.createdAt,
+  };
+}
+
 export default function HomePage() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [destination, setDestination] = useState('');
   const [customAlias, setCustomAlias] = useState('');
   const [shortLinks, setShortLinks] = useState<ShortLink[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedback, setFeedback] = useState<string | null>(null);
 
   useEffect(() => {
@@ -67,6 +86,42 @@ export default function HomePage() {
     }
   }, [theme]);
 
+  useEffect(() => {
+    let cancelled = false;
+
+    const load = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch('/api/links');
+        if (!response.ok) {
+          throw new Error('Unable to load your links right now.');
+        }
+
+        const data = (await response.json()) as { links?: ApiLink[] };
+        const parsed = (data.links || []).map(toShortLink);
+        if (!cancelled) {
+          setShortLinks(parsed);
+          capture('links_loaded', { count: parsed.length });
+        }
+      } catch (error) {
+        if (!cancelled) {
+          setFeedback('Unable to load your existing links. Please try again.');
+          capture('links_load_failed', { reason: error instanceof Error ? error.message : 'unknown' });
+        }
+      } finally {
+        if (!cancelled) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    load();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const accentGradient = useMemo(
     () =>
       `linear-gradient(120deg, ${rainbow
@@ -75,7 +130,7 @@ export default function HomePage() {
     [],
   );
 
-  const handleShorten = (event: FormEvent<HTMLFormElement>) => {
+  const handleShorten = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const sanitizedUrl = destination.trim();
     if (!sanitizedUrl) {
@@ -83,27 +138,42 @@ export default function HomePage() {
       return;
     }
 
-    const alias = customAlias.trim() || `clk-${Math.random().toString(36).slice(2, 8)}`;
-    const now = new Date().toISOString();
-    const shortUrl = `${baseHost}/${alias}`;
+    setIsSubmitting(true);
+    setFeedback(null);
 
-    const newLink: ShortLink = {
-      id: crypto.randomUUID(),
-      originalUrl: sanitizedUrl,
-      alias,
-      shortUrl,
-      createdAt: now,
-    };
+    try {
+      const response = await fetch('/api/links', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ destination: sanitizedUrl, alias: customAlias.trim() || undefined }),
+      });
 
-    setShortLinks((prev) => [newLink, ...prev]);
-    setFeedback('Fresh short link generated. Ship it when you are ready.');
-    capture('link_shortened', {
-      alias,
-      hasCustomAlias: Boolean(customAlias.trim()),
-      destinationLength: sanitizedUrl.length,
-    });
-    setCustomAlias('');
-    setDestination('');
+      const data = (await response.json()) as { link?: ApiLink; message?: string };
+
+      if (!response.ok || !data.link) {
+        const message = data.message || 'Unable to create your short link right now.';
+        setFeedback(message);
+        capture('link_create_failed', { message, status: response.status });
+        return;
+      }
+
+      const newLink = toShortLink(data.link);
+      setShortLinks((prev) => [newLink, ...prev]);
+      setFeedback('Fresh short link generated and synced to Sheets.');
+      capture('link_shortened', {
+        alias: newLink.alias,
+        hasCustomAlias: Boolean(customAlias.trim()),
+        destinationLength: sanitizedUrl.length,
+      });
+      setCustomAlias('');
+      setDestination('');
+    } catch (error) {
+      const message = 'Unable to create your short link right now.';
+      setFeedback(message);
+      capture('link_create_failed', { reason: error instanceof Error ? error.message : 'unknown' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const toggleTheme = () => setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
@@ -141,7 +211,7 @@ export default function HomePage() {
               <p className="eyebrow">Shorten anything</p>
               <h2 className="panel-title">Drop a link. Choose your endpoint. Ship.</h2>
             </div>
-            <div className="status-chip">No database required yet</div>
+            <div className="status-chip">Private Google Sheet backend</div>
           </div>
 
           <form className="form" onSubmit={handleShorten}>
@@ -173,8 +243,8 @@ export default function HomePage() {
             </label>
 
             <div className="actions">
-              <button type="submit" className="primary">
-                Shorten link
+              <button type="submit" className="primary" disabled={isSubmitting}>
+                {isSubmitting ? 'Saving to Sheets…' : 'Shorten link'}
               </button>
               <p className="hint">All server-ready. Swap in Sheets later for persistence and auditability.</p>
             </div>
@@ -195,7 +265,12 @@ export default function HomePage() {
           </div>
 
           <ul className="link-list">
-            {shortLinks.length === 0 && (
+            {isLoading && (
+              <li className="empty-state">
+                <p>Loading your links from the private sheet…</p>
+              </li>
+            )}
+            {!isLoading && shortLinks.length === 0 && (
               <li className="empty-state">
                 <p>
                   Nothing shortened yet. Paste a link above and watch clkly shape it into a crisp endpoint.
