@@ -17,16 +17,22 @@ const getWakeUpTimes = (time: number) => {
   return wakeUpTimes;
 };
 
-const getColor = (index: number) => {
-  const colors = [
-    'rgb(144,86,115)',
-    'rgba(212,111,147)',
-    'rgba(248,158,157)',
-    'rgb(248,158,157)',
-    'rgba(249,220,144)',
-    'rgba(253,241,205)',
-  ];
-  return colors[index];
+type PosthogClient = {
+  capture?: (event: string, properties?: Record<string, unknown>) => void;
+};
+
+const colors = [
+  'rgb(144,86,115)',
+  'rgba(212,111,147)',
+  'rgba(248,158,157)',
+  'rgb(248,158,157)',
+  'rgba(249,220,144)',
+  'rgba(253,241,205)',
+];
+
+const getColor = (index: number, reverseOrder: boolean) => {
+  const colorIndex = reverseOrder ? colors.length - 1 - index : index;
+  return colors[colorIndex];
 };
 
 export default function TimeOptions({
@@ -49,6 +55,11 @@ export default function TimeOptions({
     if (wake) {
       setText('Select a time to sleep to wake between deep sleep cycles');
     } else setText('Select a time to wake between deep sleep cycles');
+
+    const posthog = (window as unknown as { posthog?: PosthogClient }).posthog;
+    posthog?.capture?.('sleep_cycle_options_viewed', {
+      mode: wake ? 'wake_at' : 'sleep_now',
+    });
   }, [wake]);
 
   return (
@@ -66,7 +77,7 @@ export default function TimeOptions({
               <li
                 key={index}
                 className="wakeUpTime"
-                style={{ color: getColor(index) }}
+                style={{ color: getColor(index, wake) }}
               >
                 {mainTime} <span className="small-period">{period}</span>
               </li>
