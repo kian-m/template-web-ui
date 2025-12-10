@@ -4,9 +4,10 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'My Health Portal',
-  description: 'Fitness, Nutrition & Sleep',
+  title: 'Simple Sleep Planner',
+  description: 'Choose to sleep now, later, or by a wake-up time.',
 };
+
 export default function RootLayout({
   children,
 }: {
