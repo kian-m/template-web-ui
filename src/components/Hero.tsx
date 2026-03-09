@@ -14,13 +14,13 @@ const AcademicIcon = () => (
 
 const schoolLogos = [
     {
-        src: 'https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/Acalanes_A.png',
+        src: 'https://resources.finalsite.net/images/f_auto,q_auto/v1751801135/acalanesk12caus/apgghegcfcnolq0ptdme/AcalanesHighPrimaryLogoImage.png',
         alt: 'Acalanes High School logo',
         name: 'Acalanes High School',
         phone: '925-280-3970'
     },
     {
-        src: 'https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/BlockC.png',
+        src: 'https://resources.finalsite.net/images/f_auto,q_auto/v1751801375/acalanesk12caus/blidytcyqadioxwik4v7/CampolindoHighPrimaryLogoImage.png',
         alt: 'Campolindo High School logo',
         name: 'Campolindo High School',
         phone: '925-280-3950'
@@ -32,7 +32,7 @@ const schoolLogos = [
         phone: '925-280-3920'
     },
     {
-        src: 'https://www.acalanes.k12.ca.us/cms/lib/CA01001364/Centricity/Template/GlobalAssets/images/Logos/2020%20Block%20M.jpg',
+        src: 'https://resources.finalsite.net/images/f_auto,q_auto/v1751801845/acalanesk12caus/k0c1ztldyfzhynvi5wwu/MiramonteHighPrimaryLogoImage.png',
         alt: 'Miramonte High School logo',
         name: 'Miramonte High School',
         phone: '925-280-3930'
