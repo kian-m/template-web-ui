@@ -75,6 +75,7 @@ export default function Header () {
                                 onClick={() => scrollToSection('services')}
                                 className="text-academic-navy dark:text-white hover:text-academic-gold transition-colors font-medium"
                                 data-ph-event="nav_services_click"
+                                data-ph-label="services"
                             >
                                 Services
                             </button>
@@ -82,6 +83,7 @@ export default function Header () {
                                 onClick={() => scrollToSection('about')}
                                 className="text-academic-navy dark:text-white hover:text-academic-gold transition-colors font-medium"
                                 data-ph-event="nav_about_click"
+                                data-ph-label="about"
                             >
                                 About
                             </button>
@@ -89,6 +91,7 @@ export default function Header () {
                                 onClick={() => scrollToSection('faq')}
                                 className="text-academic-navy dark:text-white hover:text-academic-gold transition-colors font-medium"
                                 data-ph-event="nav_faq_click"
+                                data-ph-label="faq"
                             >
                                 FAQ
                             </button>
@@ -97,6 +100,7 @@ export default function Header () {
                                 data-action="schedule_now"
                                 className="schedule-trigger academic-button px-6 py-2 text-sm font-semibold rounded-md flex items-center space-x-2"
                                 data-ph-event="nav_schedule_now_click"
+                                data-ph-label="schedule_now"
                             >
                                 <Calendar className="w-4 h-4" />
                                 <span>Schedule Now</span>
@@ -109,6 +113,7 @@ export default function Header () {
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             className="lg:hidden text-academic-navy dark:text-white p-2"
                             data-ph-event="nav_mobile_menu_toggle"
+                            data-ph-label={isMobileMenuOpen ? 'close_menu' : 'open_menu'}
                         >
                             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                         </button>
@@ -121,6 +126,7 @@ export default function Header () {
                                 onClick={() => scrollToSection('services')}
                                 className="block w-full text-left text-academic-navy dark:text-white hover:text-academic-gold transition-colors font-medium py-2"
                                 data-ph-event="mobile_nav_services_click"
+                                data-ph-label="services"
                             >
                                 Services
                             </button>
@@ -128,6 +134,7 @@ export default function Header () {
                                 onClick={() => scrollToSection('about')}
                                 className="block w-full text-left text-academic-navy dark:text-white hover:text-academic-gold transition-colors font-medium py-2"
                                 data-ph-event="mobile_nav_about_click"
+                                data-ph-label="about"
                             >
                                 About
                             </button>
@@ -135,6 +142,7 @@ export default function Header () {
                                 onClick={() => scrollToSection('faq')}
                                 className="block w-full text-left text-academic-navy dark:text-white hover:text-academic-gold transition-colors font-medium py-2"
                                 data-ph-event="mobile_nav_faq_click"
+                                data-ph-label="faq"
                             >
                                 FAQ
                             </button>
@@ -143,6 +151,7 @@ export default function Header () {
                                 data-action="schedule_now"
                                 className="schedule-trigger academic-button w-full px-4 py-2 text-sm font-semibold rounded-md flex items-center justify-center space-x-2"
                                 data-ph-event="mobile_nav_schedule_now_click"
+                                data-ph-label="schedule_now"
                             >
                                 <Calendar className="w-4 h-4" />
                                 <span>Schedule Now</span>
@@ -161,6 +170,7 @@ export default function Header () {
                     onClick={() => handleScheduleClick()}
                     className="schedule-button academic-button px-4 py-3 rounded-full flex items-center justify-center space-x-2 animate-academic-glow"
                     data-ph-event="floating_schedule_now_click"
+                    data-ph-label="schedule_now"
                 >
                     <Calendar className="w-5 h-5" />
                     <span className="font-semibold">Schedule Now</span>

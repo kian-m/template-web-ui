@@ -32,13 +32,23 @@ export default function Footer () {
                         <div className="space-y-3">
                             <div className="flex items-center space-x-3">
                                 <Phone className="w-5 h-5 text-academic-gold" />
-                <a href="tel:(925)237-1327" className="hover:text-academic-gold transition-colors font-medium">
+                                <a
+                                    href="tel:(925)237-1327"
+                                    className="hover:text-academic-gold transition-colors font-medium"
+                                    data-ph-event="footer_phone_click"
+                                    data-ph-label="(925) 237-1327"
+                                >
                                     (925) 237-1327
                                 </a>
                             </div>
                             <div className="flex items-center space-x-3">
                                 <Mail className="w-5 h-5 text-academic-gold" />
-                                <a href="mailto:amir@thebayareatutor.com" className="hover:text-academic-gold transition-colors font-medium">
+                                <a
+                                    href="mailto:amir@thebayareatutor.com"
+                                    className="hover:text-academic-gold transition-colors font-medium"
+                                    data-ph-event="footer_email_click"
+                                    data-ph-label="amir@thebayareatutor.com"
+                                >
                                     amir@thebayareatutor.com
                                 </a>
                             </div>
@@ -58,6 +68,7 @@ export default function Footer () {
                                     onClick={() => scrollToSection('services')}
                                     className="text-academic-medium-blue dark:text-academic-off-white hover:text-academic-gold transition-colors text-sm"
                                     data-ph-event="footer_test_preparation_click"
+                                    data-ph-label="test_preparation"
                                 >
                                     Test Preparation
                                 </button>
@@ -67,6 +78,7 @@ export default function Footer () {
                                     onClick={() => scrollToSection('services')}
                                     className="text-academic-medium-blue dark:text-academic-off-white hover:text-academic-gold transition-colors text-sm"
                                     data-ph-event="footer_academic_support_click"
+                                    data-ph-label="academic_support"
                                 >
                                     Academic Support
                                 </button>
@@ -76,6 +88,7 @@ export default function Footer () {
                                     onClick={() => scrollToSection('services')}
                                     className="text-academic-medium-blue dark:text-academic-off-white hover:text-academic-gold transition-colors text-sm"
                                     data-ph-event="footer_personalized_learning_click"
+                                    data-ph-label="personalized_learning"
                                 >
                                     Personalized Learning
                                 </button>
@@ -85,6 +98,7 @@ export default function Footer () {
                                     onClick={() => scrollToSection('contact')}
                                     className="text-academic-medium-blue dark:text-academic-off-white hover:text-academic-gold transition-colors text-sm"
                                     data-ph-event="footer_free_consultation_click"
+                                    data-ph-label="free_consultation"
                                 >
                                     Free Consultation
                                 </button>
@@ -120,6 +134,7 @@ export default function Footer () {
                             onClick={scrollToTop}
                             className="flex items-center space-x-2 text-academic-medium-blue dark:text-academic-off-white hover:text-academic-gold transition-colors text-sm"
                             data-ph-event="footer_back_to_top_click"
+                            data-ph-label="back_to_top"
                         >
                             <span>Back to Top</span>
                             <ArrowUp className="w-4 h-4" />
