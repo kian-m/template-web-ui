@@ -1,17 +1,13 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useCallback, useRef, useState } from 'react';
 
 interface FadingTextContextProps {
   text: string;
   setText: (text: string) => void;
-  setShow: (show: boolean) => void;
-  setTimeoutValue: (timeout: number) => void;
 }
 
 export const FadingTextContext = React.createContext<FadingTextContextProps>({
   text: '',
   setText: () => {},
-  setShow: () => {},
-  setTimeoutValue: () => {},
 });
 
 interface FadingTextProviderProps {
@@ -22,38 +18,33 @@ export const FadingTextProvider: React.FC<FadingTextProviderProps> = ({
   children,
 }) => {
   const [text, setText] = useState('');
-  const [showText, setShow] = useState(true);
-  const [timeoutValue, setTimeoutValue] = useState(8);
+  // Bumped on every change so the fade-in animation replays for new text.
+  const animKey = useRef(0);
 
-  const updateText = (newText: string) => {
-    setShow(false);
-    setTimeout(() => {
-      setText(newText);
-      setShow(true);
-    }, 1000);
-  };
+  // Stable identity so effects depending on setText don't re-run every render.
+  const updateText = useCallback((newText: string) => {
+    animKey.current += 1;
+    setText(newText);
+  }, []);
 
   return (
-    <FadingTextContext.Provider
-      value={{ text, setText: updateText, setShow, setTimeoutValue }}
-    >
-      {showText && (
+    <FadingTextContext.Provider value={{ text, setText: updateText }}>
+      {text && (
         <div
+          key={animKey.current}
           style={{
             position: 'absolute',
             top: '2%',
             left: '50%',
-            margin: '20 auto',
             transform: 'translateX(-50%)',
-            alignSelf: 'center',
+            marginTop: '5%',
             textAlign: 'center',
             whiteSpace: 'pre-line',
-            marginTop: '5%',
             fontSize: '0.8rem',
-            opacity: '0.5',
+            opacity: 0.5,
             fontFamily: 'Optima, sans-serif',
-            animation: `fadeInHalf 3s ease-in-out, fadeOutHalf 2s ${timeoutValue}s forwards`,
-            transition: 'opacity 50% 8s',
+            // Fade in quickly, then stay at the faded opacity (no fade-out).
+            animation: 'fadeInHalf 0.6s ease-out',
           }}
         >
           {text}

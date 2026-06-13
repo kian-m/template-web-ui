@@ -1,0 +1,58 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+  default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
+
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args:
+      [
+        '-c',
+        'docker pull us-central1-docker.pkg.dev/debark-459822/cloud-run-source-deploy/debark-web:latest || exit 0',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '--cache-from',
+        'us-central1-docker.pkg.dev/debark-459822/cloud-run-source-deploy/debark-web:latest',
+        '--tag',
+        'us-central1-docker.pkg.dev/debark-459822/cloud-run-source-deploy/debark-web:${SHORT_SHA}',
+        '--tag',
+        'us-central1-docker.pkg.dev/debark-459822/cloud-run-source-deploy/debark-web:latest',
+        '--file',
+        'frontend/Dockerfile',
+        'frontend',
+      ]
+    env:
+      - 'DOCKER_BUILDKIT=1'
+      - 'DOCKER_CLI_EXPERIMENTAL=enabled'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'push',
+        'us-central1-docker.pkg.dev/debark-459822/cloud-run-source-deploy/debark-web:${SHORT_SHA}',
+      ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      ['push', 'us-central1-docker.pkg.dev/debark-459822/cloud-run-source-deploy/debark-web:latest']
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      [
+        'beta',
+        'run',
+        'deploy',
+        'debark-web',
+        '--image',
+        'us-central1-docker.pkg.dev/debark-459822/cloud-run-source-deploy/debark-web:${SHORT_SHA}',
+        '--region',
+        'us-central1',
+        '--platform',
+        'managed',
+        '--allow-unauthenticated',
+        '--no-default-url',
+      ]

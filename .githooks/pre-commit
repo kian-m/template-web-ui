@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Git Pre-Commit Hook
+# This hook runs the comprehensive pre-commit check script
+# to prevent breaking changes from being committed
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+echo -e "${BLUE}🔒 Git Pre-Commit Hook Activated${NC}"
+echo -e "${BLUE}==================================${NC}"
+
+# Get the root of the Git repository
+GIT_ROOT=$(git rev-parse --show-toplevel)
+
+# Check if we're in a frontend commit
+if [ -f "package.json" ] && [ -f "CLAUDE.md" ]; then
+    echo -e "${BLUE}📦 Frontend changes detected - running comprehensive checks${NC}"
+    echo ""
+    
+    # Run the pre-commit check script
+    if ./scripts/pre-commit-check.sh --skip-build; then
+        echo -e "${GREEN}✅ Pre-commit checks passed - proceeding with commit${NC}"
+        exit 0
+    else
+        echo -e "${RED}❌ Pre-commit checks failed - commit blocked${NC}"
+        echo ""
+        echo -e "${BLUE}💡 To fix issues:${NC}"
+        echo "   1. Review the errors above"
+        echo "   2. Fix all failing tests and issues" 
+        echo "   3. Run: ./scripts/pre-commit-check.sh"
+        echo "   4. Try committing again"
+        echo ""
+        echo -e "${BLUE}⚠️  To bypass this hook (NOT RECOMMENDED):${NC}"
+        echo "   git commit --no-verify"
+        echo ""
+        exit 1
+    fi
+else
+    echo -e "${BLUE}📄 No frontend changes detected - skipping frontend checks${NC}"
+    exit 0
+fi

@@ -30,7 +30,8 @@ const Menu = () => {
       setInputValue('');
       setSubmitted(true);
       setShowImport(false);
-      setTimeout(() => setSubmitted(false), 2000); // hide checkmark after 2 seconds
+      // Reload so restored trackers/config are picked up across the app.
+      setTimeout(() => window.location.reload(), 600);
     } else {
       setFailedImport(true);
       setTimeout(() => setFailedImport(false), 2000); // hide cross after 2 seconds

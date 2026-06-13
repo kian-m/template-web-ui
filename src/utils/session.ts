@@ -1,40 +1,47 @@
 import CryptoJS from 'crypto-js';
 
-// const SECRET_KEY = process.env.SECRET_KEY as string;
-
+// Frontend-only "backup/restore": the user's tracker data is bundled, encrypted,
+// and copied to / pasted from the clipboard. No backend involved.
 const SECRET_KEY = 'mySecretKey';
+const TRACKER_KEYS = ['trackerConfig', 'dayLog', 'sobriety', 'symptoms'];
 
+/** Encrypt all tracker data into the clipboard as a single portable string. */
 export const encryptLocalStorage = async (): Promise<void> => {
-  const data = localStorage.getItem('data');
-  if (!data) {
-    await navigator.clipboard.writeText('No data available');
-  } else {
-    const ciphertext = CryptoJS.AES.encrypt(data, SECRET_KEY).toString();
-    try {
-      await navigator.clipboard.writeText(ciphertext);
-      console.log('Encrypted data copied to clipboard');
-    } catch (err) {
-      console.error('Failed to copy text: ', err);
-    }
+  const bundle: Record<string, string> = {};
+  TRACKER_KEYS.forEach((key) => {
+    const value = localStorage.getItem(key);
+    if (value !== null) bundle[key] = value;
+  });
+
+  const ciphertext = CryptoJS.AES.encrypt(
+    JSON.stringify(bundle),
+    SECRET_KEY,
+  ).toString();
+
+  try {
+    await navigator.clipboard.writeText(ciphertext);
+  } catch (err) {
+    console.error('Failed to copy backup to clipboard: ', err);
   }
 };
 
+/** Restore tracker data from an encrypted backup string. Returns success. */
 export const decryptLocalStorage = (encryptedData: string): boolean => {
-  console.log(SECRET_KEY);
-  const bytes = CryptoJS.AES.decrypt(encryptedData, SECRET_KEY);
-  const originalData = bytes.toString(CryptoJS.enc.Utf8);
-
   try {
-    // Try to parse the decrypted data as JSON
-    JSON.parse(originalData);
+    const bytes = CryptoJS.AES.decrypt(encryptedData, SECRET_KEY);
+    const json = bytes.toString(CryptoJS.enc.Utf8);
+    const bundle = JSON.parse(json) as Record<string, string>;
 
-    // If no error is thrown, the data is valid JSON
-    localStorage.setItem('data', originalData);
-    console.log('Data was successfully decrypted and is valid JSON');
+    if (!bundle || typeof bundle !== 'object') return false;
+
+    Object.entries(bundle).forEach(([key, value]) => {
+      if (TRACKER_KEYS.includes(key) && typeof value === 'string') {
+        localStorage.setItem(key, value);
+      }
+    });
     return true;
   } catch (err) {
-    // If an error is thrown, the data is not valid JSON
-    console.error('Failed to parse decrypted data as JSON: ', err);
+    console.error('Failed to restore backup: ', err);
     return false;
   }
 };

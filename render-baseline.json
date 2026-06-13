@@ -1,0 +1,75 @@
+{
+  "baselineMs": 650,
+  "components": {
+    "PieChart": {
+      "renderTime": 150,
+      "variance": 30,
+      "maxTime": 200,
+      "dataSize": {
+        "small": 5,
+        "medium": 10,
+        "large": 20
+      }
+    },
+    "LineChart": {
+      "renderTime": 120,
+      "variance": 25,
+      "maxTime": 170,
+      "dataSize": {
+        "small": 50,
+        "medium": 100,
+        "large": 200
+      }
+    },
+    "BarChart": {
+      "renderTime": 110,
+      "variance": 20,
+      "maxTime": 150,
+      "dataSize": {
+        "small": 10,
+        "medium": 20,
+        "large": 40
+      }
+    },
+    "DataTable": {
+      "renderTime": 100,
+      "variance": 15,
+      "maxTime": 130,
+      "dataSize": {
+        "small": 10,
+        "medium": 25,
+        "large": 50
+      }
+    },
+    "FunnelChart": {
+      "renderTime": 130,
+      "variance": 25,
+      "maxTime": 180,
+      "dataSize": {
+        "small": 3,
+        "medium": 5,
+        "large": 8
+      }
+    },
+    "NumberCard": {
+      "renderTime": 30,
+      "variance": 10,
+      "maxTime": 50,
+      "dataSize": {
+        "small": 1,
+        "medium": 1,
+        "large": 1
+      }
+    },
+    "Dashboard": {
+      "renderTime": 500,
+      "variance": 100,
+      "maxTime": 700,
+      "widgetCount": {
+        "small": 3,
+        "medium": 6,
+        "large": 12
+      }
+    }
+  }
+}

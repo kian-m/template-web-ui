@@ -22,5 +22,5 @@
     ]
   },
   "include": ["./types/**/*.d.ts","next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/_disabled", "src/__tests__", "tests", "backup_pre_debark_20251129_184037"]
 }

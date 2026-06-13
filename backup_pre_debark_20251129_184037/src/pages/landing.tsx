@@ -1,6 +1,9 @@
 'use client';
 
 import { useContext, useEffect, useState, Suspense } from 'react';
+import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import AuthButtons from '../components/AuthButtons';
 import { useSearchParams } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -31,6 +34,7 @@ export default function Landing() {
   const lastVisitDays = getDaysSinceLastVisit();
   const anyButtonClicked =
     gymButtonClicked || foodButtonClicked || sleepButtonClicked || showCalendar;
+  const { data: session } = useSession();
 
   const resetButtons = () => {
     setText('');
@@ -47,6 +51,7 @@ export default function Landing() {
   return (
     loaded && (
       <Suspense fallback={<div>Loading...</div>}>
+        <AuthButtons />
         {!anyButtonClicked && <MenuDropdown />}
         {anyButtonClicked && (
           <button
@@ -55,6 +60,24 @@ export default function Landing() {
           >
             <FontAwesomeIcon icon={faArrowLeft} size="lg" color="white" />
           </button>
+        )}
+        {!anyButtonClicked && (session?.user as any)?.isAdmin && (
+          <Link
+            href="/admin"
+            style={{
+              right: 26,
+              top: 60,
+              position: 'absolute',
+              opacity: '70%',
+              background: 'rgba(255,255,255,0.15)',
+              color: 'white',
+              padding: '4px 8px',
+              borderRadius: 8,
+              textDecoration: 'none',
+            }}
+          >
+            Admin
+          </Link>
         )}
         {showCalendar && <Calendar />}
         {sleepButtonClicked && <Sleep />}
