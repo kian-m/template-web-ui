@@ -13,7 +13,6 @@ import {
   faWineBottle,
 } from '@fortawesome/free-solid-svg-icons';
 import Sleep from './sleep/sleep';
-import MenuDropdown from '../components/MenuDropdown';
 import ProgressStrip from '../components/ProgressStrip';
 import { FadingTextContext } from '../contexts/FadingTextContext';
 import { getTrackerConfig } from '../utils/tracker-storage';
@@ -70,8 +69,6 @@ export default function Landing() {
 
   return (
     <>
-      {view === null && <MenuDropdown />}
-
       {showSharedBack && (
         <button
           className="circle-button button-return"

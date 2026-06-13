@@ -2,6 +2,7 @@
 
 import {
   DEFAULT_TRACKER_CONFIG,
+  type CycleRecord,
   type DayEntry,
   type DayLog,
   type SobrietyStreak,
@@ -13,6 +14,7 @@ const CONFIG_KEY = 'trackerConfig';
 const DAY_LOG_KEY = 'dayLog';
 const SOBRIETY_KEY = 'sobriety';
 const SYMPTOMS_KEY = 'symptoms';
+const CYCLE_KEY = 'cycles';
 const LEGACY_SLEEP_KEY = 'sleep';
 
 const hasWindow = (): boolean => global?.window !== undefined;
@@ -63,6 +65,14 @@ export const getTrackerConfig = (): TrackerConfig => {
     daily: { ...DEFAULT_TRACKER_CONFIG.daily, ...(stored.daily ?? {}) },
     sobriety: { ...DEFAULT_TRACKER_CONFIG.sobriety, ...(stored.sobriety ?? {}) },
     symptoms: { ...DEFAULT_TRACKER_CONFIG.symptoms, ...(stored.symptoms ?? {}) },
+    cycle: {
+      ...DEFAULT_TRACKER_CONFIG.cycle,
+      ...(stored.cycle ?? {}),
+      phases: {
+        ...DEFAULT_TRACKER_CONFIG.cycle.phases,
+        ...(stored.cycle?.phases ?? {}),
+      },
+    },
   };
 };
 
@@ -202,6 +212,42 @@ export const setSymptomSeverity = (
   if (Object.keys(day).length) log[date] = day;
   else delete log[date];
   write(SYMPTOMS_KEY, log);
+};
+
+// ---------------------------------------------------------------------------
+// Menstrual cycle records
+// ---------------------------------------------------------------------------
+
+export const getCycles = (): CycleRecord[] =>
+  read<CycleRecord[]>(CYCLE_KEY, []);
+
+export const saveCycles = (cycles: CycleRecord[]): void => {
+  write(CYCLE_KEY, cycles);
+};
+
+// ---------------------------------------------------------------------------
+// Reset / clear data (per section, or everything)
+// ---------------------------------------------------------------------------
+
+export type ResetSection = 'daily' | 'sobriety' | 'symptoms' | 'cycles' | 'all';
+
+const SECTION_KEYS: Record<Exclude<ResetSection, 'all'>, string> = {
+  daily: DAY_LOG_KEY,
+  sobriety: SOBRIETY_KEY,
+  symptoms: SYMPTOMS_KEY,
+  cycles: CYCLE_KEY,
+};
+
+/** Clear logged data for one section, or all of it. Keeps tracker settings. */
+export const clearTrackerData = (section: ResetSection): void => {
+  if (!hasWindow()) return;
+  if (section === 'all') {
+    [DAY_LOG_KEY, SOBRIETY_KEY, SYMPTOMS_KEY, CYCLE_KEY, LEGACY_SLEEP_KEY].forEach(
+      (k) => localStorage.removeItem(k),
+    );
+  } else {
+    localStorage.removeItem(SECTION_KEYS[section]);
+  }
 };
 
 // ---------------------------------------------------------------------------

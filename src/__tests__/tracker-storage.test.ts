@@ -11,6 +11,9 @@ import {
   saveSobrietyStreaks,
   getSymptomsForDate,
   setSymptomSeverity,
+  clearTrackerData,
+  getCycles,
+  saveCycles,
   toDateKey,
 } from '@/utils/tracker-storage';
 import { DEFAULT_TRACKER_CONFIG } from '@/types/trackers';
@@ -128,6 +131,28 @@ describe('symptom diary (1-5 severity)', () => {
     setSymptomSeverity('2026-06-12', 'front:chest', 3);
     setSymptomSeverity('2026-06-12', 'front:chest', 0);
     expect(getSymptomsForDate('2026-06-12')).toEqual({});
+  });
+});
+
+describe('clearTrackerData', () => {
+  it('clears one section without touching the others', () => {
+    setRating('2026-06-12', 'sleep', 4);
+    saveCycles([{ start: '2026-06-01' }]);
+    clearTrackerData('cycles');
+    expect(getCycles()).toEqual([]);
+    expect(getRating('2026-06-12', 'sleep')).toBe(4); // untouched
+  });
+
+  it('clears everything on "all" but keeps config', () => {
+    saveTrackerConfig({ ...DEFAULT_TRACKER_CONFIG, symptoms: { enabled: true } });
+    setRating('2026-06-12', 'sleep', 4);
+    saveCycles([{ start: '2026-06-01' }]);
+    setSymptomSeverity('2026-06-12', 'front:chest', 3);
+    clearTrackerData('all');
+    expect(getRating('2026-06-12', 'sleep')).toBe(0);
+    expect(getCycles()).toEqual([]);
+    expect(getSymptomsForDate('2026-06-12')).toEqual({});
+    expect(getTrackerConfig().symptoms.enabled).toBe(true); // settings preserved
   });
 });
 

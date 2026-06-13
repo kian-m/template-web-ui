@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import {
+  getCycles,
   getDayLog,
   getTrackerConfig,
   getLoggableTrackers,
@@ -14,10 +15,25 @@ import {
 } from '../../utils/tracker-storage';
 import { trackerIcon } from '../../utils/tracker-icons';
 import { dayScore, scoreColor } from '../../utils/score-color';
-import type { DayLog, TrackerConfig } from '../../types/trackers';
+import {
+  buildCycleCalendar,
+  phaseFor,
+  isLoggedPeriod,
+  phaseInfo,
+  type CycleCalendar,
+} from '../../utils/cycle';
+import type { CycleRecord, DayLog, TrackerConfig } from '../../types/trackers';
 import DayEditor from './day-editor';
 
 const daysOfWeek = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
+
+const formatShort = (key: string): string => {
+  const [y, m, d] = key.split('-').map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString(undefined, {
+    month: 'short',
+    day: 'numeric',
+  });
+};
 
 interface CalendarProps {
   onOpenBodyMap?: (date: string) => void;
@@ -29,10 +45,18 @@ const Calendar: React.FC<CalendarProps> = ({ onOpenBodyMap }) => {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [config, setConfig] = useState<TrackerConfig | null>(null);
   const [dayLog, setDayLog] = useState<DayLog>({});
+  const [cycles, setCycles] = useState<CycleRecord[]>([]);
+
+  // Derived so the calendar re-colours the moment cycle records change.
+  const cycleCal: CycleCalendar | null = useMemo(
+    () => (config?.cycle.enabled ? buildCycleCalendar(cycles) : null),
+    [cycles, config],
+  );
 
   const refresh = () => {
     setConfig(getTrackerConfig());
     setDayLog(getDayLog());
+    setCycles(getCycles());
   };
 
   useEffect(() => {
@@ -100,16 +124,28 @@ const Calendar: React.FC<CalendarProps> = ({ onOpenBodyMap }) => {
         i,
       );
       const dateKey = toDateKey(date);
+      const today = isCurrentDate(date);
       const entry = dayLog[dateKey];
+      // Leave today un-tinted so its gray "sunken" styling stays recognizable.
       const tint =
-        isClient && config && entry
+        !today && isClient && config && entry
           ? scoreColor(dayScore(entry, getLoggableTrackers(config)), 0.55)
           : undefined;
+      let cycleClass = '';
+      if (isClient && cycleCal && config?.cycle.enabled) {
+        const phase = phaseFor(cycleCal, dateKey);
+        if (phase && config.cycle.phases[phase]) {
+          cycleClass =
+            phase === 'menstrual' && !isLoggedPeriod(cycleCal, dateKey)
+              ? ' cyc-menstrual-pred'
+              : ` cyc-${phase}`;
+        }
+      }
       days.push(
         <button
           key={i}
           type="button"
-          className={`day day-button ${isCurrentDate(date) ? 'current-day' : ''}`}
+          className={`day day-button ${today ? 'current-day' : ''}${cycleClass}`}
           style={tint ? { backgroundColor: tint } : undefined}
           onClick={() => setSelectedDate(dateKey)}
           aria-label={`Edit ${dateKey}`}
@@ -122,23 +158,47 @@ const Calendar: React.FC<CalendarProps> = ({ onOpenBodyMap }) => {
     return days;
   };
 
+  const todayInfo =
+    config?.cycle.enabled && cycleCal
+      ? phaseInfo(cycles, toDateKey(new Date()))
+      : null;
+
   return (
     <div className="calendar">
+      {todayInfo && (
+        <div className="cycle-today-top">
+          <span className={`cyc-legend ${todayInfo.phase}`} /> Today:{' '}
+          {todayInfo.label} phase
+          {todayInfo.dayOfCycle ? ` · day ${todayInfo.dayOfCycle}` : ''}
+        </div>
+      )}
       <div className="header">
         <span className={'month'}>
           {currentDate.toLocaleString('default', { month: 'long' })}{' '}
           {currentDate.getFullYear()}
         </span>
-        <FontAwesomeIcon
-          icon={faChevronLeft}
-          onClick={handlePrevMonth}
-          style={{ position: 'absolute', right: '14%', paddingBottom: '10%' }}
-        />
-        <FontAwesomeIcon
-          icon={faChevronRight}
-          onClick={handleNextMonth}
-          style={{ position: 'absolute', right: '5%', paddingBottom: '10%' }}
-        />
+        <div className="cal-nav">
+          <FontAwesomeIcon
+            icon={faChevronLeft}
+            className="cal-chevron"
+            onClick={handlePrevMonth}
+            aria-label="Previous month"
+          />
+          <button
+            type="button"
+            className="today-btn"
+            onClick={() => setCurrentDate(new Date())}
+            aria-label="Go to today"
+          >
+            Today
+          </button>
+          <FontAwesomeIcon
+            icon={faChevronRight}
+            className="cal-chevron"
+            onClick={handleNextMonth}
+            aria-label="Next month"
+          />
+        </div>
       </div>
       <div className="daysOfWeek">
         {daysOfWeek.map((day, index) => (
@@ -149,6 +209,45 @@ const Calendar: React.FC<CalendarProps> = ({ onOpenBodyMap }) => {
       </div>
       <div className="days">{renderDays()}</div>
 
+      {config?.cycle.enabled && cycleCal && cycleCal.nextStart && (
+        <div className="cycle-summary">
+          <div className="cyc-legend-row">
+            {config.cycle.phases.menstrual && (
+              <span>
+                <span className="cyc-legend menstrual" /> menstrual
+              </span>
+            )}
+            {config.cycle.phases.follicular && (
+              <span>
+                <span className="cyc-legend follicular" /> follicular
+              </span>
+            )}
+            {config.cycle.phases.ovulation && (
+              <span>
+                <span className="cyc-legend ovulation" /> ovulation
+              </span>
+            )}
+            {config.cycle.phases.luteal && (
+              <span>
+                <span className="cyc-legend luteal" /> luteal
+              </span>
+            )}
+          </div>
+          <div className="cycle-next">
+            Next period{' '}
+            {cycleCal.nextWindowStart &&
+            cycleCal.nextWindowEnd &&
+            cycleCal.nextWindowStart !== cycleCal.nextWindowEnd
+              ? `${formatShort(cycleCal.nextWindowStart)}–${formatShort(cycleCal.nextWindowEnd)}`
+              : `~ ${formatShort(cycleCal.nextStart)}`}{' '}
+            ·{' '}
+            {cycleCal.based === 'data'
+              ? `~${cycleCal.avgCycleLength}-day cycle (your data)`
+              : 'estimate — log more to refine'}
+          </div>
+        </div>
+      )}
+
       {selectedDate && (
         <DayEditor
           date={selectedDate}
@@ -156,6 +255,7 @@ const Calendar: React.FC<CalendarProps> = ({ onOpenBodyMap }) => {
             setSelectedDate(null);
             refresh();
           }}
+          onCyclesChange={setCycles}
           onOpenBodyMap={onOpenBodyMap}
         />
       )}

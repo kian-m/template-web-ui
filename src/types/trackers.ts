@@ -22,6 +22,18 @@ export interface TrackerConfig {
   sobriety: { enabled: boolean };
   /** Show the body-map symptom diary button on the main page. */
   symptoms: { enabled: boolean };
+  /** Enable menstrual-cycle logging + predictions on the calendar. */
+  cycle: { enabled: boolean; phases: CyclePhaseToggles };
+}
+
+/** The four menstrual-cycle phases, each independently shown/hidden. */
+export type CyclePhaseName = 'menstrual' | 'follicular' | 'ovulation' | 'luteal';
+export type CyclePhaseToggles = Record<CyclePhaseName, boolean>;
+
+/** A logged menstrual cycle: when the period started and (optionally) ended. */
+export interface CycleRecord {
+  start: string; // "YYYY-MM-DD"
+  end?: string; // "YYYY-MM-DD"
 }
 
 /** A day's tracker ratings, keyed by daily-tracker key. Value is 1-5 (0 = unset). */
@@ -51,4 +63,14 @@ export const DEFAULT_TRACKER_CONFIG: TrackerConfig = {
   },
   sobriety: { enabled: false },
   symptoms: { enabled: false },
+  cycle: {
+    enabled: false,
+    // Only the two key phases on by default; follicular/luteal are opt-in.
+    phases: {
+      menstrual: true,
+      follicular: false,
+      ovulation: true,
+      luteal: false,
+    },
+  },
 };

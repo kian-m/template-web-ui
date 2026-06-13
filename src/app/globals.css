@@ -8,6 +8,13 @@
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 0, 0, 0;
+
+  /* Menstrual = red; the other phases are distinct pinks. */
+  --cyc-menstrual: hsl(0, 72%, 47%); /* red */
+  --cyc-menstrual-pred: hsl(0, 60%, 64%); /* faded red (predicted) */
+  --cyc-follicular: hsl(345, 65%, 74%); /* pale rose */
+  --cyc-ovulation: hsl(305, 52%, 64%); /* orchid */
+  --cyc-luteal: hsl(330, 72%, 54%); /* hot pink */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -360,9 +367,14 @@ select {
   grid-template-columns: repeat(7, 1fr);
 }
 
+/* Breathing room between day cells so phase borders don't crowd each other. */
+.days {
+  gap: 8px 6px;
+}
+
 .dayOfWeek, .day {
   padding: 10px 0;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .empty {
@@ -375,17 +387,47 @@ select {
 }
 
 .month {
-  position: absolute;
-  padding-bottom: 10%;
-  left:35%
+  font-size: 1.2rem;
 }
 
-.current-day {
-  height: 70%;
+.cal-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.cal-chevron {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.cal-chevron:hover {
+  opacity: 1;
+}
+
+/* Today: a clearly carved-in / pressed well, visible at a glance. */
+.current-day,
+.current-day:hover {
   border-radius: 10px;
-  background-color: rgba(77, 66, 66, 0.5);
-  border: 2px inset #000000;
-  box-shadow: inset 2px 2px 5px rgb(0, 0, 0), inset -2px -2px 5px rgba(58, 43, 43, 0.1);
+  background-color: rgba(140, 140, 152, 0.22);
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  box-shadow: inset 6px 6px 11px rgba(0, 0, 0, 0.95),
+    inset -4px -4px 9px rgba(255, 255, 255, 0.15);
+}
+
+/* "Go to today" button, sitting between the month chevrons. */
+.today-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 14px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.75rem;
+  font-family: Optima, sans-serif;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.today-btn:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 /* ---------------------------------------------------------------------------
@@ -557,6 +599,143 @@ select {
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.45);
   text-align: center;
+}
+
+/* Cycle control in the day editor. */
+.cycle-btn {
+  width: 100%;
+  background: rgba(236, 72, 153, 0.12);
+  border: 1px solid rgba(236, 72, 153, 0.5);
+  color: #f9a8d4;
+  border-radius: 8px;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+.cycle-btn.active {
+  background: rgba(236, 72, 153, 0.28);
+  color: #fff;
+}
+.cycle-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cycle-btn.ghost {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.7);
+}
+.cycle-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Reset-data buttons in settings. */
+.reset-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.reset-btn {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+.reset-btn:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.reset-btn.danger {
+  border-color: rgba(226, 85, 99, 0.7);
+  color: #f3a3ab;
+}
+.reset-btn.danger:hover {
+  background: rgba(226, 85, 99, 0.15);
+}
+
+/* Cycle phase borders on calendar days — outline keeps layout + sits over the tint.
+   Muted palette: menstrual = red, with complementary gold / teal / periwinkle. */
+.cyc-menstrual {
+  outline: 2px solid var(--cyc-menstrual);
+  outline-offset: 2px;
+}
+.cyc-menstrual-pred {
+  outline: 2px dashed var(--cyc-menstrual-pred);
+  outline-offset: 2px;
+}
+.cyc-follicular {
+  outline: 2px solid var(--cyc-follicular);
+  outline-offset: 2px;
+}
+.cyc-ovulation {
+  outline: 2px solid var(--cyc-ovulation);
+  outline-offset: 2px;
+}
+.cyc-luteal {
+  outline: 2px solid var(--cyc-luteal);
+  outline-offset: 2px;
+}
+
+.cycle-summary {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+.cyc-legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.cyc-legend {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  margin-right: 0.25rem;
+  vertical-align: middle;
+}
+.cyc-legend.menstrual {
+  border: 2px solid var(--cyc-menstrual);
+}
+.cyc-legend.follicular {
+  border: 2px solid var(--cyc-follicular);
+}
+.cyc-legend.ovulation {
+  border: 2px solid var(--cyc-ovulation);
+}
+.cyc-legend.luteal {
+  border: 2px solid var(--cyc-luteal);
+}
+.cycle-today-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+.cycle-next {
+  margin-top: 0.4rem;
+  color: var(--cyc-menstrual);
+}
+
+/* Phase label inside the day editor. */
+.cycle-phase-label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .editor-actions {
