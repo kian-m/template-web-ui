@@ -1,89 +1,70 @@
-import Image from "next/image";
+'use client';
+
+import { useEffect } from 'react';
+
+declare global {
+    interface Window {
+        posthog?: {
+            capture: (eventName: string, properties?: Record<string, unknown>) => void;
+        };
+    }
+}
+
+const inactiveHealthActions = [
+    {
+        label: 'Eating',
+        description: 'Meal logging is temporarily unavailable while we refine the experience.',
+    },
+    {
+        label: 'Workout',
+        description: 'Workout planning is temporarily unavailable while we refine the experience.',
+    },
+];
 
 export default function Home () {
+    useEffect(() => {
+        window.posthog?.capture('health_main_ctas_deactivated_viewed', {
+            inactiveActions: inactiveHealthActions.map((action) => action.label.toLowerCase()),
+            surface: 'main_page',
+        });
+    }, []);
+
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <main className="flex min-h-screen flex-col items-center justify-center bg-slate-950 px-6 py-16 text-white">
+            <section className="w-full max-w-4xl rounded-3xl border border-white/10 bg-white/5 p-8 text-center shadow-2xl shadow-emerald-950/40 sm:p-12">
+                <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-emerald-300">
+                    Health dashboard
+                </p>
+                <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+                    Your wellness tools are getting tuned up.
+                </h1>
+                <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+                    Eating and workout actions are intentionally deactivated by default for now so the next release can focus on a safer, more polished health experience.
+                </p>
 
-            <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-                <Image
-                    className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-                    src="/next.svg"
-                    alt="Next.js Logo"
-                    width={180}
-                    height={37}
-                    priority
-                />
-            </div>
-
-            <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-                <a
-                    href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-                    className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <h2 className={`mb-3 text-2xl font-semibold`}>
-                        Docs{' '}
-                        <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-                    </h2>
-                    <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                        Find in-depth information about Next.js features and API.
-                    </p>
-                </a>
-
-                <a
-                    href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-                    className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <h2 className={`mb-3 text-2xl font-semibold`}>
-                        Learn{' '}
-                        <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-                    </h2>
-                    <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                        Learn about Next.js in an interactive course with&nbsp;quizzes!
-                    </p>
-                </a>
-
-                <a
-                    href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-                    className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <h2 className={`mb-3 text-2xl font-semibold`}>
-                        Templates{' '}
-                        <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-                    </h2>
-                    <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                        Explore the Next.js 13 playground.
-                    </p>
-                </a>
-
-                <a
-                    href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-                    className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <h2 className={`mb-3 text-2xl font-semibold`}>
-                        Deploy{' '}
-                        <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-                    </h2>
-                    <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                        Instantly deploy your Next.js site to a shareable URL with Vercel.
-                    </p>
-                </a>
-            </div>
+                <div className="mt-10 grid gap-4 sm:grid-cols-2">
+                    {inactiveHealthActions.map((action) => (
+                        <button
+                            aria-describedby={`${action.label.toLowerCase()}-status`}
+                            className="cursor-not-allowed rounded-2xl border border-slate-700 bg-slate-900/80 px-6 py-5 text-left opacity-60 shadow-inner shadow-black/20 transition sm:px-8"
+                            disabled
+                            key={action.label}
+                            type="button"
+                        >
+                            <span className="block text-2xl font-semibold text-white">{action.label}</span>
+                            <span
+                                className="mt-3 block text-sm leading-6 text-slate-300"
+                                id={`${action.label.toLowerCase()}-status`}
+                            >
+                                {action.description}
+                            </span>
+                            <span className="mt-5 inline-flex rounded-full bg-amber-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-amber-200">
+                                Deactivated for now
+                            </span>
+                        </button>
+                    ))}
+                </div>
+            </section>
         </main>
-    )
+    );
 }

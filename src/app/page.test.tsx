@@ -2,11 +2,10 @@ import { render, screen } from '@testing-library/react'
 import Page from '../app/page'
 
 describe('Home', () => {
-    it('renders a heading', () => {
+    it('renders eating and workout actions as disabled by default', () => {
         render(<Page />)
 
-        const image = screen.getByAltText(/next\.js logo/i)
-
-        expect(image).toBeInTheDocument()
+        expect(screen.getByRole('button', { name: /eating/i })).toBeDisabled()
+        expect(screen.getByRole('button', { name: /workout/i })).toBeDisabled()
     })
 })
