@@ -20,6 +20,8 @@ export interface TrackerConfig {
   daily: Record<DailyTrackerKey, DailyTrackerConfig>;
   /** Show the sobriety day-counter button on the main page. */
   sobriety: { enabled: boolean };
+  /** Show the medication checklist button on the main page. */
+  medications: { enabled: boolean };
   /** Show the body-map symptom diary button on the main page. */
   symptoms: { enabled: boolean };
   /** Enable menstrual-cycle logging + predictions on the calendar. */
@@ -53,6 +55,18 @@ export interface SobrietyStreak {
   startDate: string; // "YYYY-MM-DD"
 }
 
+/** A prescription the user wants reminded to take once per day. */
+export interface Prescription {
+  id: string;
+  label: string;
+}
+
+/** A day's medication checklist, keyed by prescription id. */
+export type MedicationLogEntry = Record<string, boolean>;
+
+/** Map of "YYYY-MM-DD" -> medication checklist for that day. */
+export type MedicationLog = Record<string, MedicationLogEntry>;
+
 /** Body-map views. Region keys are stored as "<view>:<region>" e.g. "front:chest". */
 export type BodyView = 'front' | 'back';
 
@@ -66,6 +80,7 @@ export const DEFAULT_TRACKER_CONFIG: TrackerConfig = {
     food: { enabled: false, label: 'Eating', icon: 'utensils' },
   },
   sobriety: { enabled: false },
+  medications: { enabled: false },
   symptoms: { enabled: false },
   cycle: {
     enabled: false,

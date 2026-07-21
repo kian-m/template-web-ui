@@ -5,6 +5,9 @@ import {
   type CycleRecord,
   type DayEntry,
   type DayLog,
+  type MedicationLog,
+  type MedicationLogEntry,
+  type Prescription,
   type SobrietyStreak,
   type SymptomLog,
   type TrackerConfig,
@@ -13,6 +16,8 @@ import {
 const CONFIG_KEY = 'trackerConfig';
 const DAY_LOG_KEY = 'dayLog';
 const SOBRIETY_KEY = 'sobriety';
+const PRESCRIPTIONS_KEY = 'prescriptions';
+const MEDICATION_LOG_KEY = 'medicationLog';
 const SYMPTOMS_KEY = 'symptoms';
 const CYCLE_KEY = 'cycles';
 const LEGACY_SLEEP_KEY = 'sleep';
@@ -63,8 +68,18 @@ export const getTrackerConfig = (): TrackerConfig => {
   if (!stored) return DEFAULT_TRACKER_CONFIG;
   return {
     daily: { ...DEFAULT_TRACKER_CONFIG.daily, ...(stored.daily ?? {}) },
-    sobriety: { ...DEFAULT_TRACKER_CONFIG.sobriety, ...(stored.sobriety ?? {}) },
-    symptoms: { ...DEFAULT_TRACKER_CONFIG.symptoms, ...(stored.symptoms ?? {}) },
+    sobriety: {
+      ...DEFAULT_TRACKER_CONFIG.sobriety,
+      ...(stored.sobriety ?? {}),
+    },
+    medications: {
+      ...DEFAULT_TRACKER_CONFIG.medications,
+      ...(stored.medications ?? {}),
+    },
+    symptoms: {
+      ...DEFAULT_TRACKER_CONFIG.symptoms,
+      ...(stored.symptoms ?? {}),
+    },
     cycle: {
       ...DEFAULT_TRACKER_CONFIG.cycle,
       ...(stored.cycle ?? {}),
@@ -179,6 +194,52 @@ export const daysSober = (
 };
 
 // ---------------------------------------------------------------------------
+// Medication tracking
+// ---------------------------------------------------------------------------
+
+export const getPrescriptions = (): Prescription[] =>
+  read<Prescription[]>(PRESCRIPTIONS_KEY, []).filter(
+    (prescription) => prescription.id && prescription.label,
+  );
+
+export const savePrescriptions = (prescriptions: Prescription[]): void => {
+  write(PRESCRIPTIONS_KEY, prescriptions);
+};
+
+export const getMedicationLog = (): MedicationLog => {
+  const raw = read<Record<string, Record<string, unknown>>>(
+    MEDICATION_LOG_KEY,
+    {},
+  );
+  const log: MedicationLog = {};
+  for (const [date, entry] of Object.entries(raw)) {
+    const day: MedicationLogEntry = {};
+    for (const [prescriptionId, taken] of Object.entries(entry ?? {})) {
+      if (taken === true) day[prescriptionId] = true;
+    }
+    if (Object.keys(day).length) log[date] = day;
+  }
+  return log;
+};
+
+export const getMedicationLogForDate = (date: string): MedicationLogEntry =>
+  getMedicationLog()[date] ?? {};
+
+export const setMedicationTaken = (
+  date: string,
+  prescriptionId: string,
+  taken: boolean,
+): void => {
+  const log = getMedicationLog();
+  const day = { ...(log[date] ?? {}) };
+  if (taken) day[prescriptionId] = true;
+  else delete day[prescriptionId];
+  if (Object.keys(day).length) log[date] = day;
+  else delete log[date];
+  write(MEDICATION_LOG_KEY, log);
+};
+
+// ---------------------------------------------------------------------------
 // Symptom diary (body map) — 1-5 severity per region per day
 // ---------------------------------------------------------------------------
 
@@ -229,11 +290,18 @@ export const saveCycles = (cycles: CycleRecord[]): void => {
 // Reset / clear data (per section, or everything)
 // ---------------------------------------------------------------------------
 
-export type ResetSection = 'daily' | 'sobriety' | 'symptoms' | 'cycles' | 'all';
+export type ResetSection =
+  | 'daily'
+  | 'sobriety'
+  | 'medications'
+  | 'symptoms'
+  | 'cycles'
+  | 'all';
 
 const SECTION_KEYS: Record<Exclude<ResetSection, 'all'>, string> = {
   daily: DAY_LOG_KEY,
   sobriety: SOBRIETY_KEY,
+  medications: MEDICATION_LOG_KEY,
   symptoms: SYMPTOMS_KEY,
   cycles: CYCLE_KEY,
 };
@@ -242,9 +310,15 @@ const SECTION_KEYS: Record<Exclude<ResetSection, 'all'>, string> = {
 export const clearTrackerData = (section: ResetSection): void => {
   if (!hasWindow()) return;
   if (section === 'all') {
-    [DAY_LOG_KEY, SOBRIETY_KEY, SYMPTOMS_KEY, CYCLE_KEY, LEGACY_SLEEP_KEY].forEach(
-      (k) => localStorage.removeItem(k),
-    );
+    [
+      DAY_LOG_KEY,
+      SOBRIETY_KEY,
+      PRESCRIPTIONS_KEY,
+      MEDICATION_LOG_KEY,
+      SYMPTOMS_KEY,
+      CYCLE_KEY,
+      LEGACY_SLEEP_KEY,
+    ].forEach((k) => localStorage.removeItem(k));
   } else {
     localStorage.removeItem(SECTION_KEYS[section]);
   }

@@ -35,6 +35,9 @@ describe('Landing', () => {
     expect(
       screen.queryByRole('button', { name: /symptoms/i }),
     ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: /medications/i }),
+    ).not.toBeInTheDocument();
   });
 
   it('shows the gym/food buttons when their daily trackers are enabled', () => {
@@ -60,12 +63,16 @@ describe('Landing', () => {
       JSON.stringify({
         sobriety: { enabled: true },
         symptoms: { enabled: true },
+        medications: { enabled: true },
       }),
     );
     renderLanding();
     expect(screen.getByRole('button', { name: /sober/i })).toBeInTheDocument();
     expect(
       screen.getByRole('button', { name: /symptoms/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /medications/i }),
     ).toBeInTheDocument();
   });
 });

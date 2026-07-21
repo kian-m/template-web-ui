@@ -5,8 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import {
   clearTrackerData,
+  getPrescriptions,
   getSobrietyStreaks,
   getTrackerConfig,
+  savePrescriptions,
   saveSobrietyStreaks,
   saveTrackerConfig,
   toDateKey,
@@ -14,7 +16,11 @@ import {
 } from '../../utils/tracker-storage';
 import { encryptLocalStorage, decryptLocalStorage } from '../../utils/session';
 import { trackerIcon } from '../../utils/tracker-icons';
-import type { SobrietyStreak, TrackerConfig } from '../../types/trackers';
+import type {
+  Prescription,
+  SobrietyStreak,
+  TrackerConfig,
+} from '../../types/trackers';
 
 interface ConfigProps {
   /** Notified whenever config or streaks change, so the main page can refresh. */
@@ -41,6 +47,7 @@ const Toggle: React.FC<{
 const Config: React.FC<ConfigProps> = ({ onChanged }) => {
   const [config, setConfig] = useState<TrackerConfig | null>(null);
   const [streaks, setStreaks] = useState<SobrietyStreak[]>([]);
+  const [prescriptions, setPrescriptions] = useState<Prescription[]>([]);
   const [exported, setExported] = useState(false);
   const [importValue, setImportValue] = useState('');
   const [importError, setImportError] = useState(false);
@@ -48,6 +55,7 @@ const Config: React.FC<ConfigProps> = ({ onChanged }) => {
   useEffect(() => {
     setConfig(getTrackerConfig());
     setStreaks(getSobrietyStreaks());
+    setPrescriptions(getPrescriptions());
   }, []);
 
   const handleExport = async () => {
@@ -70,6 +78,7 @@ const Config: React.FC<ConfigProps> = ({ onChanged }) => {
     if (!window.confirm(`Reset ${label}? This can’t be undone.`)) return;
     clearTrackerData(section);
     setStreaks(getSobrietyStreaks());
+    setPrescriptions(getPrescriptions());
     onChanged?.();
   };
 
@@ -87,7 +96,10 @@ const Config: React.FC<ConfigProps> = ({ onChanged }) => {
     onChanged?.();
   };
 
-  const updateDaily = (key: string, patch: Partial<{ enabled: boolean; label: string }>) => {
+  const updateDaily = (
+    key: string,
+    patch: Partial<{ enabled: boolean; label: string }>,
+  ) => {
     persistConfig({
       ...config,
       daily: { ...config.daily, [key]: { ...config.daily[key], ...patch } },
@@ -111,6 +123,27 @@ const Config: React.FC<ConfigProps> = ({ onChanged }) => {
   const removeStreak = (id: string) =>
     persistStreaks(streaks.filter((s) => s.id !== id));
 
+  const persistPrescriptions = (next: Prescription[]) => {
+    setPrescriptions(next);
+    savePrescriptions(next);
+    onChanged?.();
+  };
+
+  const addPrescription = () => {
+    persistPrescriptions([
+      ...prescriptions,
+      { id: `m_${Date.now()}`, label: 'Medication name' },
+    ]);
+  };
+
+  const updatePrescription = (id: string, patch: Partial<Prescription>) =>
+    persistPrescriptions(
+      prescriptions.map((p) => (p.id === id ? { ...p, ...patch } : p)),
+    );
+
+  const removePrescription = (id: string) =>
+    persistPrescriptions(prescriptions.filter((p) => p.id !== id));
+
   return (
     <div className="config-view">
       <h2 className="overlay-title">Configure trackers</h2>
@@ -122,7 +155,10 @@ const Config: React.FC<ConfigProps> = ({ onChanged }) => {
           const cfg = config.daily[key];
           return (
             <div key={key} className="config-row">
-              <FontAwesomeIcon icon={trackerIcon(cfg.icon)} className="config-row-icon" />
+              <FontAwesomeIcon
+                icon={trackerIcon(cfg.icon)}
+                className="config-row-icon"
+              />
               <input
                 className="config-input"
                 value={cfg.label}
@@ -152,6 +188,16 @@ const Config: React.FC<ConfigProps> = ({ onChanged }) => {
           />
         </div>
         <div className="config-row">
+          <span className="config-row-label">Medication tracking</span>
+          <Toggle
+            checked={config.medications.enabled}
+            onChange={(enabled) =>
+              persistConfig({ ...config, medications: { enabled } })
+            }
+            label="Enable medication tracking"
+          />
+        </div>
+        <div className="config-row">
           <span className="config-row-label">Symptom diary (body map)</span>
           <Toggle
             checked={config.symptoms.enabled}
@@ -176,7 +222,9 @@ const Config: React.FC<ConfigProps> = ({ onChanged }) => {
       {config.cycle.enabled && (
         <section className="config-section">
           <h3>Cycle phases</h3>
-          <p className="config-hint">Which phases to outline on the calendar.</p>
+          <p className="config-hint">
+            Which phases to outline on the calendar.
+          </p>
           {(
             [
               ['menstrual', 'Menstrual'],
@@ -206,6 +254,42 @@ const Config: React.FC<ConfigProps> = ({ onChanged }) => {
         </section>
       )}
 
+      {config.medications.enabled && (
+        <section className="config-section">
+          <h3>Prescriptions</h3>
+          <p className="config-hint">
+            Add each medication you want to check off once per day.
+          </p>
+          {prescriptions.map((prescription) => (
+            <div key={prescription.id} className="config-row">
+              <input
+                className="config-input"
+                value={prescription.label}
+                onChange={(e) =>
+                  updatePrescription(prescription.id, { label: e.target.value })
+                }
+                aria-label="Prescription label"
+              />
+              <button
+                type="button"
+                className="icon-button"
+                onClick={() => removePrescription(prescription.id)}
+                aria-label="Remove prescription"
+              >
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            className="link-button"
+            onClick={addPrescription}
+          >
+            <FontAwesomeIcon icon={faPlus} /> Add prescription
+          </button>
+        </section>
+      )}
+
       {config.sobriety.enabled && (
         <section className="config-section">
           <h3>Sobriety streaks</h3>
@@ -214,7 +298,9 @@ const Config: React.FC<ConfigProps> = ({ onChanged }) => {
               <input
                 className="config-input"
                 value={streak.label}
-                onChange={(e) => updateStreak(streak.id, { label: e.target.value })}
+                onChange={(e) =>
+                  updateStreak(streak.id, { label: e.target.value })
+                }
                 aria-label="Streak label"
               />
               <input
@@ -292,6 +378,13 @@ const Config: React.FC<ConfigProps> = ({ onChanged }) => {
             onClick={() => resetSection('sobriety', 'sobriety streaks')}
           >
             Reset sobriety
+          </button>
+          <button
+            type="button"
+            className="reset-btn"
+            onClick={() => resetSection('medications', 'medication check-ins')}
+          >
+            Reset medication check-ins
           </button>
           <button
             type="button"
