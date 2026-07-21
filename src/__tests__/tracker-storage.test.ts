@@ -35,14 +35,20 @@ describe('tracker config', () => {
   });
 
   it('persists and reloads config', () => {
-    saveTrackerConfig({ ...DEFAULT_TRACKER_CONFIG, symptoms: { enabled: true } });
+    saveTrackerConfig({
+      ...DEFAULT_TRACKER_CONFIG,
+      symptoms: { enabled: true },
+    });
     expect(getTrackerConfig().symptoms.enabled).toBe(true);
   });
 
   it('merges newly-added defaults into older stored config', () => {
     localStorage.setItem(
       'trackerConfig',
-      JSON.stringify({ daily: DEFAULT_TRACKER_CONFIG.daily, sobriety: { enabled: true } }),
+      JSON.stringify({
+        daily: DEFAULT_TRACKER_CONFIG.daily,
+        sobriety: { enabled: true },
+      }),
     );
     const config = getTrackerConfig();
     expect(config.sobriety.enabled).toBe(true);
@@ -54,6 +60,7 @@ describe('tracker config', () => {
       ...DEFAULT_TRACKER_CONFIG,
       daily: {
         ...DEFAULT_TRACKER_CONFIG.daily,
+        workout: { enabled: true, label: 'Workout', icon: 'dumbbell' as const },
         food: { enabled: false, label: 'Eating', icon: 'utensils' as const },
       },
     };
@@ -108,12 +115,16 @@ describe('sobriety', () => {
 
   it('counts whole days since the start date', () => {
     const now = new Date(2026, 0, 11);
-    expect(daysSober({ id: 's', label: 'x', startDate: '2026-01-01' }, now)).toBe(10);
+    expect(
+      daysSober({ id: 's', label: 'x', startDate: '2026-01-01' }, now),
+    ).toBe(10);
   });
 
   it('never returns a negative count for a future start date', () => {
     const now = new Date(2026, 0, 1);
-    expect(daysSober({ id: 's', label: 'x', startDate: '2026-06-01' }, now)).toBe(0);
+    expect(
+      daysSober({ id: 's', label: 'x', startDate: '2026-06-01' }, now),
+    ).toBe(0);
   });
 
   it('returns 0 for a malformed start date', () => {
@@ -144,7 +155,10 @@ describe('clearTrackerData', () => {
   });
 
   it('clears everything on "all" but keeps config', () => {
-    saveTrackerConfig({ ...DEFAULT_TRACKER_CONFIG, symptoms: { enabled: true } });
+    saveTrackerConfig({
+      ...DEFAULT_TRACKER_CONFIG,
+      symptoms: { enabled: true },
+    });
     setRating('2026-06-12', 'sleep', 4);
     saveCycles([{ start: '2026-06-01' }]);
     setSymptomSeverity('2026-06-12', 'front:chest', 3);
@@ -168,7 +182,10 @@ describe('legacy sleep migration', () => {
   it('does not overwrite an existing day-log sleep entry', () => {
     jest.resetModules();
     localStorage.setItem('sleep', JSON.stringify({ '2025-01-10': 3 }));
-    localStorage.setItem('dayLog', JSON.stringify({ '2025-01-10': { sleep: 5 } }));
+    localStorage.setItem(
+      'dayLog',
+      JSON.stringify({ '2025-01-10': { sleep: 5 } }),
+    );
     const mod = require('@/utils/tracker-storage');
     mod.migrateLegacySleep();
     expect(mod.getRating('2025-01-10', 'sleep')).toBe(5);

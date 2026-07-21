@@ -27,7 +27,11 @@ export interface TrackerConfig {
 }
 
 /** The four menstrual-cycle phases, each independently shown/hidden. */
-export type CyclePhaseName = 'menstrual' | 'follicular' | 'ovulation' | 'luteal';
+export type CyclePhaseName =
+  | 'menstrual'
+  | 'follicular'
+  | 'ovulation'
+  | 'luteal';
 export type CyclePhaseToggles = Record<CyclePhaseName, boolean>;
 
 /** A logged menstrual cycle: when the period started and (optionally) ended. */
@@ -58,8 +62,8 @@ export type SymptomLog = Record<string, Record<string, number>>;
 export const DEFAULT_TRACKER_CONFIG: TrackerConfig = {
   daily: {
     sleep: { enabled: true, label: 'Sleep', icon: 'moon' },
-    workout: { enabled: true, label: 'Workout', icon: 'dumbbell' },
-    food: { enabled: true, label: 'Eating', icon: 'utensils' },
+    workout: { enabled: false, label: 'Workout', icon: 'dumbbell' },
+    food: { enabled: false, label: 'Eating', icon: 'utensils' },
   },
   sobriety: { enabled: false },
   symptoms: { enabled: false },
