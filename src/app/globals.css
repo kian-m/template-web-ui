@@ -500,6 +500,7 @@ select {
 .day-editor,
 .config-view,
 .sober-view,
+.medications-view,
 .body-map {
   background: #0b0b0b;
   color: white;
@@ -519,6 +520,7 @@ select {
 /* Config / sober / body map are rendered as centered panels on the page. */
 .config-view,
 .sober-view,
+.medications-view,
 .body-map {
   margin: 8vh auto 0;
 }
@@ -919,6 +921,64 @@ select {
 }
 .sober-milestone svg {
   margin-right: 0.3rem;
+}
+
+
+/* Medication checklist. */
+.med-progress {
+  margin-bottom: 0.8rem;
+  color: rgba(248, 158, 157, 0.95);
+  font-weight: 700;
+  text-align: center;
+}
+.med-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.med-card {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0.85rem;
+  text-align: left;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
+}
+.med-card:active {
+  transform: scale(0.98);
+}
+.med-card.taken {
+  background: rgba(94, 201, 139, 0.16);
+  border-color: rgba(94, 201, 139, 0.55);
+}
+.med-icon {
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(212, 111, 147, 0.2);
+  color: #f9a8d4;
+}
+.med-card.taken .med-icon {
+  background: rgba(94, 201, 139, 0.25);
+  color: #9ff0bf;
+}
+.med-name {
+  font-weight: 700;
+}
+.med-status {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.8rem;
 }
 
 /* Body map. */

@@ -3,7 +3,15 @@ import CryptoJS from 'crypto-js';
 // Frontend-only "backup/restore": the user's tracker data is bundled, encrypted,
 // and copied to / pasted from the clipboard. No backend involved.
 const SECRET_KEY = 'mySecretKey';
-const TRACKER_KEYS = ['trackerConfig', 'dayLog', 'sobriety', 'symptoms', 'cycles'];
+const TRACKER_KEYS = [
+  'trackerConfig',
+  'dayLog',
+  'sobriety',
+  'prescriptions',
+  'medicationLog',
+  'symptoms',
+  'cycles',
+];
 
 /** Encrypt all tracker data into the clipboard as a single portable string. */
 export const encryptLocalStorage = async (): Promise<void> => {

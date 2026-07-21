@@ -1,10 +1,13 @@
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import BodyMap from '@/views/symptoms/body-map';
 import Sober from '@/views/sober/sober';
+import Medications from '@/views/medications';
 import DayEditor from '@/views/calendar/day-editor';
 import {
   getSymptomsForDate,
+  getMedicationLogForDate,
   getRating,
+  savePrescriptions,
   saveSobrietyStreaks,
   toDateKey,
 } from '@/utils/tracker-storage';
@@ -43,6 +46,19 @@ describe('Sober', () => {
   });
 });
 
+describe('Medications', () => {
+  it('checks off a configured prescription for today', () => {
+    const today = toDateKey(new Date());
+    savePrescriptions([{ id: 'm1', label: 'Vitamin D' }]);
+    render(<Medications />);
+    fireEvent.click(
+      screen.getByRole('button', { name: /vitamin d not taken/i }),
+    );
+    expect(getMedicationLogForDate(today)).toEqual({ m1: true });
+    expect(screen.getByText(/1 of 1 taken today/i)).toBeInTheDocument();
+  });
+});
+
 describe('DayEditor', () => {
   it('persists a 1-5 rating per tracker (no text inputs)', () => {
     const date = toDateKey(new Date());
@@ -69,8 +85,14 @@ describe('DayEditor', () => {
     );
     const date = toDateKey(new Date());
     render(<DayEditor date={date} onClose={() => {}} />);
-    expect(screen.getByRole('radiogroup', { name: /sleep/i })).toBeInTheDocument();
-    expect(screen.getByRole('radiogroup', { name: /workout/i })).toBeInTheDocument();
-    expect(screen.getByRole('radiogroup', { name: /eating/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('radiogroup', { name: /sleep/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('radiogroup', { name: /workout/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('radiogroup', { name: /eating/i }),
+    ).toBeInTheDocument();
   });
 });

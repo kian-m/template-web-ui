@@ -13,7 +13,11 @@ import {
   setSymptomSeverity,
   clearTrackerData,
   getCycles,
+  getMedicationLogForDate,
+  getPrescriptions,
   saveCycles,
+  savePrescriptions,
+  setMedicationTaken,
   toDateKey,
 } from '@/utils/tracker-storage';
 import { DEFAULT_TRACKER_CONFIG } from '@/types/trackers';
@@ -189,5 +193,26 @@ describe('legacy sleep migration', () => {
     const mod = require('@/utils/tracker-storage');
     mod.migrateLegacySleep();
     expect(mod.getRating('2025-01-10', 'sleep')).toBe(5);
+  });
+});
+
+describe('medication tracking', () => {
+  it('persists prescriptions', () => {
+    const prescriptions = [{ id: 'm1', label: 'Vitamin D' }];
+    savePrescriptions(prescriptions);
+    expect(getPrescriptions()).toEqual(prescriptions);
+  });
+
+  it('tracks taken medication per day and resets naturally on a new date', () => {
+    savePrescriptions([{ id: 'm1', label: 'Vitamin D' }]);
+    setMedicationTaken('2026-07-21', 'm1', true);
+    expect(getMedicationLogForDate('2026-07-21')).toEqual({ m1: true });
+    expect(getMedicationLogForDate('2026-07-22')).toEqual({});
+  });
+
+  it('removes a medication check-in when untoggled', () => {
+    setMedicationTaken('2026-07-21', 'm1', true);
+    setMedicationTaken('2026-07-21', 'm1', false);
+    expect(getMedicationLogForDate('2026-07-21')).toEqual({});
   });
 });

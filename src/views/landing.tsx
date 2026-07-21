@@ -9,6 +9,7 @@ import {
   faGear,
   faMoon,
   faPerson,
+  faPills,
   faUtensils,
   faWineBottle,
 } from '@fortawesome/free-solid-svg-icons';
@@ -24,6 +25,7 @@ import DayEditor from './calendar/day-editor';
 import Config from './config/config';
 import Sober from './sober/sober';
 import BodyMap from './symptoms/body-map';
+import Medications from './medications';
 
 type View =
   | 'gym'
@@ -32,7 +34,8 @@ type View =
   | 'calendar'
   | 'config'
   | 'sober'
-  | 'symptoms';
+  | 'symptoms'
+  | 'medications';
 
 export default function Landing() {
   const { setText } = useContext(FadingTextContext);
@@ -88,6 +91,7 @@ export default function Landing() {
       )}
       {view === 'sober' && <Sober />}
       {view === 'symptoms' && <BodyMap date={bodyMapDate} />}
+      {view === 'medications' && <Medications />}
 
       {view === null && (
         <div className="button-container">
@@ -125,10 +129,19 @@ export default function Landing() {
               <FontAwesomeIcon icon={faWineBottle} size="lg" color="white" />
             </button>
           )}
+          {config?.medications.enabled && (
+            <button
+              aria-label="medications"
+              className="circle-button button5"
+              onClick={() => setView('medications')}
+            >
+              <FontAwesomeIcon icon={faPills} size="lg" color="white" />
+            </button>
+          )}
           {config?.symptoms.enabled && (
             <button
               aria-label="symptoms"
-              className="circle-button button5"
+              className="circle-button button6"
               onClick={() => openBodyMap(undefined)}
             >
               <FontAwesomeIcon icon={faPerson} size="lg" color="white" />
