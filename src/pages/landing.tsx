@@ -219,7 +219,9 @@ export default function Landing() {
         <div className="-mt-32 h-32 lg:sticky md:sticky bottom-1/2 flex justify-center ">
           <button className=" rounded-md w-5/6 hover:bg-emerald-800 hover:opacity-40 bg-gray-100 bg-opacity-10 text-white text-2xl font-bold times-italic drop-shadow-lg">
             <a
-              href={'https://open.spotify.com/artist/5EJtlbDLAUpy3CPKdmpHb4?si=5JV9rdiVR52WFC4FzpK4_A'}
+              href={
+                'https://open.spotify.com/artist/5EJtlbDLAUpy3CPKdmpHb4?si=5JV9rdiVR52WFC4FzpK4_A'
+              }
               target="_blank"
               rel="noopener noreferrer"
             >

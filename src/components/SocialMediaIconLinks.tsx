@@ -36,7 +36,9 @@ export default function SocialMediaIconLinks() {
         <FaMailBulk className="hover:opacity-30" />
       </a>
       <a
-        href={'https://open.spotify.com/artist/5EJtlbDLAUpy3CPKdmpHb4?si=5JV9rdiVR52WFC4FzpK4_A'}
+        href={
+          'https://open.spotify.com/artist/5EJtlbDLAUpy3CPKdmpHb4?si=5JV9rdiVR52WFC4FzpK4_A'
+        }
         target="_blank"
         rel="noopener noreferrer"
       >

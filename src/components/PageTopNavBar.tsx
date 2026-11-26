@@ -47,18 +47,20 @@ export default function PageTopNavBar({
         </button>
         {open && (
           <div className="absolute left-0 z-10 flex flex-col bg-white border border-neutral-300">
-            {menuItems.filter((item) => hasShows || item.label !== 'Shows').map(({ label, type }) => (
-              <button
-                key={label}
-                onClick={() => {
-                  dispatch({ type });
-                  setOpen(false);
-                }}
-                className="px-4 py-2 text-left whitespace-nowrap opacity-75 hover:bg-neutral-200"
-              >
-                {label}
-              </button>
-            ))}
+            {menuItems
+              .filter((item) => hasShows || item.label !== 'Shows')
+              .map(({ label, type }) => (
+                <button
+                  key={label}
+                  onClick={() => {
+                    dispatch({ type });
+                    setOpen(false);
+                  }}
+                  className="px-4 py-2 text-left whitespace-nowrap opacity-75 hover:bg-neutral-200"
+                >
+                  {label}
+                </button>
+              ))}
           </div>
         )}
       </div>
