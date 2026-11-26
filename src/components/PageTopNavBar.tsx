@@ -33,26 +33,28 @@ const menuItems = [
 
 export default function PageTopNavBar({
   dispatch,
+  hasShows,
 }: {
   dispatch: Dispatch<Action>;
+  hasShows: boolean;
 }) {
   const [open, setOpen] = useState(false);
   return (
-    <header className="grid grid-cols-3 items-center p-3 times-italic">
+    <header className="grid grid-cols-2 sm:grid-cols-3 items-center p-3 pt-8 times-italic">
       <div className="relative justify-self-start">
         <button onClick={() => setOpen(!open)} className="px-3 py-2 opacity-75">
           Menu ▾
         </button>
         {open && (
-          <div className="absolute left-0 z-10 flex flex-col bg-black border border-neutral-700">
-            {menuItems.map(({ label, type }) => (
+          <div className="absolute left-0 z-10 flex flex-col bg-white border border-neutral-300">
+            {menuItems.filter((item) => hasShows || item.label !== 'Shows').map(({ label, type }) => (
               <button
                 key={label}
                 onClick={() => {
                   dispatch({ type });
                   setOpen(false);
                 }}
-                className="px-4 py-2 text-left whitespace-nowrap opacity-75 hover:bg-neutral-800"
+                className="px-4 py-2 text-left whitespace-nowrap opacity-75 hover:bg-neutral-200"
               >
                 {label}
               </button>
@@ -61,7 +63,7 @@ export default function PageTopNavBar({
         )}
       </div>
 
-      <h1 className="justify-self-center text-center text-xl lg:text-3xl whitespace-nowrap">
+      <h1 className="col-span-2 row-start-2 sm:col-span-1 sm:col-start-2 sm:row-start-1 justify-self-center text-center text-[clamp(1.875rem,4vw,3rem)] whitespace-nowrap">
         Kacie Jewel Hill
       </h1>
 

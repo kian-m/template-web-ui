@@ -124,8 +124,8 @@ export default function Landing() {
       let upComingShowRows: ReactNode[] = [];
 
       data.forEach((data) => {
-        const place = data.c[0].v;
-        const displayTime = data.c[2].v === 'Display';
+        const place = data.c[0]?.v;
+        const displayTime = data.c[2]?.v === 'Display';
         if (data.c[4]) {
           if (data.c[4].v) {
             setAboutMeContent(data.c[4].v as string);
@@ -141,6 +141,7 @@ export default function Landing() {
             setSongLink(data.c[6].v as string);
           }
         }
+        if (!place || !data.c[1]?.v) return;
         let date = new Date(data.c[1].v as string);
         let today = new Date();
 
@@ -197,10 +198,11 @@ export default function Landing() {
   }, [getSheetData]);
 
   const [state, dispatch] = useReducer(reducer, initialState);
+  const hasShows = upcomingShows.length + pastShows.length > 0;
   return (
     <div className={'flex flex-col '}>
       <div>
-        <PageTopNavBar dispatch={dispatch} />
+        <PageTopNavBar dispatch={dispatch} hasShows={hasShows} />
       </div>
 
       <StyledDiv>
@@ -293,7 +295,7 @@ export default function Landing() {
                   )}
                 </div>
               ),
-              visible: true,
+              visible: hasShows,
               name: 'shows',
             },
             {
@@ -318,7 +320,7 @@ export default function Landing() {
                   <p
                     ref={aboutMeRef}
                     className={
-                      'text-white lg:text-1xl drop-shadow-lg p-5 times-italic  opacity-75  border-2 m-10 lg:m-40 md:m-40'
+                      'lg:text-1xl drop-shadow-lg p-5 times-italic  opacity-75  border-2 m-10 lg:m-40 md:m-40'
                     }
                   >
                     {aboutMeContent}
