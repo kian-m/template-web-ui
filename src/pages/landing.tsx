@@ -338,7 +338,6 @@ export default function Landing() {
                   ref={contactMeRef}
                   className={'times-italic p-4 m-20 mb-28 border-b-2'}
                 >
-                  email:
                   <a href="mailto:kaciehillmusic@gmail.com">
                     kaciehillmusic@gmail.com
                   </a>
