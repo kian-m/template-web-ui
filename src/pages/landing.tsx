@@ -11,7 +11,6 @@ import PageTopNavBar, { Action, State } from '../components/PageTopNavBar';
 
 import { FaSpotify } from 'react-icons/fa';
 
-import BottomSocialMediaLinks from '../components/SocialMediaIconLinks';
 import PageBottomWindow from '../components/PageBottom';
 import { getSheetData, SheetData } from '../services/sheets';
 import one from '../../public/1.webp';
@@ -32,6 +31,8 @@ import twentyone from '../../public/21.webp';
 import twentytwo from '../../public/22.webp';
 import twentythree from '../../public/23.webp';
 import styled from '@emotion/styled';
+import Image from 'next/image';
+import hero from '../../public/hero.webp';
 
 const images = [
   sixteen,
@@ -56,7 +57,6 @@ const StyledDiv = styled.div`
 `;
 export default function Landing() {
   const [bottomVisible, setBottomVisible] = useState(true);
-  const [showSubscribe, setShowSubscribe] = useState(true);
   const [outNowVisible, setOutNowVisible] = useState(false);
   const [upcomingShows, setUpcomingShows] = useState<ReactNode[]>([]);
   const [pastShows, setPastShows] = useState<ReactNode[]>([]);
@@ -124,8 +124,8 @@ export default function Landing() {
       let upComingShowRows: ReactNode[] = [];
 
       data.forEach((data) => {
-        const place = data.c[0].v;
-        const displayTime = data.c[2].v === 'Display';
+        const place = data.c[0]?.v;
+        const displayTime = data.c[2]?.v === 'Display';
         if (data.c[4]) {
           if (data.c[4].v) {
             setAboutMeContent(data.c[4].v as string);
@@ -141,6 +141,7 @@ export default function Landing() {
             setSongLink(data.c[6].v as string);
           }
         }
+        if (!place || !data.c[1]?.v) return;
         let date = new Date(data.c[1].v as string);
         let today = new Date();
 
@@ -197,27 +198,28 @@ export default function Landing() {
   }, [getSheetData]);
 
   const [state, dispatch] = useReducer(reducer, initialState);
+  const hasShows = upcomingShows.length + pastShows.length > 0;
   return (
     <div className={'flex flex-col '}>
       <div>
-        <PageTopNavBar dispatch={dispatch} />
+        <PageTopNavBar dispatch={dispatch} hasShows={hasShows} />
       </div>
 
       <StyledDiv>
-        <iframe
-          className="video"
-          title="Youtube player"
-          sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-presentation"
-          height="555"
-          width="100%"
-          src={videoLink}
+        <Image
+          src={hero}
+          alt="Kacie Jewel Hill"
+          priority
+          placeholder="blur"
+          sizes="(max-width: 768px) 100vw, 700px"
+          className="mx-auto h-auto max-h-[85vh] w-auto"
         />
       </StyledDiv>
       {outNowVisible && (
         <div className="-mt-32 h-32 lg:sticky md:sticky bottom-1/2 flex justify-center ">
           <button className=" rounded-md w-5/6 hover:bg-emerald-800 hover:opacity-40 bg-gray-100 bg-opacity-10 text-white text-2xl font-bold times-italic drop-shadow-lg">
             <a
-              href={'https://spotify.link/cOgz1twyuDb'}
+              href={'https://open.spotify.com/artist/5EJtlbDLAUpy3CPKdmpHb4?si=5JV9rdiVR52WFC4FzpK4_A'}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -293,7 +295,7 @@ export default function Landing() {
                   )}
                 </div>
               ),
-              visible: true,
+              visible: hasShows,
               name: 'shows',
             },
             {
@@ -318,7 +320,7 @@ export default function Landing() {
                   <p
                     ref={aboutMeRef}
                     className={
-                      'text-white lg:text-1xl drop-shadow-lg p-5 times-italic  opacity-75  border-2 m-10 lg:m-40 md:m-40'
+                      'lg:text-1xl drop-shadow-lg p-5 times-italic  opacity-75  border-2 m-10 lg:m-40 md:m-40'
                     }
                   >
                     {aboutMeContent}
@@ -348,9 +350,11 @@ export default function Landing() {
           visible={bottomVisible}
         />
 
-        <BottomSocialMediaLinks
-          showSubscribe={showSubscribe}
-          setShowSubscribe={setShowSubscribe}
+        <iframe
+          id="substack"
+          src="https://kaciehill.substack.com/embed"
+          width="100%"
+          height="285"
         />
       </div>
     </div>

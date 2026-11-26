@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { Dispatch, useReducer } from 'react';
+import { Dispatch, useState } from 'react';
+import SocialMediaIconLinks from './SocialMediaIconLinks';
 enum ActionTypes {
   SHOW_CONTACT = 'SHOW_CONTACT',
   SHOW_SHOWS = 'SHOW_SHOWS',
@@ -24,52 +24,52 @@ const initialState: State = {
 export type Action = {
   type: ActionTypes;
 };
+const menuItems = [
+  { label: 'Contact', type: ActionTypes.SHOW_CONTACT },
+  { label: 'Shows', type: ActionTypes.SHOW_SHOWS },
+  { label: 'Gallery', type: ActionTypes.SHOW_GALLERY },
+  { label: 'About Me', type: ActionTypes.SHOW_ABOUT_ME },
+];
+
 export default function PageTopNavBar({
   dispatch,
+  hasShows,
 }: {
   dispatch: Dispatch<Action>;
+  hasShows: boolean;
 }) {
+  const [open, setOpen] = useState(false);
   return (
-    <main className="-ml-4 flex flex-col items-center justify-between p-3">
-      <div className="grid grid-cols-4 gap-4 lg:space-x-12">
-        <button
-          onClick={() => dispatch({ type: ActionTypes.SHOW_CONTACT })}
-          className="lg:scale-150 group border border-transparent px-4 py-3 transition-colors hover:border-gray-300 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-        >
-          <p className={`m-0 text-sm opacity-75 font-extralight times-italic`}>
-            Contact
-          </p>
+    <header className="grid grid-cols-2 sm:grid-cols-3 items-center p-3 pt-8 times-italic">
+      <div className="relative justify-self-start">
+        <button onClick={() => setOpen(!open)} className="px-3 py-2 opacity-75">
+          Menu ▾
         </button>
-
-        <button
-          onClick={() => dispatch({ type: ActionTypes.SHOW_SHOWS })}
-          className="lg:scale-150 group border border-transparent px-4 py-3 transition-colors hover:border-gray-300 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-        >
-          <p className={`m-0 text-sm opacity-75 font-extralight times-italic`}>
-            Shows
-          </p>
-        </button>
-
-        <button
-          onClick={() => dispatch({ type: ActionTypes.SHOW_GALLERY })}
-          className="lg:scale-150 group border border-transparent px-4 py-3 transition-colors hover:border-gray-300 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-        >
-          <p className={`m-0 text-sm opacity-75 font-extralight times-italic`}>
-            Gallery
-          </p>
-        </button>
-
-        <button
-          onClick={() => dispatch({ type: ActionTypes.SHOW_ABOUT_ME })}
-          className="lg:scale-150 group border border-transparent px-4 py-3 transition-colors hover:border-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-        >
-          <p
-            className={`m-0 text-sm opacity-75 font-extralight whitespace-nowrap times-italic`}
-          >
-            About Me
-          </p>
-        </button>
+        {open && (
+          <div className="absolute left-0 z-10 flex flex-col bg-white border border-neutral-300">
+            {menuItems.filter((item) => hasShows || item.label !== 'Shows').map(({ label, type }) => (
+              <button
+                key={label}
+                onClick={() => {
+                  dispatch({ type });
+                  setOpen(false);
+                }}
+                className="px-4 py-2 text-left whitespace-nowrap opacity-75 hover:bg-neutral-200"
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
-    </main>
+
+      <h1 className="col-span-2 row-start-2 sm:col-span-1 sm:col-start-2 sm:row-start-1 justify-self-center text-center text-[clamp(1.875rem,4vw,3rem)] whitespace-nowrap">
+        Kacie Jewel Hill
+      </h1>
+
+      <div className="justify-self-end">
+        <SocialMediaIconLinks />
+      </div>
+    </header>
   );
 }
