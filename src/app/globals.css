@@ -38,7 +38,6 @@
   animation: moveBall 1s ease-in-out;
 }
 
-
 .scroll-slide {
   position: relative;
   width: 100%;
@@ -76,5 +75,5 @@ body {
 
 .chalk {
   align-self: center;
-  font-family: cursive, "Al Tarikh", Menlo;
+  font-family: cursive, 'Al Tarikh', Menlo;
 }

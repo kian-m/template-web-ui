@@ -1,0 +1,5 @@
+#!/bin/sh
+# Format staged files with Prettier so the deploy's lint never fails on formatting.
+files=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|jsx|ts|tsx|css|json)$')
+[ -z "$files" ] && exit 0
+npx prettier --write $files && git add $files
